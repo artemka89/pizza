@@ -1,21 +1,20 @@
-import { useState } from 'react'
-import styles from './Search.module.scss'
+import styles from "./Search.module.scss";
 
-const Search = () => {
-    
-    const [focus, setFocus] = useState(false)
-   
-    console.log(focus)
-
+const Search = ({ inputValue, onChangeInput }) => {
     return (
-        <div className={focus ? `${styles.input} ${styles.active}` : styles.wrapper}>
-        <div className={styles.search}>
-            <img onClick={() => setFocus(true)}  src="/img/searchIcon.png" alt="search" />
-            <input onBlur={() => setFocus(false)} autoFocus={true} className={styles.input} type="text" placeholder='Поиск по пиццам...' />
-            
+        <div className={`${styles.input} ${styles.active}`}>
+            <div className={styles.search}>
+                <img src="/img/searchIcon.png" alt="search" />
+                <input
+                    onChange={(e) => onChangeInput(e.target.value)}
+                    value={inputValue}
+                    className={styles.input}
+                    type="text"
+                    placeholder="Поиск по пиццам..."
+                />
+            </div>
         </div>
-        </div>
-    )
-}
+    );
+};
 
-export default Search
+export default Search;

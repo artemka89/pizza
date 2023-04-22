@@ -1,5 +1,5 @@
 .pizzas {
-    padding-bottom: 90px;
+    padding-bottom: 50px;
 }
 
 .title {
@@ -19,7 +19,7 @@
 .wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 26px;
     grid-row-gap: 35px;
     

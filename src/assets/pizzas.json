@@ -7,8 +7,8 @@
         "sizes": [30],
         "price": [399],
         "weight": [850],
-        "category": "Вегетарианские",
-        "raring": 4
+        "category": 2,
+        "rating": 4
     },
     {
         "id": 2,
@@ -18,8 +18,8 @@
         "sizes": [26, 30, 40],
         "price": [499, 719, 949],
         "weight": [520, 730, 1090],
-        "category": "Мясные",
-        "raring": 2
+        "category": 1,
+        "rating": 2
     },
     {
         "id": 3,
@@ -27,10 +27,10 @@
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/1831-300.jpg",        
         "types": ["стандартное", "тонкое"],
         "sizes": [26],
-        "price": 399,
+        "price": [399],
         "weight": [470],
-        "category": "Вегетарианские",
-        "raring": 3
+        "category": 2,
+        "rating": 3
     },
     {
         "id": 4,
@@ -38,10 +38,10 @@
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/1841-300.jpg",        
         "types": ["стандартное", "тонкое"],
         "sizes": [26],
-        "price": 299,
+        "price": [299],
         "weight": [430],
-        "category": "Вегетарианские",
-        "raring": 4
+        "category": 2,
+        "rating": 4
     },
     {
         "id": 5,
@@ -51,8 +51,8 @@
         "sizes": [26, 30, 40],
         "price": [459, 619, 619],
         "weight": [430, 575, 880],
-        "category": "Мясные",
-        "raring": 10
+        "category": 1,
+        "rating": 10
     },
     {
         "id": 6,
@@ -62,8 +62,8 @@
         "sizes": [26, 30, 40],
         "price": [549, 719, 719],
         "weight": [470, 630, 950],
-        "category": "Вегетарианские",
-        "raring": 10
+        "category": 2,
+        "rating": 10
     },
     {
         "id": 7,
@@ -73,8 +73,8 @@
         "sizes": [26, 30, 40],
         "price": [500, 700, 1110],
         "weight": [490, 640, 980],
-        "category": "Вегетарианские",
-        "raring": 3
+        "category": 2,
+        "rating": 3
     },
     {
         "id": 8,
@@ -84,8 +84,8 @@
         "sizes": [26, 30 , 40],
         "price": [520, 690, 1010],
         "weight": [430, 610, 920],
-        "category": "Мясные",
-        "raring": 4
+        "category": 1,
+        "rating": 4
     },
     {
         "id": 9,
@@ -96,8 +96,8 @@
         ],
         "price": [560, 790, 1170],
         "weight": [500, 650, 1020],
-        "category": "Мясные",
-        "raring": 4
+        "category": 1,
+        "rating": 7
        },
        {
         "id": 10,
@@ -107,8 +107,8 @@
         "sizes": [26, 30, 40],
         "price": [530, 710, 1080],
         "weight": [490, 660, 1100],
-        "category": "Мясные",
-        "raring": 4
+        "category": 1,
+        "rating": 6
        },
        {
         "id": 11,
@@ -118,8 +118,8 @@
         "sizes": [26, 30, 40],
         "price": [559, 729, 949],
         "weight": [670, 900, 1320],
-        "category": ["Закрытые", "Гриль"],
-        "raring": 4
+        "category": [3, 5],
+        "rating": 4
        },
        {
         "id": 12,
@@ -129,8 +129,8 @@
         "sizes": [26, 30, 40],
         "price": [559, 759, 1009],
         "weight": [540, 755, 1115],
-        "category": "Мясные",
-        "raring": 4
+        "category": 1,
+        "rating": 5
        },
        {
         "id": 13,
@@ -140,8 +140,8 @@
         "sizes": [26, 30, 40],
         "price": [499, 669, 879],
         "weight": [510, 700, 1050],
-        "category": "Острые",
-        "raring": 4
+        "category": 4,
+        "rating": 4
        },
        {
         "id": 14,
@@ -151,8 +151,8 @@
         "sizes": [26, 30, 40],
         "price": [519, 699, 969],
         "weight": [540, 760, 1180],
-        "category": "Острые",
-        "raring": 4
+        "category": 4,
+        "rating": 3
        },
        {
         "id": 15,
@@ -162,7 +162,7 @@
         "sizes": [26, 30, 40],
         "price": [449, 639, 899],
         "weight": [500, 700, 1180],
-        "category": "Острые",
-        "raring": 4
+        "category": 4,
+        "rating": 4
        }
 ]

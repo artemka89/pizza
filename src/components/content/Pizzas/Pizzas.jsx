@@ -1,22 +1,42 @@
-import Pizza from "./Pizza/Pizza";
-import styles from "./Pizzas.module.scss";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import Skeleton from "../../ui/PizzaBlock/Skeleton";
+import qs from "qs";
 
-const Pizzas = () => {
+import Pizza from "./Pizza/Pizza";
+
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import styles from "./Pizzas.module.scss";
+
+
+const Pizzas = ({ categoryId }) => {
+    const sort = useSelector((state) => state.filter.sort);
+    const searchValue = useSelector((state) => state.filter.searchValue);
+    const currentPage = useSelector((state) => state.filter.currentPage);
+    const sorting = ["rating", "price", "title"];
+
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const search = searchValue ? `&search=${searchValue}` : "";
+
     useEffect(() => {
-        setIsLoading(true)
-        axios("https://6435707f537112453fd667ac.mockapi.io/items").then(
-            (res) => {
+        setIsLoading(true);
+        axios
+            .get(
+                `https://643950d84660f26eb1afe5d8.mockapi.io/items?page=${currentPage}&limit=8&${
+                    categoryId > 0 ? `category=${categoryId}` : ""
+                }&sortBy=${sorting[sort]}&order=desc${search}`
+            )
+            .then((res) => {
                 setItems(res.data);
                 setIsLoading(false);
-            }
-        );
-    }, []);
+            });
+    }, [categoryId, sort, search, currentPage]);
+
+    useEffect(() => {
+
+    }, [categoryId, sort, search, currentPage])
 
     return (
         <div className={styles.pizzas}>

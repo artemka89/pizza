@@ -1,34 +1,34 @@
 import { useState } from "react";
+
 import styles from "./Sort.module.scss";
 
-const Sort = () => {
+const sortList = ["популярности", "цене", "алфавиту"];
+
+const Sort = ({ onChangeSortName, sort }) => {
     const [visible, setVisible] = useState(false);
+   
 
-    const sortList = ["популярности", "цене", "алфавиту"];
-    const [selected, setSelected] = useState(0);
-    const sortName = sortList[selected];
-
-    const onClickLink = (index) => {
-        setSelected(index);
+    const onClickLink = (index) => {      
+        onChangeSortName(index);
         setVisible(false);
     };
 
     return (
-        <div className={styles.sort}>            
+        <div className={styles.sort}>
             <div className={styles.sortBy}>Cортировать по:</div>
             <div onClick={() => setVisible(!visible)} className={styles.title}>
-                {sortName}
+                {sortList[sort]}
             </div>
             <ul
                 className={
                     visible ? `${styles.popup} ${styles.open}` : styles.popup
                 }
             >
-                {sortList.map((link, i) => (
+                {sortList.map((link, index) => (
                     <li
-                        onClick={() => onClickLink(i)}
-                        key={i}
-                        className={selected === i ? styles.active : styles.item}
+                        onClick={() => onClickLink(index)}
+                        key={index}
+                        className={sort === index ? styles.active : styles.item}
                     >
                         {link}
                     </li>

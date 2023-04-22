@@ -1,15 +1,11 @@
-.wrapper {
-    width: 100%;
+.wrapper {    
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
 }
 .search {   
-    position: relative;
-    border: 1px solid #eee;
-    border-radius: 20px;
-    transition: all .2s ease-in;
+    position: relative;      
     img {
         position: absolute;
         width: 25px;
@@ -18,16 +14,14 @@
         right: 8px;
         cursor: pointer;        
     }
-}
-
-.input {        
-    padding: 8px 35px 8px 15px;     
-}  
-
-.active {
-    width: 350px;
-    padding: 8px 35px 8px 15px;
-    &::placeholder {
-        opacity: 1;
-    }
+    input {   
+        width: 450px;     
+        padding: 8px 35px 8px 15px;
+        border: 1px solid #eee;
+        border-radius: 20px;
+        transition: all .2s ease-in;
+        &:focus {
+            border: 1px solid #686868;
+        }     
+    } 
 }
