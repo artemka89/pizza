@@ -1,0 +1,15 @@
+.categories {
+    margin: 40px 0;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 980px) {
+        flex-direction: column;  
+        row-gap: 20px;      
+    }
+}
+
+

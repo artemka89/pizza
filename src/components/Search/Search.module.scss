@@ -1,0 +1,33 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+.search {   
+    position: relative;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    transition: all .2s ease-in;
+    img {
+        position: absolute;
+        width: 25px;
+        opacity: 0.3;
+        top: 7px;
+        right: 8px;
+        cursor: pointer;        
+    }
+}
+
+.input {        
+    padding: 8px 35px 8px 15px;     
+}  
+
+.active {
+    width: 350px;
+    padding: 8px 35px 8px 15px;
+    &::placeholder {
+        opacity: 1;
+    }
+}
