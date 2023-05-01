@@ -1,12 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setSort } from '../../../redux/slices/filterSlice'
+import { setSortIndex } from '../../../redux/slices/filterSlice'
 import styles from "./Categories.module.scss";
 import Sort from "../Sort/Sort";
 import Category from "./Category/Category";
 import CategoryBtn from "./CategoryBtn/CategoryBtn";
 
+type CategoriesProps = {
+    onChangeCategory: (index: number) => void;
+    categoryId: number
+}
 
-const categoriesItem = [
+export const categoriesItem: string[] = [
     "Все",
     "Мясные",
     "Вегетарианские",
@@ -15,18 +19,18 @@ const categoriesItem = [
     "Закрытые",
 ];    
 
-const Categories = ({ onChangeCategory, categoryId }) => {
+const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId }) => {
     
-    const sort = useSelector(state => state.filter.sort)
+    const sortIndex = useSelector<any>(state => state.filter.sortIndex)
     const dispatch = useDispatch()  
 
-    const onClickCategory = (index) => {     
+    const onClickCategory = (index: number) => {     
         onChangeCategory(index);
         
     };
 
-    const onChangeSortName = (index) => {        
-        dispatch(setSort(index))
+    const onChangeSortName = (index: number) => {        
+        dispatch(setSortIndex(index))
     };
 
     return (
@@ -45,7 +49,9 @@ const Categories = ({ onChangeCategory, categoryId }) => {
                             </CategoryBtn>
                         ))}
                     </Category>
-                    <Sort onChangeSortName={onChangeSortName} sort={sort}/>
+                    <Sort onChangeSortName={onChangeSortName}
+                    //@ts-ignore
+                    sortIndex={sortIndex}/>
                 </div>
             </div>
         </div>

@@ -9,15 +9,15 @@ import Pizzas from "../../content/Pizzas/Pizzas";
 import Pagination from "../../Pagitation";
 
 const Home = () => {
-    const categoryId = useSelector((state) => state.filter.categoryId);
-    const currentPage = useSelector((state) => state.filter.currentPage);
+    const categoryId = useSelector<any>((state) => state.filter.categoryId);
+    const currentPage = useSelector<any>((state) => state.filter.currentPage);
     const dispatch = useDispatch();
 
-    const onChangeCategory = (index) => {
+    const onChangeCategory = (index: number) => {
         dispatch(setCategotyId(index));
     };
     
-    const onChangePage = (num) => {
+    const onChangePage = (num: number) => {
         dispatch(setCurrentPage(num));
     };
 
@@ -25,10 +25,16 @@ const Home = () => {
         <>
             <Categories
                 onChangeCategory={onChangeCategory}
+                //@ts-ignore
                 categoryId={categoryId}
             />
-            <Pizzas c categoryId={categoryId} />
-            <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+            <Pizzas
+             //@ts-ignore             
+             categoryId={categoryId} />
+            
+            <Pagination 
+             //@ts-ignore 
+            currentPage={currentPage} onChangePage={onChangePage} />
         </>
     );
 };

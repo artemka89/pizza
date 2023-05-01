@@ -1,7 +1,13 @@
 import styles from "./Search.module.scss";
 
-const Search = ({ inputValue, onChangeInput }) => {
+type SearchProps = {
+    inputValue: string;
+    onChangeInput: (value: string) => void
+}
+
+const Search: React.FC<SearchProps> = ({ inputValue, onChangeInput }) => {
     return (
+        
         <div className={`${styles.input} ${styles.active}`}>
             <div className={styles.search}>
                 <img src="/img/searchIcon.png" alt="search" />

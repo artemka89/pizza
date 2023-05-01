@@ -1,24 +1,28 @@
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { setSearchValue } from "../../redux/slices/filterSlice";
 import debounce from "lodash.debounce";
 import styles from "./Header.module.scss";
 import Search from "../Search/Search";
 import { useCallback, useState } from "react";
+import { selectCart } from "../../redux/slices/cartSlise";
 
-const Header = () => {
-    const [inputValue, setInputValue] = useState("");
+const Header: React.FC = () => {
+    const {pathname} = useLocation()
+
+    const [inputValue, setInputValue] = useState<string>("");
     const dispatch = useDispatch();
+    const { totalPrice, totalCount } = useSelector(selectCart);    
+
     
     const updateInputValue = useCallback(
-        debounce((value) => {
-            console.log(value)
-            dispatch(setSearchValue(value))
+        debounce((value: string) => {
+            dispatch(setSearchValue(value));
         }, 1000),
         []
     );
 
-    const onChangeInput = (value) => {
+    const onChangeInput = (value: string) => {
         setInputValue(value);
         updateInputValue(value);
     };
@@ -37,15 +41,14 @@ const Header = () => {
                         </div>
                     </Link>
                     <Search
-                        inputValue={inputValue}
-                        setInputValue={setInputValue}
+                        inputValue={inputValue}                        
                         onChangeInput={onChangeInput}
                     />
-                    <Link to="/cart" className={styles.cart}>
-                        <div className={styles.ptice}>3520 ₽</div>
+                    <Link to="/cart" className={pathname !== '/cart' ? styles.cart : `${styles.cart} ${styles.cartActive}` }>
+                        <div className={styles.ptice}>{totalPrice} ₽</div>
                         <div className={styles.quantity}>
                             <img src="/img/ishopping-cart.svg" alt="cart" />
-                            <p>5</p>
+                            <p>{totalCount}</p>
                         </div>
                     </Link>
                 </div>

@@ -73,6 +73,15 @@
     }
 }
 
+.cartActive {
+    opacity: 0;
+    cursor: default;
+    &:hover {
+        opacity: 0;
+        
+    }
+}
+
 .quantity {
     position: relative;
     display: flex;

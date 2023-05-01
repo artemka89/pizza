@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "title": "Кулебяка с капустой",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/29-300.jpg",        
         "types": ["стандартное"],
@@ -11,7 +11,7 @@
         "rating": 4
     },
     {
-        "id": 2,
+        "id": "2",
         "title": "Пицца Фиеста",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/1808-300.jpg",        
         "types": ["стандартное", "тонкое"],
@@ -22,7 +22,7 @@
         "rating": 2
     },
     {
-        "id": 3,
+        "id": "3",
         "title": "Пицца Карамель",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/1831-300.jpg",        
         "types": ["стандартное", "тонкое"],
@@ -33,7 +33,7 @@
         "rating": 3
     },
     {
-        "id": 4,
+        "id": "4",
         "title": "Пицца Фри",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/1841-300.jpg",        
         "types": ["стандартное", "тонкое"],
@@ -44,7 +44,7 @@
         "rating": 4
     },
     {
-        "id": 5,
+        "id": "5",
         "title": "Пицца Пепперони",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/6-300.jpg",        
         "types": ["стандартное", "тонкое"],
@@ -55,7 +55,7 @@
         "rating": 10
     },
     {
-        "id": 6,
+        "id": "6",
         "title": "Пицца 4 сыра",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/11-300.jpg",        
         "types": ["стандартное", "тонкое"],
@@ -66,7 +66,7 @@
         "rating": 10
     },
     {
-        "id": 7,
+        "id": "7",
         "title": "Пицца Жульетта",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/17-300.jpg",        
         "types": ["стандартное", "тонкое"],
@@ -77,7 +77,7 @@
         "rating": 3
     },
     {
-        "id": 8,
+        "id": "8",
         "title": "Пицца Барбекю",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/279-300.jpg",        
         "types": ["стандартное", "тонкое"],
@@ -88,7 +88,7 @@
         "rating": 4
     },
     {
-        "id": 9,
+        "id": "9",
         "title": "Пицца Мясное Ассорти",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/750-300.jpg",
         "types": ["стандартное", "тонкое"],
@@ -100,7 +100,7 @@
         "rating": 7
        },
        {
-        "id": 10,
+        "id": "10",
         "title": "Пицца Куриное Царство",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/15-300.jpg",
         "types": ["стандартное", "тонкое"],
@@ -111,7 +111,7 @@
         "rating": 6
        },
        {
-        "id": 11,
+        "id": "11",
         "title": "Пицца Вкусная",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/15-300.jpg",
         "types": ["стандартное"],
@@ -122,7 +122,7 @@
         "rating": 4
        },
        {
-        "id": 12,
+        "id": "12",
         "title": "Пицца Чизбургер",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/15-300.jpg",
         "types": ["стандартное", "тонкое"],
@@ -133,7 +133,7 @@
         "rating": 5
        },
        {
-        "id": 13,
+        "id": "13",
         "title": "Пицца 4 вкуса",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/15-300.jpg",
         "types": ["стандартное", "тонкое"],
@@ -144,7 +144,7 @@
         "rating": 4
        },
        {
-        "id": 14,
+        "id": "14",
         "title": "Пицца Дьябло",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/15-300.jpg",
         "types": ["стандартное", "тонкое"],
@@ -155,7 +155,7 @@
         "rating": 3
        },
        {
-        "id": 15,
+        "id": "15",
         "title": "Пицца Мексиканская",
         "imageUrl": "https://static.pizzasushiwok.ru/images/menu_new/15-300.jpg",
         "types": ["стандартное", "тонкое"],

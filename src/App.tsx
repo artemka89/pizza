@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header.jsx";
+import Header from "./components/Header/Header";
 import Home from "./components/Pages/Home/Home";
 import Cart from "./components/content/Cart/Cart";
+import FullPizza from "./components/content/Pizzas/FullPizza/FullPizza";
 
 import "./App.scss";
+
+
 
 
 function App() {         
@@ -16,6 +19,8 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/cart" element={<Cart />} />
+                        <Route path="/pizza/:id" element={<FullPizza />} />
+
                     </Routes>                
             </div>
         </BrowserRouter>
