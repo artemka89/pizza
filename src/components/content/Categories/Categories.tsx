@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setSortIndex } from '../../../redux/slices/filterSlice'
+import { selectFilter, setSortIndex } from '../../../redux/slices/filterSlice'
 import styles from "./Categories.module.scss";
 import Sort from "../Sort/Sort";
 import Category from "./Category/Category";
@@ -21,7 +21,7 @@ export const categoriesItem: string[] = [
 
 const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId }) => {
     
-    const sortIndex = useSelector<any>(state => state.filter.sortIndex)
+    const {sortIndex} = useSelector(selectFilter)
     const dispatch = useDispatch()  
 
     const onClickCategory = (index: number) => {     

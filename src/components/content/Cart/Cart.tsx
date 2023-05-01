@@ -24,8 +24,8 @@ const Cart: React.FC = () => {
     dispatch(MinusItem(id))
    }
    
-   const onClickPlus = (item) => {  
-    console.log(item);
+   const onClickPlus = (item: any) => {  
+    console.log('item', item);
          
     dispatch(addItem(item))
    }

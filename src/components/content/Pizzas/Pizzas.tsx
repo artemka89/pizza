@@ -42,26 +42,26 @@ const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
       window.scrollTo(0,0)     
     };
 
-    useEffect(() => {
-        if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1));
-            dispatch(setFilter(params));
-            isSearch.current = true;
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (window.location.search) {
+    //         const params = qs.parse(window.location.search.substring(1));
+    //         dispatch(setFilter(params));
+    //         isSearch.current = true;
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        if (isMounted.current) {
-            const queryString = qs.stringify({
-                currentPage,
-                categoryId,
-                sortIndex,
-            });
+    // useEffect(() => {
+    //     if (isMounted.current) {
+    //         const queryString = qs.stringify({
+    //             currentPage,
+    //             categoryId,
+    //             sortIndex,
+    //         });
 
-            navigate(`?${queryString}`);
-        }
-        isMounted.current = true;
-    }, [categoryId, sortIndex, currentPage, searchValue]);
+    //         navigate(`?${queryString}`);
+    //     }
+    //     isMounted.current = true;
+    // }, [categoryId, sortIndex, currentPage, searchValue]);
 
     useEffect(() => {        
             getPizzas();                   

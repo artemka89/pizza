@@ -39,7 +39,7 @@ const CartItem: React.FC<CartItemProps> = ({id, title, imageUrl, type, size, pri
                 />
                 </div>
                 <p>{count}</p>
-                <div onClick={() => onClickPlus({id})} className={styles.plus}>
+                <div onClick={() => onClickPlus({id, type, size})} className={styles.plus}>
                 <img                    
                     src="/img/plusCart.svg"
                     alt="plus"
