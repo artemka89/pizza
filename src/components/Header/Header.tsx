@@ -10,7 +10,7 @@ import Search from "../Search/Search";
 
 import styles from "./Header.module.scss";
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
     const {pathname} = useLocation()
 
     const [inputValue, setInputValue] = useState<string>("");
@@ -68,5 +68,3 @@ const Header: React.FC = () => {
         </div>
     );
 };
-
-export default Header;

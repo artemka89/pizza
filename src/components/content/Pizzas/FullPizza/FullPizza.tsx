@@ -9,7 +9,7 @@ type PizzaItem = {
         price: number[]
 }
 
-const FullPizza: React.FC = () => {
+export const FullPizza: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [pizza, setPizza] = useState<PizzaItem>();
 
@@ -55,4 +55,3 @@ const FullPizza: React.FC = () => {
     );
 };
 
-export default FullPizza;

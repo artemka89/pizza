@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setCategotyId, setCurrentPage } from "../../../redux/filter/slice";
+import { setCategotyId, setCurrentPage } from "../../redux/filter/slice";
 
-import Categories from "../../content/Categories/Categories";
-import Pizzas from "../../content/Pizzas/Pizzas";
-import Pagination from "../../Pagitation";
+import Categories from "../content/Categories/Categories";
+import Pizzas from "../content/Pizzas/Pizzas";
+import Pagination from "../Pagitation";
 
-const Home = () => {
+export const Home = () => {
     const categoryId = useSelector<any>((state) => state.filter.categoryId);
     const currentPage = useSelector<any>((state) => state.filter.currentPage);
     const dispatch = useDispatch();
@@ -39,4 +39,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+
