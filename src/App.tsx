@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
-import Home from "./components/pages/Home/Home";
+import Home from "./components/pages/Home";
 import Cart from "./components/content/Cart/Cart";
 import FullPizza from "./components/content/Pizzas/FullPizza/FullPizza";
 
