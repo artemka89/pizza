@@ -1,14 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header";
-import Home from "./components/pages/Home";
-import Cart from "./components/content/Cart/Cart";
-import FullPizza from "./components/content/Pizzas/FullPizza/FullPizza";
+import { Header, Home, Cart, FullPizza } from "./components";
+// import Header from "./components/Header/Header";
+// import Home from "./components/pages/Home";
+// import Cart from "./components/content/Cart/Cart";
+// import FullPizza from "./components/content/Pizzas/FullPizza/FullPizza";
 
 import "./App.scss";
-
-
-
 
 function App() {         
 
