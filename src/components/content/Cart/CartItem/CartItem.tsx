@@ -11,7 +11,7 @@ type CartItemProps = {
     count: number;
     onClickRemoveItem: (id: string) => void;
     onClickMinus: (id: string) => void;
-    onClickPlus: any;
+    onClickPlus: ({}) => void;
 }
 
 const CartItem: React.FC<CartItemProps> = ({id, title, imageUrl, type, size, price, count, onClickRemoveItem, onClickMinus, onClickPlus}) => {
@@ -32,19 +32,19 @@ const CartItem: React.FC<CartItemProps> = ({id, title, imageUrl, type, size, pri
                 </div>
             </div>
             <div className={styles.boxCount}>
-                <div onClick={() => onClickMinus(id)} className={styles.minus}>
+                <button onClick={() => onClickMinus(id)} className={count === 1 ? `${styles.minus} ${styles.disabled}` : styles.minus}>
                 <img                    
                     src="/img/minusCart.svg"
                     alt="Minus"
                 />
-                </div>
+                </button>
                 <p>{count}</p>
-                <div onClick={() => onClickPlus({id, type, size})} className={styles.plus}>
+                <button onClick={() => onClickPlus({id, type, size})} className={styles.plus}>
                 <img                    
                     src="/img/plusCart.svg"
                     alt="plus"
                 />
-                </div>
+                </button>
             </div>
             <div className={styles.boxPrice}>
                 <p>{price * count} ₽ </p>

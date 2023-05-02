@@ -28,7 +28,7 @@ const Sort: React.FC<SortProps> = ({ onChangeSortName, sortIndex }) => {
     useEffect(() => {      
        const handleClickOutside = (event: MouseEvent) => {
         const _event = event as PopupClick
-         if(sortRef.current && !event.composedPath().includes(sortRef.current)) {
+         if(sortRef.current && !_event.composedPath().includes(sortRef.current)) {
             setVisible(false)
          }          
        }

@@ -5,11 +5,13 @@ import styles from "./Cart.module.scss";
 import { Link } from "react-router-dom";
 import CartEmpty from "./CartEmpty/CartEmpty";
 import CartItem from "./CartItem/CartItem";
+import { useEffect } from "react";
 
 
 const Cart: React.FC = () => {
     const {items, totalPrice, totalCount} = useSelector(selectCart)
     
+
     const dispatch = useDispatch()
 
     const onClickRemoveItem = (id: string) => {
@@ -24,10 +26,10 @@ const Cart: React.FC = () => {
     dispatch(MinusItem(id))
    }
    
-   const onClickPlus = (item: any) => {  
-    console.log('item', item);
+   const onClickPlus = (obj: CartItemType) => {  
+  
          
-    dispatch(addItem(item))
+    dispatch(addItem(obj))
    }
 
     if(totalPrice === 0) {

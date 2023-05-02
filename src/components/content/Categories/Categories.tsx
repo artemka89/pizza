@@ -1,9 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectFilter, setSortIndex } from '../../../redux/slices/filterSlice'
-import styles from "./Categories.module.scss";
+
 import Sort from "../Sort/Sort";
 import Category from "./Category/Category";
 import CategoryBtn from "./CategoryBtn/CategoryBtn";
+
+import styles from "./Categories.module.scss";
+
 
 type CategoriesProps = {
     onChangeCategory: (index: number) => void;
@@ -19,8 +22,9 @@ export const categoriesItem: string[] = [
     "Закрытые",
 ];    
 
-const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId }) => {
+const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId }) => { 
     
+
     const {sortIndex} = useSelector(selectFilter)
     const dispatch = useDispatch()  
 

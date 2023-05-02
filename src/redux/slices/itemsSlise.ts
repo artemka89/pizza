@@ -2,7 +2,6 @@ import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-
 type PizzaItem = {
     id: string;
     title: string;
@@ -11,18 +10,17 @@ type PizzaItem = {
     sizes: number[];
     price: number[];
     weight: number[];
-}
+};
 
 enum Status {
-    LOADING = 'loading',
-    SUCCESS = 'succes',
-    ERROR = 'error'
+    LOADING = "loading",
+    SUCCESS = "succes",
+    ERROR = "error",
 }
 
 interface ItemsSliseState {
     items: PizzaItem[];
     status: Status;
-    
 }
 
 type FetchPizzasArgs = {
@@ -30,9 +28,8 @@ type FetchPizzasArgs = {
     categoryId: number;
     sortName: string[];
     sortIndex: number;
-    search: string
-
-}
+    search: string;
+};
 
 export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchPizzasArgs>(
     "items/fetchPizzasStatus",
@@ -49,8 +46,8 @@ export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchPizzasArgs>(
 );
 
 const initialState: ItemsSliseState = {
-    items: [],    
-    status: Status.LOADING
+    items: [],
+    status: Status.LOADING,
 };
 
 export const itemsSlice = createSlice({
@@ -59,42 +56,29 @@ export const itemsSlice = createSlice({
     reducers: {
         setItems(state, action: PayloadAction<PizzaItem[]>) {
             state.items = action.payload;
-        },               
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchPizzas.pending, (state) => {
-            state.status = Status.LOADING
-            state.items = []
-        }),
-        builder.addCase(fetchPizzas.fulfilled, (state, action: PayloadAction<PizzaItem[]>) => {
-            state.items = action.payload
-            state.status = Status.SUCCESS
-        }),
+            state.status = Status.LOADING;
+            state.items = [];
+        });
+        builder.addCase(
+            fetchPizzas.fulfilled,
+            (state, action: PayloadAction<PizzaItem[]>) => {
+                state.items = action.payload;
+                state.status = Status.SUCCESS;
+            }
+        );
         builder.addCase(fetchPizzas.rejected, (state) => {
-            state.status = Status.ERROR
-            state.items = []
-        })
-
-    }
-    // extraReducers: {
-    //     [fetchPizzas.pending]: (state) => {
-    //         state.status = 'loading'
-    //         state.items = []
-    //     },
-    //     [fetchPizzas.fulfilled]: (state, action) => {
-    //         state.items = action.payload
-    //         state.status = 'succes'
-    //     },
-    //     [fetchPizzas.rejected]: (state) => {
-    //         state.status = 'Error'
-    //         state.items = []
-    //     },
-    // },
+            state.status = Status.ERROR;
+            state.items = [];
+        });
+    },
 });
 
-export const selectItems = (state: RootState) => state.items
+export const selectItems = (state: RootState) => state.items;
 
 export const { setItems } = itemsSlice.actions;
 
 export default itemsSlice.reducer;
-

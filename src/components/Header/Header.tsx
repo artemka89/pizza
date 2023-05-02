@@ -4,7 +4,7 @@ import { setSearchValue } from "../../redux/slices/filterSlice";
 import debounce from "lodash.debounce";
 import styles from "./Header.module.scss";
 import Search from "../Search/Search";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { selectCart } from "../../redux/slices/cartSlise";
 
 const Header: React.FC = () => {
@@ -12,9 +12,18 @@ const Header: React.FC = () => {
 
     const [inputValue, setInputValue] = useState<string>("");
     const dispatch = useDispatch();
-    const { totalPrice, totalCount } = useSelector(selectCart);    
+    const { totalPrice, totalCount, items } = useSelector(selectCart);    
 
-    
+    const isMounted = useRef(false)
+
+    useEffect(() => {
+        if(isMounted.current) {
+        const json = JSON.stringify(items)
+        localStorage.setItem('cart', json)        
+        } 
+        isMounted.current = true       
+    }, [items]) 
+
     const updateInputValue = useCallback(
         debounce((value: string) => {
             dispatch(setSearchValue(value));

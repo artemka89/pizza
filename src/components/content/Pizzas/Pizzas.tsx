@@ -30,7 +30,7 @@ const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
     const search = searchValue ? `&search=${searchValue}` : "";    
     
     const { items, status } = useSelector(selectItems);           
-
+    
     const getPizzas = () => {            
         dispatch(fetchPizzas({
             currentPage,
