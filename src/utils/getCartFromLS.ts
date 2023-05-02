@@ -1,4 +1,4 @@
-import { CartItemType } from "../redux/slices/cartSlise";
+import { CartItemType } from "../redux/cart/types";
 import { calcTotalCount } from "./calcTotalCount";
 import { calcTotalPrice } from "./calcTotalPrice";
 

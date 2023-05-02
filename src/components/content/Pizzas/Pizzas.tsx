@@ -1,17 +1,18 @@
-import Skeleton from "../../ui/PizzaBlock/Skeleton";
-import qs from "qs";
-
-import PizzaCard from "./PizzaCard/PizzaCard";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useRef} from "react";
 import { useNavigate } from "react-router-dom";
-import { selectFilter, setFilter } from "../../../redux/slices/filterSlice";
-import { fetchPizzas, selectItems } from "../../../redux/slices/itemsSlise";
+import qs from "qs";
+
 import { categoriesItem } from "../Categories/Categories";
+import { useAppDispatch } from "../../../redux/store";
+import { selectFilter } from "../../../redux/filter/selectors";
+import { selectItems } from "../../../redux/pizza/selectors";
+import { fetchPizzas } from "../../../redux/pizza/asyncActionc";
+
+import PizzaCard from "./PizzaCard/PizzaCard";
+import Skeleton from "../../ui/PizzaBlock/Skeleton";
 
 import styles from "./Pizzas.module.scss";
-import { useAppDispatch } from "../../../redux/store";
 
 const sortName = ["rating", "price", "title"];
 

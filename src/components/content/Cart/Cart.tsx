@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem, clearItems, MinusItem, addItem, selectCart, CartItemType } from '../../../redux/slices/cartSlise'
-
-import styles from "./Cart.module.scss";
 import { Link } from "react-router-dom";
+import { removeItem, clearItems, MinusItem, addItem } from '../../../redux/cart/slice'
+import { selectCart } from "../../../redux/cart/selectors";
+
 import CartEmpty from "./CartEmpty/CartEmpty";
 import CartItem from "./CartItem/CartItem";
-import { useEffect } from "react";
 
+import styles from "./Cart.module.scss";
+import { CartItemType } from "../../../redux/cart/types";
 
 const Cart: React.FC = () => {
     const {items, totalPrice, totalCount} = useSelector(selectCart)

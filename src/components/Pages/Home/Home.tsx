@@ -1,8 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import {
-    setCategotyId,
-    setCurrentPage,
-} from "../../../redux/slices/filterSlice";
+import { setCategotyId, setCurrentPage } from "../../../redux/filter/slice";
 
 import Categories from "../../content/Categories/Categories";
 import Pizzas from "../../content/Pizzas/Pizzas";
@@ -16,7 +13,7 @@ const Home = () => {
     const onChangeCategory = (index: number) => {
         dispatch(setCategotyId(index));
     };
-    
+
     const onChangePage = (num: number) => {
         dispatch(setCurrentPage(num));
     };
@@ -29,12 +26,15 @@ const Home = () => {
                 categoryId={categoryId}
             />
             <Pizzas
-             //@ts-ignore             
-             categoryId={categoryId} />
-            
-            <Pagination 
-             //@ts-ignore 
-            currentPage={currentPage} onChangePage={onChangePage} />
+                //@ts-ignore
+                categoryId={categoryId}
+            />
+
+            <Pagination
+                //@ts-ignore
+                currentPage={currentPage}
+                onChangePage={onChangePage}
+            />
         </>
     );
 };

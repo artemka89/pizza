@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectFilter, setSortIndex } from '../../../redux/slices/filterSlice'
+
+import { selectFilter } from "../../../redux/filter/selectors";
+import { setSortIndex } from "../../../redux/filter/slice";
 
 import Sort from "../Sort/Sort";
 import Category from "./Category/Category";
 import CategoryBtn from "./CategoryBtn/CategoryBtn";
 
 import styles from "./Categories.module.scss";
-
 
 type CategoriesProps = {
     onChangeCategory: (index: number) => void;

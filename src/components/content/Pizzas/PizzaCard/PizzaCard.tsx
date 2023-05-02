@@ -1,9 +1,12 @@
 import { useState } from "react";
-import styles from "./PizzaCard.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { CartItemType, addItem, selectCart, selectCartCount } from "../../../../redux/slices/cartSlise";
 import { Link } from "react-router-dom";
-import { RootState } from "../../../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+
+import { selectCartCount } from "../../../../redux/cart/selectors";
+import { CartItemType } from "../../../../redux/cart/types";
+import { addItem } from "../../../../redux/cart/slice";
+
+import styles from "./PizzaCard.module.scss";
 
 type PizzaCartProps = {
     id: string;

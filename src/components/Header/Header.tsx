@@ -1,11 +1,14 @@
+import { useCallback, useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchValue } from "../../redux/slices/filterSlice";
 import debounce from "lodash.debounce";
-import styles from "./Header.module.scss";
+
+import { selectCart } from "../../redux/cart/selectors";
+import { setSearchValue } from "../../redux/filter/slice";
+
 import Search from "../Search/Search";
-import { useCallback, useEffect, useState, useRef } from "react";
-import { selectCart } from "../../redux/slices/cartSlise";
+
+import styles from "./Header.module.scss";
 
 const Header: React.FC = () => {
     const {pathname} = useLocation()
