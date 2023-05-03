@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./CartEmpty.module.scss";
 
-const CartEmpty: React.FC = () => {
+export const CartEmpty: React.FC = () => {
     return (
         <div className="container">
             <div className={styles.cart}>
@@ -22,4 +22,3 @@ const CartEmpty: React.FC = () => {
     );
 };
 
-export default CartEmpty;

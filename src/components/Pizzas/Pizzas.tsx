@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import qs from "qs";
 
 import { categoriesItem } from "../Categories/Categories";
-import { useAppDispatch } from "../../../redux/store";
-import { selectFilter } from "../../../redux/filter/selectors";
-import { selectItems } from "../../../redux/pizza/selectors";
-import { fetchPizzas } from "../../../redux/pizza/asyncActionc";
+import { useAppDispatch } from "../../redux/store";
+import { selectFilter } from "../../redux/filter/selectors";
+import { selectItems } from "../../redux/pizza/selectors";
+import { fetchPizzas } from "../../redux/pizza/asyncActionc";
 
-import PizzaCard from "./PizzaCard/PizzaCard";
-import Skeleton from "../../ui/PizzaBlock/Skeleton";
+import {PizzaItem, Skeleton} from "../../components";
+
 
 import styles from "./Pizzas.module.scss";
 
@@ -20,7 +20,7 @@ type PizzasProps = {
     categoryId: number
 }
 
-const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
+export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -78,7 +78,7 @@ const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
                     {status === 'loading'
                         ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
                         : items.map((item: any) => (
-                              <PizzaCard key={item.id} {...item} />
+                              <PizzaItem key={item.id} {...item} />
                           ))}
                 </div>
             </div>
@@ -86,4 +86,3 @@ const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
     );
 };
 
-export default Pizzas;

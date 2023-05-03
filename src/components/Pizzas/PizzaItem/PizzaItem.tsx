@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectCartCount } from "../../../../redux/cart/selectors";
-import { CartItemType } from "../../../../redux/cart/types";
-import { addItem } from "../../../../redux/cart/slice";
+import { selectCartCount } from "../../../redux/cart/selectors";
+import { CartItemType } from "../../../redux/cart/types";
+import { addItem } from "../../../redux/cart/slice";
 
-import styles from "./PizzaCard.module.scss";
+import styles from "./PizzaItem.module.scss";
 
-type PizzaCartProps = {
+type PizzaItemProps = {
     id: string;
     title: string;
     imageUrl: string;
@@ -19,7 +19,7 @@ type PizzaCartProps = {
 
 }
 
-const PizzaCart: React.FC<PizzaCartProps> = ({ id, title, imageUrl, types, sizes, price, weight }) => {
+export const PizzaItem: React.FC<PizzaItemProps> = ({ id, title, imageUrl, types, sizes, price, weight }) => {
     const [activeType, setActiveType] = useState<number>(0);
     const [activeSize, setActiveSize] = useState<number>(0);
 
@@ -109,4 +109,3 @@ const PizzaCart: React.FC<PizzaCartProps> = ({ id, title, imageUrl, types, sizes
     );
 };
 
-export default PizzaCart;

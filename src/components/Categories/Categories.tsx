@@ -1,11 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectFilter } from "../../../redux/filter/selectors";
-import { setSortIndex } from "../../../redux/filter/slice";
+import { selectFilter } from "../../redux/filter/selectors";
+import { setSortIndex } from "../../redux/filter/slice";
 
-import Sort from "../Sort/Sort";
-import Category from "./Category/Category";
-import CategoryBtn from "./CategoryBtn/CategoryBtn";
+import {CategoryBtn, Category, Sort  } from "../../components";
 
 import styles from "./Categories.module.scss";
 
@@ -23,7 +21,7 @@ export const categoriesItem: string[] = [
     "Закрытые",
 ];    
 
-const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId }) => { 
+export const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId }) => { 
     
 
     const {sortIndex} = useSelector(selectFilter)
@@ -62,5 +60,3 @@ const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId })
         </div>
     );
 };
-
-export default Categories;
