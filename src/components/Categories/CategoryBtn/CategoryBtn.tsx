@@ -7,7 +7,7 @@ type CategoryBtnProps = {
     children: any
 }
 
-const CategoryBtn: React.FC<CategoryBtnProps> = ({ index, categoryId, onClickCategory , children }) => {
+export const CategoryBtn: React.FC<CategoryBtnProps> = ({ index, categoryId, onClickCategory , children }) => {
     return (
         <li  onClick={() => onClickCategory(index)} className={categoryId === index ? styles.active : styles.link}>
             {children}
@@ -15,4 +15,3 @@ const CategoryBtn: React.FC<CategoryBtnProps> = ({ index, categoryId, onClickCat
     );
 };
 
-export default CategoryBtn;

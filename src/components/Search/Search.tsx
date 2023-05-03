@@ -5,7 +5,7 @@ type SearchProps = {
     onChangeInput: (value: string) => void
 }
 
-const Search: React.FC<SearchProps> = ({ inputValue, onChangeInput }) => {
+export const Search: React.FC<SearchProps> = ({ inputValue, onChangeInput }) => {
     return (
         
         <div className={`${styles.input} ${styles.active}`}>
@@ -23,4 +23,3 @@ const Search: React.FC<SearchProps> = ({ inputValue, onChangeInput }) => {
     );
 };
 
-export default Search;

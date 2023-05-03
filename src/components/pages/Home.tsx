@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setCategotyId, setCurrentPage } from "../../redux/filter/slice";
 
-import Categories from "../content/Categories/Categories";
-import Pizzas from "../content/Pizzas/Pizzas";
-import Pagination from "../Pagitation";
+import {Pagination, Pizzas, Categories} from "../../components";
+
 
 export const Home = () => {
     const categoryId = useSelector<any>((state) => state.filter.categoryId);

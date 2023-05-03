@@ -1,4 +1,3 @@
-import { idText } from "typescript";
 import styles from "./CartItem.module.scss";
 
 type CartItemProps = {
@@ -14,7 +13,7 @@ type CartItemProps = {
     onClickPlus: ({}) => void;
 }
 
-const CartItem: React.FC<CartItemProps> = ({id, title, imageUrl, type, size, price, count, onClickRemoveItem, onClickMinus, onClickPlus}) => {
+export const CartItem: React.FC<CartItemProps> = ({id, title, imageUrl, type, size, price, count, onClickRemoveItem, onClickMinus, onClickPlus}) => {
     return (
         
         <div className={styles.item}>
@@ -60,5 +59,3 @@ const CartItem: React.FC<CartItemProps> = ({id, title, imageUrl, type, size, pri
         </div>
     );
 };
-
-export default CartItem

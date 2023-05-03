@@ -14,7 +14,7 @@ type PopupClick = MouseEvent & {
 
 const sortList: SortListItem[] = ["популярности", "цене", "алфавиту"];
 
-const Sort: React.FC<SortProps> = ({ onChangeSortName, sortIndex }) => {
+export const Sort: React.FC<SortProps> = ({ onChangeSortName, sortIndex }) => {
 
     const sortRef = useRef<HTMLDivElement>(null)
     const [visible, setVisible] = useState<boolean>(false);
@@ -64,4 +64,3 @@ const Sort: React.FC<SortProps> = ({ onChangeSortName, sortIndex }) => {
     );
 };
 
-export default Sort;

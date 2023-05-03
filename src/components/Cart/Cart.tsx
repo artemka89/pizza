@@ -5,14 +5,13 @@ import {
     clearItems,
     MinusItem,
     addItem,
-} from "../../../redux/cart/slice";
-import { selectCart } from "../../../redux/cart/selectors";
+} from "../../redux/cart/slice";
+import { selectCart } from "../../redux/cart/selectors";
+import { CartItemType } from "../../redux/cart/types";
 
-import CartEmpty from "./CartEmpty/CartEmpty";
-import CartItem from "./CartItem/CartItem";
+import {CartItem, CartEmpty} from "../../components";
 
 import styles from "./Cart.module.scss";
-import { CartItemType } from "../../../redux/cart/types";
 
 export const Cart: React.FC = () => {
     const { items, totalPrice, totalCount } = useSelector(selectCart);

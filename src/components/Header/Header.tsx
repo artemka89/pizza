@@ -6,7 +6,7 @@ import debounce from "lodash.debounce";
 import { selectCart } from "../../redux/cart/selectors";
 import { setSearchValue } from "../../redux/filter/slice";
 
-import Search from "../Search/Search";
+import {Search} from "../../components";
 
 import styles from "./Header.module.scss";
 
