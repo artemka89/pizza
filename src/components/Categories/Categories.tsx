@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 
 import { selectFilter } from "../../redux/filter/selectors";
 import { setSortIndex } from "../../redux/filter/slice";
@@ -6,6 +6,7 @@ import { setSortIndex } from "../../redux/filter/slice";
 import {CategoryBtn, Category, Sort  } from "../../components";
 
 import styles from "./Categories.module.scss";
+
 
 type CategoriesProps = {
     onChangeCategory: (index: number) => void;
@@ -24,8 +25,8 @@ export const categoriesItem: string[] = [
 export const Categories: React.FC<CategoriesProps> = ({ onChangeCategory, categoryId }) => { 
     
 
-    const {sortIndex} = useSelector(selectFilter)
-    const dispatch = useDispatch()  
+    const {sortIndex} = useAppSelector(selectFilter)
+    const dispatch = useAppDispatch()  
 
     const onClickCategory = (index: number) => {     
         onChangeCategory(index);

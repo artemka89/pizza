@@ -1,13 +1,15 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { setCategotyId, setCurrentPage } from "../../redux/filter/slice";
 
 import {Pagination, Pizzas, Categories} from "../../components";
 
+import { selectFilter } from "../../redux/filter/selectors";
+
 
 export const Home = () => {
-    const categoryId = useSelector<any>((state) => state.filter.categoryId);
-    const currentPage = useSelector<any>((state) => state.filter.currentPage);
-    const dispatch = useDispatch();
+    const {categoryId, currentPage} = useAppSelector(selectFilter);
+
+    const dispatch = useAppDispatch();
 
     const onChangeCategory = (index: number) => {
         dispatch(setCategotyId(index));

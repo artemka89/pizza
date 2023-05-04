@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./FullPizza.module.scss";
 
+
+
 type PizzaItem = {
     imageUrl: string;
         title: string;
@@ -10,15 +12,18 @@ type PizzaItem = {
 }
 
 export const FullPizza: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
+    const { id } = useParams<{id: string}>();
     const [pizza, setPizza] = useState<PizzaItem>();
 
+    
+      
     useEffect(() => {
         axios
             .get(`https://643950d84660f26eb1afe5d8.mockapi.io/items/${id}`)
             .then((res) => setPizza(res.data));
-    }, []);
-
+           
+    }, []);     
+      
     if (!pizza) {
         return <></>;
     }

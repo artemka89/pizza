@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import debounce from "lodash.debounce";
 
 import { selectCart } from "../../redux/cart/selectors";
@@ -14,8 +14,8 @@ export const Header: React.FC = () => {
     const {pathname} = useLocation()
 
     const [inputValue, setInputValue] = useState<string>("");
-    const dispatch = useDispatch();
-    const { totalPrice, totalCount, items } = useSelector(selectCart);    
+    const dispatch = useAppDispatch();
+    const { totalPrice, totalCount, items } = useAppSelector(selectCart);    
 
     const isMounted = useRef(false)
 

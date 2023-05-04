@@ -1,13 +1,12 @@
-import { useSelector } from "react-redux";
 import { useEffect, useRef} from "react";
 import { useNavigate } from "react-router-dom";
-import qs from "qs";
 
 import { categoriesItem } from "../Categories/Categories";
-import { useAppDispatch } from "../../redux/store";
+
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { selectFilter } from "../../redux/filter/selectors";
-import { selectItems } from "../../redux/pizza/selectors";
-import { fetchPizzas } from "../../redux/pizza/asyncActionc";
+import { selectItems } from "../../redux/pizzas/selectors";
+import { fetchPizzas } from "../../redux/pizzas/asyncActionc";
 
 import {PizzaItem, Skeleton} from "../../components";
 
@@ -21,16 +20,13 @@ type PizzasProps = {
 }
 
 export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
-    const navigate = useNavigate();
+
     const dispatch = useAppDispatch();
 
-    const isSearch = useRef(false);
-    const isMounted = useRef(false);
-
-    const { sortIndex, searchValue, currentPage } = useSelector(selectFilter);    
+    const { sortIndex, searchValue, currentPage } = useAppSelector(selectFilter);    
     const search = searchValue ? `&search=${searchValue}` : "";    
     
-    const { items, status } = useSelector(selectItems);           
+    const { items, status } = useAppSelector(selectItems);           
     
     const getPizzas = () => {            
         dispatch(fetchPizzas({
@@ -41,33 +37,11 @@ export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
             search
         }))        
       window.scrollTo(0,0)     
-    };
-
-    // useEffect(() => {
-    //     if (window.location.search) {
-    //         const params = qs.parse(window.location.search.substring(1));
-    //         dispatch(setFilter(params));
-    //         isSearch.current = true;
-    //     }
-    // }, []);
-
-    // useEffect(() => {
-    //     if (isMounted.current) {
-    //         const queryString = qs.stringify({
-    //             currentPage,
-    //             categoryId,
-    //             sortIndex,
-    //         });
-
-    //         navigate(`?${queryString}`);
-    //     }
-    //     isMounted.current = true;
-    // }, [categoryId, sortIndex, currentPage, searchValue]);
+    };  
 
     useEffect(() => {        
-            getPizzas();                   
+            getPizzas();          
 
-        isSearch.current = false;
     }, [categoryId, sortIndex, currentPage, searchValue]);
    
     return (

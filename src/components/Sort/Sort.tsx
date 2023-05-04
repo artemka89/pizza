@@ -17,7 +17,7 @@ const sortList: SortListItem[] = ["популярности", "цене", "ал�
 export const Sort: React.FC<SortProps> = ({ onChangeSortName, sortIndex }) => {
 
     const sortRef = useRef<HTMLDivElement>(null)
-    const [visible, setVisible] = useState<boolean>(false);
+    const [visible, setVisible] = useState(false);
    
 
     const onClickLink = (index: number) => {      

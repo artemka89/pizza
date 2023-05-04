@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Link } from "react-router-dom";
 import {
     removeItem,
@@ -13,10 +13,11 @@ import {CartItem, CartEmpty} from "../../components";
 
 import styles from "./Cart.module.scss";
 
-export const Cart: React.FC = () => {
-    const { items, totalPrice, totalCount } = useSelector(selectCart);
 
-    const dispatch = useDispatch();
+export const Cart: React.FC = () => {
+    const { items, totalPrice, totalCount } = useAppSelector(selectCart);
+
+    const dispatch = useAppDispatch();
 
     const onClickRemoveItem = (id: string) => {
         dispatch(removeItem(id));
