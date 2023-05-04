@@ -6,10 +6,10 @@ export type PizzaItem = {
     sizes: number[];
     price: number[];
     weight: number[];
+    description: string
 };
 
-export type FetchPizzasArgs = {
-    currentPage: number;
+export type FetchPizzasArgs = {    
     categoryId: number;
     sortName: string[];
     sortIndex: number;
@@ -22,6 +22,11 @@ export type FetchPizzaByIdArgs = {
 
 export interface ItemsSliseState {
     items: PizzaItem[];
+    status: Status;
+}
+
+export interface ItemSliseState {
+    item: PizzaItem | null
     status: Status;
 }
 

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { setCategotyId, setCurrentPage } from "../../redux/filter/slice";
 
-import {Pagination, Pizzas, Categories} from "../../components";
+import {Pizzas, Categories} from "../../components";
 
 import { selectFilter } from "../../redux/filter/selectors";
 
@@ -29,13 +29,7 @@ export const Home = () => {
             <Pizzas
                 //@ts-ignore
                 categoryId={categoryId}
-            />
-
-            <Pagination
-                //@ts-ignore
-                currentPage={currentPage}
-                onChangePage={onChangePage}
-            />
+            />            
         </>
     );
 };

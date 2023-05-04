@@ -1,0 +1,15 @@
+.description {
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px dashed #bbbbbb;
+    border-radius: 6px;
+    color: #000;
+    transition: all .2s ease-in;
+    cursor: pointer;
+    &:hover {
+        color: #fff;
+        background-color: #fe5f1e;
+        border-color: #fe5f1e;
+    }
+}

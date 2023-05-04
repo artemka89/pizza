@@ -6,15 +6,42 @@
     display: flex;
 }
 
-.back {
-    font-size: 20px;
-    font-weight: 700;
+.nav {
+    display: flex;
+}
+
+.navItem {
+    position: relative;
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+    font-weight: 400;
     color: #646464;
+    border: 1px solid #a8a8a8;
     text-decoration: none;
-    transition: color .2s ease-in;
-    &:hover {
+    transition: color, border-color .2s ease-in;
+    &:not(:last-child) {
+        padding: 5px 10px 5px 20px;
+        color: #646464;                
+    }
+    &:not(:last-child):hover {
        color: #000; 
-    }    
+       opacity: 1;
+       border-color: #000;
+    }
+    &:not(:last-child)::before {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: 4px;
+        width: 12px;
+        height: 12px;             
+        background: no-repeat center url("../../../assets/img/arrowBack.svg");
+        opacity: 0.5;
+        transition: opacity .2s ease-in;        
+    }
+    &:hover::before {
+        opacity: 1;
+    }
 }
 
 .image {
@@ -33,5 +60,8 @@
 
 .des {
     margin-top: 20px;
-    font-size: 18px;
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
 }

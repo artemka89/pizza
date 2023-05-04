@@ -23,14 +23,13 @@ export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
 
     const dispatch = useAppDispatch();
 
-    const { sortIndex, searchValue, currentPage } = useAppSelector(selectFilter);    
+    const { sortIndex, searchValue } = useAppSelector(selectFilter);    
     const search = searchValue ? `&search=${searchValue}` : "";    
     
     const { items, status } = useAppSelector(selectItems);           
     
     const getPizzas = () => {            
-        dispatch(fetchPizzas({
-            currentPage,
+        dispatch(fetchPizzas({           
             categoryId,
             sortName,
             sortIndex,
@@ -42,7 +41,7 @@ export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
     useEffect(() => {        
             getPizzas();          
 
-    }, [categoryId, sortIndex, currentPage, searchValue]);
+    }, [categoryId, sortIndex, searchValue]);
    
     return (
         <div className={styles.pizzas}>
@@ -51,7 +50,7 @@ export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
                 <div className={styles.wrapper}>
                     {status === 'loading'
                         ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
-                        : items.map((item: any) => (
+                        : items.map((item) => (
                               <PizzaItem key={item.id} {...item} />
                           ))}
                 </div>

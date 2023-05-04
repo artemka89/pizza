@@ -10,10 +10,7 @@ const initialState: ItemsSliseState = {
 export const itemsSlice = createSlice({
     name: "items",
     initialState,
-    reducers: {
-        setItems(state, action: PayloadAction<PizzaItem[]>) {
-            state.items = action.payload;
-        },
+    reducers: {      
     },
     extraReducers: (builder) => {
         builder.addCase(fetchPizzas.pending, (state) => {
@@ -34,5 +31,5 @@ export const itemsSlice = createSlice({
     },
 });
 
-export const { setItems } = itemsSlice.actions;
+// export const { } = itemsSlice.actions;
 export default itemsSlice.reducer;

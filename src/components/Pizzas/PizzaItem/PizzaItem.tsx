@@ -16,10 +16,11 @@ type PizzaItemProps = {
     sizes: number[];
     price: number[];
     weight: number[];
+    description?: string;
 
 }
 
-export const PizzaItem: React.FC<PizzaItemProps> = ({ id, title, imageUrl, types, sizes, price, weight }) => {
+export const PizzaItem: React.FC<PizzaItemProps> = ({ id, title, imageUrl, types, sizes, price, weight, description}) => {
     const [activeType, setActiveType] = useState<number>(0);
     const [activeSize, setActiveSize] = useState<number>(0);
 
@@ -44,7 +45,8 @@ export const PizzaItem: React.FC<PizzaItemProps> = ({ id, title, imageUrl, types
         <div className={styles.wrapper}>
             <div className={styles.pizza}>
                 <Link to={`/pizza/${id}`} className={styles.image}>
-                    <img src={imageUrl} alt="Title" />
+                    <img src={imageUrl} alt="Pizza" />
+                    <div className={styles.description}><p>{description}</p></div>
                 </Link>
                 <Link to={`/pizza/${id}`} className={styles.title}>
                     <h2>{title}</h2>
