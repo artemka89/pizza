@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import { selectCartCount } from "../../../redux/cart/selectors";
 import { CartItemType } from "../../../redux/cart/types";
@@ -8,6 +7,7 @@ import { addItem } from "../../../redux/cart/slice";
 
 import styles from "./PizzaItem.module.scss";
 import { AddToCartBtn } from "../../../components";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 
 type PizzaItemProps = {
     id: string;
@@ -30,20 +30,20 @@ export const PizzaItem: React.FC<PizzaItemProps> = ({
     weight,
     compound,
 }) => {
-    const [activeType, setActiveType] = useState(0);
-    const [activeSize, setActiveSize] = useState(0);
 
-    const item = useSelector(selectCartCount(id));
-    const dispatch = useDispatch();
+    const [index, setIndex] = useState({activeType: 0, activeSize: 0});
+
+    const item = useAppSelector(selectCartCount(id));
+    const dispatch = useAppDispatch();
 
     const onClickAdd = () => {
         const newItem: CartItemType = {
             id,
             title,
             imageUrl,
-            price: price[activeSize],
-            type: types[activeType],
-            size: sizes[activeSize],
+            price: price[index.activeSize],
+            type: types[index.activeType],
+            size: sizes[index.activeSize],
             count: 0,
         };
         dispatch(addItem(newItem));
@@ -64,10 +64,10 @@ export const PizzaItem: React.FC<PizzaItemProps> = ({
                 <div className={styles.items}>
                     {types.map((type, i) => (
                         <div
-                            onClick={() => setActiveType(i)}
+                            onClick={() => setIndex({...index, activeType: i})}
                             key={i}
                             className={
-                                activeType === i ? styles.active : styles.item
+                                index.activeType === i ? styles.active : styles.item
                             }
                         >
                             {type}
@@ -77,10 +77,10 @@ export const PizzaItem: React.FC<PizzaItemProps> = ({
                 <div className={styles.items}>
                     {sizes.map((size, i) => (
                         <div
-                            onClick={() => setActiveSize(i)}
+                            onClick={() => setIndex({...index, activeSize: i})}
                             key={i}
                             className={
-                                activeSize === i ? styles.active : styles.item
+                                index.activeSize === i ? styles.active : styles.item
                             }
                         >
                             {size} см.
@@ -91,9 +91,9 @@ export const PizzaItem: React.FC<PizzaItemProps> = ({
             <div className={styles.buy}>
                 <div className={styles.buyWrapper}>
                     <div className={styles.weight}>
-                        {weight[activeSize]} гр.
+                        {weight[index.activeSize]} гр.
                     </div>
-                    <div className={styles.price}>от {price[activeSize]} ₽</div>
+                    <div className={styles.price}>от {price[index.activeSize]} ₽</div>
                 </div>
                 <AddToCartBtn onClickAdd={onClickAdd}>
                     <p>Добавить</p>
