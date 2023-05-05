@@ -1,0 +1,49 @@
+.addToCart {
+    min-height: 46px;
+    padding: 11px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #eb5a1e;
+    border: 1px solid #eb5a1e;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+
+    svg {
+        width: 12px;
+        margin-right: 5px;
+        fill: #eb5a1e;
+        transition: all 0.2s ease-in;
+    }
+      
+    span {
+        width: 22px;
+        height: 22px;
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        border-radius: 50%;
+        color: #fff;
+        background-color: #eb5a1e;
+        transition: all 0.2s ease-in;
+    }
+    &:hover {
+        color: #fff;
+        background-color: #eb5a1e;
+        span {
+            color: #eb5a1e;
+            background-color: #fff;
+        }
+        svg {
+            fill: #fff;
+        }
+    }
+    &:active {
+        transform: translateY(3px);
+    }
+}

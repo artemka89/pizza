@@ -13,3 +13,4 @@ export * from './ui/PizzaBlock/Skeleton';
 export * from './Pizzas/Pizzas';
 export * from './Categories/Categories';
 export * from './Search/Search';
+export * from './ui/AddToCartBtn/AddToCartBtn';

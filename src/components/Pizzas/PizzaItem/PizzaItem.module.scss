@@ -1,8 +1,3 @@
-.wrapper {
-    display: flex;
-    justify-content: center;
-}
-
 .pizza {
     width: 280px;
     min-height: 467px;
@@ -22,7 +17,7 @@
         cursor: pointer;
         transition: all 0.2s ease-in;
     }
-    .description {
+    .compound {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -36,6 +31,7 @@
         text-decoration: none;
         color: #000;
         text-align: center;
+        font-style: italic;
         opacity: 0;
         transition: all 0.3s ease-in;
         p {
@@ -46,7 +42,7 @@
     &:hover img {
         opacity: 0.2;      
     }
-    &:hover .description {
+    &:hover .compound {
         opacity: 1;
     }
     &:hover {
@@ -91,8 +87,6 @@
     flex: 1;
     text-align: center;
     padding: 6px 10px;
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease-in;
@@ -133,55 +127,4 @@
     letter-spacing: 0.015em;
 }
 
-.addToCart {
-    min-height: 46px;
-    padding: 11px;
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    color: #eb5a1e;
-    border: 1px solid #eb5a1e;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.2s ease-in;
 
-    svg {
-        width: 12px;
-        margin-right: 5px;
-        fill: #eb5a1e;
-        transition: all 0.2s ease-in;
-    }
-
-    p {
-        display: inline-block;
-    }
-    span {
-        width: 22px;
-        height: 22px;
-        margin-left: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-        border-radius: 50%;
-        color: #fff;
-        background-color: #eb5a1e;
-        transition: all 0.2s ease-in;
-    }
-    &:hover {
-        color: #fff;
-        background-color: #eb5a1e;
-        span {
-            color: #eb5a1e;
-            background-color: #fff;
-        }
-        svg {
-            fill: #fff;
-        }
-    }
-    &:active {
-        transform: translateY(3px);
-    }
-}

@@ -1,39 +1,63 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
+import { fetchPizzaById } from "../../../redux/asyncAction";
+import { selectItem } from "../../../redux/pizza/selectors";
+import { addItem } from "../../../redux/cart/slice";
+import { selectCartCount } from "../../../redux/cart/selectors";
+import { CartItemType } from "../../../redux/cart/types";
+
+import { DescriptionBlock } from "./DescriptionBlock/DescriptionBlock";
+import { AddToCartBtn } from "../../../components";
 
 import styles from "./FullPizza.module.scss";
-import { useAppDispatch, useAppSelector } from "../../../redux/store";
-import { fetchPizzaById } from "../../../redux/pizzas/asyncActionc";
-import { DescriptionBlock } from "./DescriptionBlock/DescriptionBlock";
-
-type PizzaItem = {
-    imageUrl: string;
-    title: string;
-    price: number[];
-};
 
 export const FullPizza: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
-    
+    const [activeType, setActiveType] = useState(0);
+    const [activeSize, setActiveSize] = useState(0);
+
+    const param = useParams<{ id: string }>();
+    const isMounted = useRef(false);
+
     const dispatch = useAppDispatch();
-    const { item } = useAppSelector((state) => state.item);
+    const { item } = useAppSelector(selectItem);
+
+    const compound = item?.compound?.split(",");
+
+    const cartItem = useAppSelector(selectCartCount(param.id));
+
+    const onClickAdd = () => {
+        if (item) {
+            const newItem: CartItemType = {
+                id: item.id,
+                title: item.title,
+                imageUrl: item.imageUrl,
+                price: item.price[activeSize],
+                type: item.types[activeType],
+                size: item.sizes[activeSize],
+                count: 0,
+            };
+            dispatch(addItem(newItem));
+        }
+    };
 
     const getPizza = () => {
-        if (id) {
-            dispatch(fetchPizzaById(id));
+        if (param.id) {
+            dispatch(fetchPizzaById(param.id));
         }
     };
 
     useEffect(() => {
-        getPizza();
+        if (isMounted.current) {
+            getPizza();
+        }
+        isMounted.current = true;
     }, []);
 
     if (!item) {
         return <></>;
-    }      
-
-    const description = item.description?.split(',')
-          
+    }
 
     return (
         <div className={styles.pizza}>
@@ -52,13 +76,71 @@ export const FullPizza: React.FC = () => {
                     </div>
                     <div className={styles.item}>
                         <div className={styles.title}>{item.title}</div>
-                        <div className={styles.des}>
-                            {description && description.map(des => <DescriptionBlock>{des}</DescriptionBlock>)}
+                        <div className={styles.compound}>
+                            {compound &&
+                                compound.map((com, i) => (
+                                    <DescriptionBlock key={i}>
+                                        {com}
+                                    </DescriptionBlock>
+                                ))}
                         </div>
-                        <div className={styles.type}>{item.types[1]}</div>
-                        <div className={styles.size}>{item.sizes[1]}</div>
-                        <div className={styles.price}>{item.price[1]}</div>
-                        <div className={styles.toCard}></div>
+                        <div className={styles.description}>
+                            <p>Пищевая ценность на 100 г</p>
+                        </div>
+                        <div className={styles.description}>
+                            <p>Тесто</p>
+                            <div className={styles.types}>
+                                {item.types.map((type, i) => (
+                                    <div
+                                        key={i}
+                                        onClick={() => setActiveType(i)}
+                                        className={
+                                            activeType === i
+                                                ? styles.active
+                                                : styles.type
+                                        }
+                                    >
+                                        {type}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className={styles.description}>
+                            <p>Размер</p>
+                            <div className={styles.sizes}>
+                                {item.sizes.map((type, i) => (
+                                    <div
+                                        key={i}
+                                        onClick={() => {
+                                            setActiveSize(i);
+                                        }}
+                                        className={
+                                            activeSize === i
+                                                ? styles.active
+                                                : styles.sizeWrapper
+                                        }
+                                    >
+                                        <div className={styles.size}>
+                                            Ø {type}
+                                        </div>
+                                        <div className={styles.size}>
+                                            {item.weight[i]} г
+                                        </div>
+                                        <div className={styles.size}>
+                                            <p>{item.price[i]} ₽</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className={styles.addBtn}>
+                            <AddToCartBtn onClickAdd={onClickAdd}>
+                                <p className={styles.textBtn}>
+                                    Добавить в корзину
+                                </p>
+                                {cartItem && <span>{cartItem.count}</span>}
+                            </AddToCartBtn>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk} from "@reduxjs/toolkit";
-import { FetchPizzaByIdArgs, FetchPizzasArgs, PizzaItem } from "./types";
+import { FetchPizzasArgs, PizzaItem } from "./pizzas/types";
 
 export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchPizzasArgs>(
     "items/fetchPizzasStatus",
@@ -18,9 +18,9 @@ export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchPizzasArgs>(
 
 export const fetchPizzaById = createAsyncThunk<PizzaItem, string>(
     "item/fetchPizzaStatus",
-    async (id) => {        
+    async (PizzaId) => {        
         const { data } = await axios.get<PizzaItem>(
-            `https://643950d84660f26eb1afe5d8.mockapi.io/items/${id}`
+            `https://643950d84660f26eb1afe5d8.mockapi.io/items/${PizzaId}`
         );
 
         return data;
