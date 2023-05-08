@@ -8,6 +8,7 @@ import { addItem } from "../../../redux/cart/slice";
 import styles from "./PizzaItem.module.scss";
 import { AddToCartBtn } from "../../../components";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
+import { priceFormat } from "../../../utils/priceFormat";
 
 type PizzaItemProps = {
     id: string;
@@ -93,7 +94,7 @@ export const PizzaItem: React.FC<PizzaItemProps> = ({
                     <div className={styles.weight}>
                         {weight[index.activeSize]} гр.
                     </div>
-                    <div className={styles.price}>от {price[index.activeSize]} ₽</div>
+                    <div className={styles.price}>{priceFormat({price:  price[index.activeSize], local: "ru", currency: "rub"})}</div>
                 </div>
                 <AddToCartBtn onClickAdd={onClickAdd}>
                     <p>Добавить</p>

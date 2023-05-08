@@ -12,16 +12,24 @@ import { DescriptionBlock } from "./DescriptionBlock/DescriptionBlock";
 import { AddToCartBtn } from "../../../components";
 
 import styles from "./FullPizza.module.scss";
+import { PizzaRelated } from "../PizzaRelated/PizzaRelated";
+import { useGetPizzaByPopularQuery } from "../../../redux/pizza/pizza.api";
 
 export const FullPizza: React.FC = () => {
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(0);
 
+   
     const param = useParams<{ id: string }>();
     const isMounted = useRef(false);
 
     const dispatch = useAppDispatch();
     const { item } = useAppSelector(selectItem);
+
+   
+    const {data} = useGetPizzaByPopularQuery('')
+    
+
 
     const compound = item?.compound?.split(",");
 
@@ -58,7 +66,7 @@ export const FullPizza: React.FC = () => {
     if (!item) {
         return <></>;
     }
-
+    
     return (
         <div className={styles.pizza}>
             <div className="container">
@@ -72,6 +80,11 @@ export const FullPizza: React.FC = () => {
                         </div>
                         <div className={styles.image}>
                             <img src={item.imageUrl} alt="Pizza" />
+                        </div>
+                        <h2 className={styles.titleRelated}>Популярные пиццы</h2>
+                        <div className={styles.pizzaRelated}>
+                            {data?.map((item) => <PizzaRelated key={item.id} item={item}/> )}                             
+                                           
                         </div>
                     </div>
                     <div className={styles.item}>

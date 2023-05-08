@@ -1,5 +1,6 @@
 .pizza {
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .wrapper {
@@ -55,8 +56,22 @@
     }
 }
 
-.title {
+.titleRelated {
+    margin-top: 40px;
     font-size: 24px;
+    font-weight: 600;
+}
+
+.pizzaRelated {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.title {
+    font-size: 32px;
     font-weight: 600;
 }
 

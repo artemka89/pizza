@@ -6,7 +6,9 @@ export type PizzaItem = {
     sizes: number[];
     price: number[];
     weight: number[];
-    compound: string
+    compound: string,
+    rating: string
+
 };
 
 export type FetchPizzasArgs = {    

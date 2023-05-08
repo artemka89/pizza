@@ -4,9 +4,12 @@ import cart from "./cart/slice";
 import items from "./pizzas/slice";
 import item from "./pizza/slice";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+import { pizzaApi } from "./pizza/pizza.api";
 
 export const store = configureStore({
-    reducer: { filter, cart, items, item }
+    reducer: {  [pizzaApi.reducerPath]: pizzaApi.reducer, filter, cart, items, item },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(pizzaApi.middleware)
 });
 
 
