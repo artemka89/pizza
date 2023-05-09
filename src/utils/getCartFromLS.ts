@@ -12,4 +12,4 @@ export const getCartFromLS = () => {
             totalPrice,
             totalCount,
         };    
-};
+}

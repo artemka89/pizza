@@ -1,66 +1,73 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./Sort.module.scss";
+import { SortName } from "../../redux/filter/types";
 
-type SortListItem = string
 type SortProps = {
-    onChangeSortName: (index: number) => void
-    sortIndex: number
-}
+    onChangeSortName: (sortName: SortName) => void;
+    sortName: SortName;
+};
 
 type PopupClick = MouseEvent & {
     composedPath: () => Node[];
-}
+};
 
-const sortList: SortListItem[] = ["популярности", "цене", "алфавиту"];
+const sortDictionary = new Map();
+sortDictionary.set(SortName.PRICE, "цене");
+sortDictionary.set(SortName.RATING, "популярности");
+sortDictionary.set(SortName.TITLE, "алфавиту");
 
-export const Sort: React.FC<SortProps> = ({ onChangeSortName, sortIndex }) => {
-
-    const sortRef = useRef<HTMLDivElement>(null)
+export const Sort: React.FC<SortProps> = ({ onChangeSortName, sortName }) => {
+    const sortRef = useRef<HTMLDivElement>(null);
     const [visible, setVisible] = useState(false);
-   
 
-    const onClickLink = (index: number) => {      
-        onChangeSortName(index);
+    const onClickLink = (sortName: SortName) => {
+        onChangeSortName(sortName);
         setVisible(false);
     };
 
-    useEffect(() => {      
-       const handleClickOutside = (event: MouseEvent) => {
-        const _event = event as PopupClick
-         if(sortRef.current && !_event.composedPath().includes(sortRef.current)) {
-            setVisible(false)
-         }          
-       }
-       document.body.addEventListener('click',handleClickOutside)
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const _event = event as PopupClick;
+            if (
+                sortRef.current &&
+                !_event.composedPath().includes(sortRef.current)
+            ) {
+                setVisible(false);
+            }
+        };
+        document.body.addEventListener("click", handleClickOutside);
 
-       return () =>  {
-        document.body.removeEventListener('click',handleClickOutside)        
-       } 
-    }, [])
+        return () => {
+            document.body.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
 
     return (
         <div ref={sortRef} className={styles.sort}>
             <div className={styles.sortBy}>Cортировать по:</div>
             <div onClick={() => setVisible(!visible)} className={styles.title}>
-                {sortList[sortIndex]}
+                {sortDictionary.get(sortName)}
             </div>
             <ul
                 className={
                     visible ? `${styles.popup} ${styles.open}` : styles.popup
                 }
             >
-                {sortList.map((link, index) => (
-                    <li
-                        onClick={() => onClickLink(index)}
-                        key={index}
-                        className={sortIndex === index ? styles.active : styles.item}
-                    >
-                        {link}
-                    </li>
-                ))}
+                {Object.keys(SortName).map((sort) => {
+                    return (
+                        <li
+                            onClick={() => onClickLink(sort as SortName)}
+                            key={sort}
+                            className={
+                                sortName === sort ? styles.active : styles.item
+                            }
+                        >
+                            {sortDictionary.get(SortName.RATING)}
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
 };
-

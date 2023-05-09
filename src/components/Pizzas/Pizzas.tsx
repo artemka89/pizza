@@ -4,55 +4,40 @@ import { categoriesItem } from "../Categories/Categories";
 
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { selectFilter } from "../../redux/filter/selectors";
-import { selectItems } from "../../redux/pizzas/selectors";
-import { fetchPizzas } from "../../redux/asyncAction";
 
 import { PizzaItem, Skeleton } from "../../components";
 
 import styles from "./Pizzas.module.scss";
+import { useGetFilteredPizzasQuery } from "../../redux/pizza/pizza.api";
+import { OrderType, SearchFilter } from "../../redux/filter/types";
 
-const sortName = ["rating", "price", "title"];
+
+// const sortName = ["rating", "price", "title"];
 
 type PizzasProps = {
-    categoryId: number;
+    categoryId: number | undefined;
 };
 
-export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {
-    const dispatch = useAppDispatch();
+export const Pizzas: React.FC<PizzasProps> = ({ categoryId }) => {   
 
-    const { sortIndex, searchValue } = useAppSelector(selectFilter);
-    const search = searchValue ? `&search=${searchValue}` : "";
+    const { sortName, searchValue } = useAppSelector(selectFilter);    
 
-    const { items, status } = useAppSelector(selectItems);
-
-    const getPizzas = () => {
-        dispatch(
-            fetchPizzas({
-                categoryId,
-                sortName,
-                sortIndex,
-                search,
-            })
-        );
-        window.scrollTo(0, 0);
-    };
-
-    const isMounted = useRef(false);
-    useEffect(() => {
-        if (isMounted.current) {
-            getPizzas();
-        }
-        isMounted.current = true;
-    }, [categoryId, sortIndex, searchValue]);
+    const searchFilter: SearchFilter = {
+        categoryId,
+        sortName,
+        searchValue,
+        order: OrderType.DESC
+    }
+   const {data, isLoading} = useGetFilteredPizzasQuery(searchFilter)
 
     return (
         <div className={styles.pizzas}>
             <div className="container">
-                <h2 className={styles.title}>{categoriesItem[categoryId]}</h2>
+                <h2 className={styles.title}>{categoryId ? categoriesItem[categoryId] : 'Все'}</h2>
                 <div className={styles.wrapper}>
-                    {status === "loading"
+                    {isLoading
                         ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
-                        : items.map((item) => (
+                        : data?.map((item) => (
                               <PizzaItem key={item.id} {...item} />
                           ))}
                 </div>

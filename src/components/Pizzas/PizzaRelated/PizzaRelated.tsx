@@ -1,4 +1,4 @@
-import { PizzaItem } from '../../../redux/pizzas/types'
+import { PizzaItem } from '../../../redux/pizza/types'
 import { priceFormat } from '../../../utils/priceFormat'
 import { AddToCartBtn } from '../../ui/AddToCartBtn/AddToCartBtn'
 import styles from './PizzaRelated.module.scss'

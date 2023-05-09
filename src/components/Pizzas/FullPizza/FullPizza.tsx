@@ -1,9 +1,8 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
-import { fetchPizzaById } from "../../../redux/asyncAction";
-import { selectItem } from "../../../redux/pizza/selectors";
+
 import { addItem } from "../../../redux/cart/slice";
 import { selectCartCount } from "../../../redux/cart/selectors";
 import { CartItemType } from "../../../redux/cart/types";
@@ -13,57 +12,39 @@ import { AddToCartBtn } from "../../../components";
 
 import styles from "./FullPizza.module.scss";
 import { PizzaRelated } from "../PizzaRelated/PizzaRelated";
-import { useGetPizzaByPopularQuery } from "../../../redux/pizza/pizza.api";
+import { useGetPizzaByIdQuery, useGetPizzaByPopularQuery } from "../../../redux/pizza/pizza.api";
 
 export const FullPizza: React.FC = () => {
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(0);
-
+    const dispatch = useAppDispatch();
    
     const param = useParams<{ id: string }>();
-    const isMounted = useRef(false);
-
-    const dispatch = useAppDispatch();
-    const { item } = useAppSelector(selectItem);
-
-   
-    const {data} = useGetPizzaByPopularQuery('')
     
+    const {data} = useGetPizzaByIdQuery(param.id)     
+    const {data: itemPopular} = useGetPizzaByPopularQuery('')
+   
+    
+    const cartItem = useAppSelector(selectCartCount(param.id));  
 
-
-    const compound = item?.compound?.split(",");
-
-    const cartItem = useAppSelector(selectCartCount(param.id));
+    const compound = data?.compound?.split(",");
 
     const onClickAdd = () => {
-        if (item) {
+        if (data) {
             const newItem: CartItemType = {
-                id: item.id,
-                title: item.title,
-                imageUrl: item.imageUrl,
-                price: item.price[activeSize],
-                type: item.types[activeType],
-                size: item.sizes[activeSize],
+                id: data.id,
+                title: data.title,
+                imageUrl: data.imageUrl,
+                price: data.price[activeSize],
+                type: data.types[activeType],
+                size: data.sizes[activeSize],
                 count: 0,
             };
             dispatch(addItem(newItem));
         }
-    };
+    }; 
 
-    const getPizza = () => {
-        if (param.id) {
-            dispatch(fetchPizzaById(param.id));
-        }
-    };
-
-    useEffect(() => {
-        if (isMounted.current) {
-            getPizza();
-        }
-        isMounted.current = true;
-    }, []);
-
-    if (!item) {
+    if (!data) {
         return <></>;
     }
     
@@ -76,19 +57,19 @@ export const FullPizza: React.FC = () => {
                             <Link to="/" className={styles.navItem}>
                                 Назад
                             </Link>
-                            <div className={styles.navItem}>{item.title}</div>
+                            <div className={styles.navItem}>{data.title}</div>
                         </div>
                         <div className={styles.image}>
-                            <img src={item.imageUrl} alt="Pizza" />
+                            <img src={data.imageUrl} alt="Pizza" />
                         </div>
                         <h2 className={styles.titleRelated}>Популярные пиццы</h2>
                         <div className={styles.pizzaRelated}>
-                            {data?.map((item) => <PizzaRelated key={item.id} item={item}/> )}                             
+                            {itemPopular?.map((item) => <PizzaRelated key={item.id} item={item}/> )}                             
                                            
                         </div>
                     </div>
                     <div className={styles.item}>
-                        <div className={styles.title}>{item.title}</div>
+                        <div className={styles.title}>{data.title}</div>
                         <div className={styles.compound}>
                             {compound &&
                                 compound.map((com, i) => (
@@ -103,7 +84,7 @@ export const FullPizza: React.FC = () => {
                         <div className={styles.description}>
                             <p>Тесто</p>
                             <div className={styles.types}>
-                                {item.types.map((type, i) => (
+                                {data.types.map((type, i) => (
                                     <div
                                         key={i}
                                         onClick={() => setActiveType(i)}
@@ -121,7 +102,7 @@ export const FullPizza: React.FC = () => {
                         <div className={styles.description}>
                             <p>Размер</p>
                             <div className={styles.sizes}>
-                                {item.sizes.map((type, i) => (
+                                {data.sizes.map((type, i) => (
                                     <div
                                         key={i}
                                         onClick={() => {
@@ -137,10 +118,10 @@ export const FullPizza: React.FC = () => {
                                             Ø {type}
                                         </div>
                                         <div className={styles.size}>
-                                            {item.weight[i]} г
+                                            {data.weight[i]} г
                                         </div>
                                         <div className={styles.size}>
-                                            <p>{item.price[i]} ₽</p>
+                                            <p>{data.price[i]} ₽</p>
                                         </div>
                                     </div>
                                 ))}

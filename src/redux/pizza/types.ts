@@ -1,8 +1,12 @@
-import { PizzaItem, Status } from "../pizzas/types";
-
-export interface ItemSliseState {
-    item: PizzaItem | null
-    status: Status;
-}
-
+export type PizzaItem = {
+    id: string;
+    title: string;
+    imageUrl: string;
+    types: string[];
+    sizes: number[];
+    price: number[];
+    weight: number[];
+    compound: string;
+    rating: string;
+};
 

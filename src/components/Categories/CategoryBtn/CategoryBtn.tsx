@@ -2,7 +2,7 @@ import styles from "./CategoryBtn.module.scss";
 
 type CategoryBtnProps = {
     index: number;
-    categoryId: number;
+    categoryId: number | undefined;
     onClickCategory: any;
     children: any
 }
