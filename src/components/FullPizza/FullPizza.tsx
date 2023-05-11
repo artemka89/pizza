@@ -1,31 +1,33 @@
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 
-import { addItem } from "../../../redux/cart/slice";
-import { selectCartCount } from "../../../redux/cart/selectors";
-import { CartItemType } from "../../../redux/cart/types";
+import { addItem } from "../../redux/cart/slice";
+import { selectCartCount } from "../../redux/cart/selectors";
+import { CartItemType } from "../../redux/cart/types";
 
 import { DescriptionBlock } from "./DescriptionBlock/DescriptionBlock";
-import { AddToCartBtn } from "../../../components";
+import { AddToCartBtn } from "..";
 
 import styles from "./FullPizza.module.scss";
-import { PizzaRelated } from "../PizzaRelated/PizzaRelated";
-import { useGetPizzaByIdQuery, useGetPizzaByPopularQuery } from "../../../redux/pizza/pizza.api";
+import { PizzasPopular } from "../Pizzas/PizzasPopular/PizzasPopular";
+import {
+    useGetPizzaByIdQuery,
+    useGetPizzaByPopularQuery,
+} from "../../redux/pizza/pizza.api";
 
 export const FullPizza: React.FC = () => {
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(0);
     const dispatch = useAppDispatch();
-   
+
     const param = useParams<{ id: string }>();
-    
-    const {data} = useGetPizzaByIdQuery(param.id)     
-    const {data: itemPopular} = useGetPizzaByPopularQuery('')
-   
-    
-    const cartItem = useAppSelector(selectCartCount(param.id));  
+
+    const { data } = useGetPizzaByIdQuery(param.id);
+    const { data: itemPopular } = useGetPizzaByPopularQuery("");
+
+    const cartItem = useAppSelector(selectCartCount(param.id));
 
     const compound = data?.compound?.split(",");
 
@@ -42,12 +44,12 @@ export const FullPizza: React.FC = () => {
             };
             dispatch(addItem(newItem));
         }
-    }; 
+    };
 
     if (!data) {
         return <></>;
     }
-    
+
     return (
         <div className={styles.pizza}>
             <div className="container">
@@ -62,10 +64,13 @@ export const FullPizza: React.FC = () => {
                         <div className={styles.image}>
                             <img src={data.imageUrl} alt="Pizza" />
                         </div>
-                        <h2 className={styles.titleRelated}>Популярные пиццы</h2>
+                        <h2 className={styles.titleRelated}>
+                            Популярные пиццы
+                        </h2>
                         <div className={styles.pizzaRelated}>
-                            {itemPopular?.map((item) => <PizzaRelated key={item.id} item={item}/> )}                             
-                                           
+                            {itemPopular?.map((item) => (
+                                <PizzasPopular key={item.id} item={item} />
+                            ))}
                         </div>
                     </div>
                     <div className={styles.item}>
@@ -128,12 +133,12 @@ export const FullPizza: React.FC = () => {
                             </div>
                         </div>
                         <div className={styles.addBtn}>
-                            <AddToCartBtn onClickAdd={onClickAdd}>
+                            {/* <AddToCartBtn onClickAdd={onClickAdd}>
                                 <p className={styles.textBtn}>
                                     Добавить в корзину
                                 </p>
                                 {cartItem && <span>{cartItem.count}</span>}
-                            </AddToCartBtn>
+                            </AddToCartBtn> */}
                         </div>
                     </div>
                 </div>

@@ -1,13 +1,13 @@
 import { PizzaItem } from '../../../redux/pizza/types'
 import { priceFormat } from '../../../utils/priceFormat'
 import { AddToCartBtn } from '../../ui/AddToCartBtn/AddToCartBtn'
-import styles from './PizzaRelated.module.scss'
+import styles from './PizzasPopular.module.scss'
 
-type PizzaRelatedProps = {
+type PizzasPopularProps = {
   item: PizzaItem
 }
 
-export const PizzaRelated: React.FC<PizzaRelatedProps> = ({item}) => {
+export const PizzasPopular: React.FC<PizzasPopularProps> = ({item}) => {
 
   const price = priceFormat({
     price: item.price[0],
@@ -23,9 +23,9 @@ export const PizzaRelated: React.FC<PizzaRelatedProps> = ({item}) => {
       <div className={styles.title}><span>{item.title}</span></div>
       <div className={styles.price}>от {price}</div>
       <div className={styles.addBnt}></div>     
-      <AddToCartBtn onClickAdd={() => {}}>
+      {/* <AddToCartBtn onClickAdd={() => {}}>
         <p>В корзину</p>
-      </AddToCartBtn>
+      </AddToCartBtn> */}
       
     </div>
   )

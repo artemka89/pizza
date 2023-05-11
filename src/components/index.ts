@@ -1,16 +1,14 @@
-export * from './Header/Header';
-export * from './pages/Home';
-export * from './Cart/Cart';
-export * from './Cart/CartItem/CartItem';
-export * from './Cart//CartEmpty/CartEmpty';
-export * from './Pizzas/FullPizza/FullPizza';
-export * from './Pizzas/FullPizza/DescriptionBlock/DescriptionBlock';
-export * from './Sort/Sort';
-export * from './Categories/Category/Category';
-export * from './Categories/CategoryBtn/CategoryBtn';
-export * from './Pizzas/PizzaItem/PizzaItem';
-export * from './ui/PizzaBlock/Skeleton';
-export * from './Pizzas/Pizzas';
-export * from './Categories/Categories';
-export * from './Search/Search';
-export * from './ui/AddToCartBtn/AddToCartBtn';
+export * from "./Header/Header";
+export * from "./pages/Home";
+export * from "./Cart/Cart";
+export * from "./Cart/CartItem/CartItem";
+export * from "./Cart//CartEmpty/CartEmpty";
+
+export * from "./FullPizza/DescriptionBlock/DescriptionBlock";
+export * from "./SortPizzas/Sort/Sort";
+
+export * from "./ui/PizzaBlock/Skeleton";
+
+export * from "./PizzasCategories/Categories/Categories";
+export * from "./Search/Search";
+export * from "./ui/AddToCartBtn/AddToCartBtn";

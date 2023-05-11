@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./Sort.module.scss";
-import { SortName } from "../../redux/filter/types";
+import { SortName } from "../../../redux/filter/types";
 
 type SortProps = {
-    onChangeSortName: (sortName: SortName) => void;
+    onClickSortLink: (sortName: SortName) => void;
     sortName: SortName;
 };
 
@@ -17,16 +17,11 @@ sortDictionary.set(SortName.PRICE, "цене");
 sortDictionary.set(SortName.RATING, "популярности");
 sortDictionary.set(SortName.TITLE, "алфавиту");
 
-export const Sort: React.FC<SortProps> = ({ onChangeSortName, sortName }) => {
+export const Sort: React.FC<SortProps> = ({ sortName, onClickSortLink }) => {
     const sortRef = useRef<HTMLDivElement>(null);
     const [visible, setVisible] = useState(false);
 
-    const onClickLink = (sortName: SortName) => {
-        onChangeSortName(sortName);
-        setVisible(false);
-    };
-
-    useEffect(() => {
+     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const _event = event as PopupClick;
             if (
@@ -57,7 +52,7 @@ export const Sort: React.FC<SortProps> = ({ onChangeSortName, sortName }) => {
                 {Object.keys(SortName).map((sort) => {
                     return (
                         <li
-                            onClick={() => onClickLink(sort as SortName)}
+                            onClick={() => onClickSortLink(sort as SortName)}
                             key={sort}
                             className={
                                 sortName === sort ? styles.active : styles.item

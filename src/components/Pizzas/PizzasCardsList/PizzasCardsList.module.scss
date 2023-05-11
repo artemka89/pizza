@@ -1,22 +1,5 @@
 .pizzas {
     padding-bottom: 50px;
-}
-
-.title {
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 39px;
-    letter-spacing: 0.01em;
-    margin-bottom: 35px;
-    @media (max-width: 630px) {
-        text-align: center;
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
-    
-}
-
-.wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -33,3 +16,5 @@
         grid-template-columns: repeat(1, 1fr);        
     }
 }
+
+
