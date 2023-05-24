@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FilterSliceState, SortName } from "./types";
 
-
 const initialState: FilterSliceState = {
     categoryId: undefined,
-    sortName: SortName.RATING,
+    sortName: "rating",
     searchValue: "",
 };
 
@@ -15,12 +14,12 @@ export const filterSlice = createSlice({
         setCategotyId(state, action: PayloadAction<number | undefined>) {
             state.categoryId = action.payload;
         },
-        setSortName(state, action: PayloadAction<SortName>) {
+        setSortName(state, action: PayloadAction<string>) {
             state.sortName = action.payload;
         },
         setSearchValue(state, action: PayloadAction<string>) {
             state.searchValue = action.payload;
-        }      
+        },
     },
 });
 

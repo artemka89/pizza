@@ -1,6 +1,6 @@
 export interface FilterSliceState {
     categoryId: number | undefined;
-    sortName: SortName;
+    sortName: string;
     searchValue: string
 }
 
@@ -17,7 +17,7 @@ export enum OrderType {
 
 export interface SearchFilter {
     categoryId: number | undefined;
-    sortName: SortName;
+    sortName: string;
     searchValue: string;
     order: OrderType;
 }

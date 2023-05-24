@@ -6,6 +6,8 @@ import { AddToCartBtn } from "../..";
 
 import { priceFormat } from "../../../utils/priceFormat";
 import { PizzaItem } from "../../../redux/pizza/types";
+import { useAppSelector } from "../../../redux/store";
+import { selectCartCount } from "../../../redux/cart/selectors";
 
 type PizzaСardProps = {
     pizzaItem: PizzaItem;
@@ -20,6 +22,7 @@ export const PizzaСard: React.FC<PizzaСardProps> = ({
         pizzaItem;
 
     const [index, setIndex] = useState({ activeType: 0, activeSize: 0 });
+    const count = useAppSelector(selectCartCount(id));
 
     return (
         <div className={styles.pizza}>
@@ -87,7 +90,7 @@ export const PizzaСard: React.FC<PizzaСardProps> = ({
                     onClickAdd={onClickAdd}
                 >
                     <p>Добавить</p>
-                    {/* {item && <span>{item.count}</span>} */}
+                     {count && <span>{count}</span>}
                 </AddToCartBtn>
             </div>
         </div>

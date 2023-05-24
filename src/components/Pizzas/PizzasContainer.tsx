@@ -5,7 +5,6 @@ import { selectFilter } from "../../redux/filter/selectors";
 import { OrderType, SearchFilter } from "../../redux/filter/types";
 
 import { PizzasCardsList } from "./PizzasCardsList/PizzasCardsList";
-import { selectCartCount } from "../../redux/cart/selectors";
 import { CartItemType } from "../../redux/cart/types";
 import { addItem } from "../../redux/cart/slice";
 import { PizzaItem } from "../../redux/pizza/types";
@@ -22,8 +21,6 @@ export const PizzasContainer = () => {
         order: OrderType.DESC,
     };
     const { data, isLoading } = useGetFilteredPizzasQuery(searchFilter);
-
-    const item = useAppSelector(selectCartCount("3"));
 
     const dispatch = useAppDispatch();
 

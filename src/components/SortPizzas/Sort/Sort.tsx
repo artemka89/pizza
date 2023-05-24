@@ -2,26 +2,25 @@ import { useEffect, useRef, useState } from "react";
 
 import styles from "./Sort.module.scss";
 import { SortName } from "../../../redux/filter/types";
+import { sortListType } from "../../../helpers/sortList";
 
 type SortProps = {
     onClickSortLink: (sortName: SortName) => void;
-    sortName: SortName;
+    sortName: string;
+    sortList: sortListType[]
 };
 
 type PopupClick = MouseEvent & {
     composedPath: () => Node[];
 };
 
-const sortDictionary = new Map();
-sortDictionary.set(SortName.PRICE, "цене");
-sortDictionary.set(SortName.RATING, "популярности");
-sortDictionary.set(SortName.TITLE, "алфавиту");
+export const Sort: React.FC<SortProps> = ({ sortName, sortList, onClickSortLink }) => {
 
-export const Sort: React.FC<SortProps> = ({ sortName, onClickSortLink }) => {
     const sortRef = useRef<HTMLDivElement>(null);
+
     const [visible, setVisible] = useState(false);
 
-     useEffect(() => {
+    useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const _event = event as PopupClick;
             if (
@@ -42,26 +41,23 @@ export const Sort: React.FC<SortProps> = ({ sortName, onClickSortLink }) => {
         <div ref={sortRef} className={styles.sort}>
             <div className={styles.sortBy}>Cортировать по:</div>
             <div onClick={() => setVisible(!visible)} className={styles.title}>
-                {sortDictionary.get(sortName)}
+                {sortName}
             </div>
             <ul
                 className={
                     visible ? `${styles.popup} ${styles.open}` : styles.popup
                 }
             >
-                {Object.keys(SortName).map((sort) => {
-                    return (
-                        <li
-                            onClick={() => onClickSortLink(sort as SortName)}
-                            key={sort}
-                            className={
-                                sortName === sort ? styles.active : styles.item
-                            }
-                        >
-                            {sortDictionary.get(SortName.RATING)}
-                        </li>
-                    );
-                })}
+                {sortList.map(obj => 
+                ( <li
+                    onClick={() => {}}
+                    className={
+                        sortName === obj.sortName ? styles.active : styles.item
+                    }
+                >
+                    {obj.sortName}
+                </li>))}
+                
             </ul>
         </div>
     );
