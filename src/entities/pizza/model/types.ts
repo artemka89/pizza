@@ -3,6 +3,7 @@ export interface Pizza {
   name: string;
   description: string;
   imageId: string;
+  options: PizzaOption[];
 }
 
 export interface PizzaOption {
@@ -12,11 +13,6 @@ export interface PizzaOption {
   price: number;
 }
 
-export interface PizzaCategory {
-  id: string;
-  name: string;
-}
-
 export interface PizzaDto {
   $id: string;
   name: string;
@@ -24,7 +20,6 @@ export interface PizzaDto {
   category: string;
   description: string;
   categoryIds: string[];
-  rating: number;
   pizzaOptions: {
     $id: string;
     size: number;
