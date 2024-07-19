@@ -34,6 +34,7 @@ module.exports = {
     'react-refresh/only-export-components': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'no-unused-vars': 'off',
+    'no-console': 'warn',
     'boundaries/entry-point': [
       2,
       {
