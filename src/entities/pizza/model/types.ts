@@ -3,6 +3,14 @@ export interface Pizza {
   name: string;
   description: string;
   imageId: string;
+  startPrice: number;
+}
+
+export interface PizzaWithOptions {
+  id: string;
+  name: string;
+  description: string;
+  imageId: string;
   options: PizzaOption[];
 }
 
