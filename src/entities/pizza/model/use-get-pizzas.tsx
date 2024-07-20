@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { mapPizza } from '../lib/map-pizza';
+import { mapPizza } from '../lib/map-product';
 import { getPizzasQuery } from '../queries';
 
 export function useGetPizzas(category: string) {
