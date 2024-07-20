@@ -11,24 +11,24 @@ const PizzaOptionDto = z.object({
   price: z.number(),
 });
 
-const PizzaCategoryDto = z.object({
-  $id: z.string(),
-  name: z.string(),
-});
-
 const PizzaSchemaDto = z.object({
   $id: z.string(),
   name: z.string(),
   imageId: z.string(),
   category: z.string(),
   description: z.string(),
-  categoryIds: z.string().array(),
   pizzaOptions: PizzaOptionDto.array(),
-  pizzaCategories: PizzaCategoryDto.array(),
-  rating: z.number(),
 });
 
-export type PizzaDto = z.infer<typeof PizzaSchemaDto>;
+const PizzaNameSchemaDto = z.object({
+  $id: z.string(),
+  name: z.string(),
+  imageId: z.string(),
+});
+
+type PizzaNameDto = z.infer<typeof PizzaNameSchemaDto>;
+
+type PizzaDto = z.infer<typeof PizzaSchemaDto>;
 
 export const pizzaApi = {
   getPizzas: async (category: string): Promise<PizzaDto[]> => {
@@ -48,5 +48,16 @@ export const pizzaApi = {
     );
 
     return PizzaSchemaDto.parse(pizza);
+  },
+  getPizzasNameAndImage: async (name: string): Promise<PizzaNameDto[]> => {
+    const pizzas = await databases.listDocuments(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.PIZZAS_COLLECTION_ID,
+      [
+        Query.contains('name', [name]),
+        Query.select(['$id', 'name', 'imageId']),
+      ],
+    );
+    return PizzaNameSchemaDto.array().parse(pizzas.documents);
   },
 };
