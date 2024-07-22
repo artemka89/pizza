@@ -1,13 +1,17 @@
-import { PizzaDto, PizzaWithStartPrice, SearchProduct } from '../model/types';
+import {
+  ProductDto,
+  ProductWithStartPrice,
+  SearchProduct,
+} from '../model/types';
 
-export const mapPizza = (data: PizzaDto): PizzaWithStartPrice => {
+export const mapProduct = (data: ProductDto): ProductWithStartPrice => {
   return {
     id: data.$id,
     name: data.name,
-    description: data.description,
-    imageId: data.imageId,
-    startPrice: data.pizzaOptions[0].price,
     category: data.category,
+    contents: data.contents,
+    imageId: data.imageId,
+    startPrice: data.options[0].price,
   };
 };
 

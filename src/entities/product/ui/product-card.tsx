@@ -3,17 +3,18 @@ import { FC } from 'react';
 type Item = {
   id: string;
   name: string;
-  description: string;
+  contents: string;
   startPrice: number;
+  category: string;
 };
 
-interface ProductCardLayoutProps {
+interface ProductCardProps {
   item: Item;
   action?: React.ReactNode;
   imageUrl: () => URL;
 }
 
-export const ProductCardLayout: FC<ProductCardLayoutProps> = ({
+export const ProductCard: FC<ProductCardProps> = ({
   item,
   action,
   imageUrl,
@@ -31,7 +32,7 @@ export const ProductCardLayout: FC<ProductCardLayoutProps> = ({
         {item.name}
       </h4>
       <div className='flex-1 overflow-hidden text-center text-sm text-muted-foreground'>
-        <p className='line-clamp-4'>{item.description}</p>
+        <p className='line-clamp-4'>{item.contents}</p>
       </div>
 
       <div className='flex w-full items-center justify-between'>
