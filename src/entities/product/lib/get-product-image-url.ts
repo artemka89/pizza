@@ -3,7 +3,7 @@ import { ImageFormat, ImageGravity } from 'appwrite';
 import { APPWRITE } from '@/shared/constants/appwrite';
 import { storage } from '@/shared/lib/config/appwrite-config';
 
-export const getPizzaImageUrl = ({
+export const getProductImageUrl = ({
   id,
   size = 'small',
 }: {
@@ -13,7 +13,7 @@ export const getPizzaImageUrl = ({
   const sizeImage = size === 'small' ? 210 : 800;
 
   const url = storage.getFilePreview(
-    APPWRITE.PIZZAS_BUCKET_ID,
+    APPWRITE.PRODUCT_BUCKET_ID,
     id,
     sizeImage,
     sizeImage,

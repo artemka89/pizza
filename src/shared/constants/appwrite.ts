@@ -3,7 +3,6 @@ export const APPWRITE = {
   PROJECT_ID: import.meta.env.VITE_API_PROJECT_ID,
   DATABASE_ID: 'pizzas',
 
-  PIZZAS_COLLECTION_ID: 'pizzas',
-  PIZZAS_BUCKET_ID: 'pizzas',
-  PIZZA_CATEGORIES_COLLECTION_ID: 'pizza-categories',
+  PRODUCT_COLLECTION_ID: 'products',
+  PRODUCT_BUCKET_ID: 'products',
 };

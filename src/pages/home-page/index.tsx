@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-import { getPizzaImageUrl } from '@/entities/pizza';
+import { getPizzaImageUrl } from '@/entities/product';
+import { ProductCard } from '@/entities/product';
 import { PizzaList } from '@/features/pizza-list';
 import { Button } from '@/shared/ui/button';
-import { ProductCardLayout } from '@/shared/ui/layouts/product-card-layout';
 
 import { Layout } from './ui/layout';
 import { CategoryList } from './category-list';
@@ -22,7 +22,7 @@ export const HomePage: FC = () => {
       sideBar={<FilterSideBar />}>
       <PizzaList
         renderPizzas={(pizza) => (
-          <ProductCardLayout
+          <ProductCard
             key={pizza.id}
             item={pizza}
             imageUrl={() => getPizzaImageUrl({ id: pizza.imageId })}

@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 import { Search } from 'lucide-react';
 
-import { getPizzaImageUrl } from '@/entities/pizza';
-import { useGetSearchProductList } from '@/entities/pizza';
+import { getPizzaImageUrl } from '@/entities/product';
+import { useGetSearchProductList } from '@/entities/product';
 import { cn } from '@/shared/lib/cn';
 import { useDebouncedValue } from '@/shared/lib/use-debounced-value';
 import { useFocusElement } from '@/shared/lib/use-focus-element';
