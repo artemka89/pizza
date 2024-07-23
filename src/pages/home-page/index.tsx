@@ -2,31 +2,29 @@ import { FC } from 'react';
 
 import { getPizzaImageUrl } from '@/entities/product';
 import { ProductCard } from '@/entities/product';
-import { PizzaList } from '@/features/pizza-list';
+import { ProductList, ProductLists } from '@/features/product-list';
 import { Button } from '@/shared/ui/button';
 
 import { Layout } from './ui/layout';
 import { CategoryList } from './category-list';
-import { FilterSideBar } from './filter-side-bar';
-import { SortPopup } from './sort-popup';
 
 export const HomePage: FC = () => {
   return (
-    <Layout
-      topBar={
-        <>
-          <CategoryList />
-          <SortPopup />
-        </>
-      }
-      sideBar={<FilterSideBar />}>
-      <PizzaList
-        renderPizzas={(pizza) => (
-          <ProductCard
-            key={pizza.id}
-            item={pizza}
-            imageUrl={() => getPizzaImageUrl({ id: pizza.imageId })}
-            action={<Button variant='outline'>Добавить</Button>}
+    <Layout topBar={<CategoryList />}>
+      <ProductLists
+        renderCategoriesWithProducts={(category) => (
+          <ProductList
+            key={category.id}
+            items={category.products}
+            category={category.name}
+            renderProducts={(product) => (
+              <ProductCard
+                key={product.id}
+                item={product}
+                imageUrl={() => getPizzaImageUrl({ id: product.imageId })}
+                action={<Button variant='outline'>Добавить</Button>}
+              />
+            )}
           />
         )}
       />

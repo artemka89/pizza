@@ -1,6 +1,6 @@
 import { Account, Client, Databases, Storage } from 'appwrite';
 
-import { APPWRITE } from '@/shared/constants/appwrite';
+import { APPWRITE } from './appwrite';
 
 const client = new Client()
   .setEndpoint(APPWRITE.BASE_URL)

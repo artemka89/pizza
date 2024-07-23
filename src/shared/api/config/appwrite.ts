@@ -5,4 +5,6 @@ export const APPWRITE = {
 
   PRODUCT_COLLECTION_ID: 'products',
   PRODUCT_BUCKET_ID: 'products',
+
+  PRODUCT_CATEGORIES_COLLECTION_ID: 'categories',
 };

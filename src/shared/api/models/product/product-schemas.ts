@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 const ProductOptionSchemaDto = z.object({
   $id: z.string(),
-  size: z.number().optional(),
+  size: z.number(),
   weight: z.number(),
   price: z.number(),
 });
@@ -17,10 +17,9 @@ const IngredientSchemaDto = z.object({
 export const ProductSchemaDto = z.object({
   $id: z.string(),
   name: z.string(),
-  category: z.string(),
+  imageId: z.string(),
   contents: z.string(),
   ingredients: IngredientSchemaDto.array(),
-  imageId: z.string(),
   options: ProductOptionSchemaDto.array(),
 });
 

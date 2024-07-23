@@ -3,8 +3,8 @@ import { FC } from 'react';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 
 interface LayoutProps {
-  topBar: React.ReactNode;
-  sideBar: React.ReactNode;
+  topBar?: React.ReactNode;
+  sideBar?: React.ReactNode;
   children: React.ReactNode;
 }
 

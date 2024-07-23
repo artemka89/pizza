@@ -1,7 +1,7 @@
 import { ImageFormat, ImageGravity } from 'appwrite';
 
-import { APPWRITE } from '@/shared/constants/appwrite';
-import { storage } from '@/shared/lib/config/appwrite-config';
+import { APPWRITE } from '@/shared/api/config/appwrite';
+import { storage } from '@/shared/api/config/appwrite-config';
 
 export const getProductImageUrl = ({
   id,

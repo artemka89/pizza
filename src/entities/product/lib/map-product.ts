@@ -1,14 +1,19 @@
-import {
-  ProductDto,
-  ProductWithStartPrice,
-  SearchProduct,
-} from '../model/types';
+import { ProductDto } from '@/shared/api/models/product/product-schemas';
+
+import { ProductWithStartPrice, SearchProduct } from '../model/types';
 
 export const mapProduct = (data: ProductDto): ProductWithStartPrice => {
+  const ingredients = data.ingredients.map((ingredient) => ({
+    id: ingredient.$id,
+    name: ingredient.name,
+    imageId: ingredient.imageId,
+    price: ingredient.price,
+  }));
+
   return {
     id: data.$id,
     name: data.name,
-    category: data.category,
+    ingredients,
     contents: data.contents,
     imageId: data.imageId,
     startPrice: data.options[0].price,

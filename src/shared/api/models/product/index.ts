@@ -1,7 +1,8 @@
 import { Query } from 'appwrite';
 
-import { APPWRITE } from '@/shared/constants/appwrite';
-import { databases } from '@/shared/lib/config/appwrite-config';
+import { databases } from '@/shared/api/config/appwrite-config';
+
+import { APPWRITE } from '../../config/appwrite';
 
 import {
   ProductDto,

@@ -1,15 +1,9 @@
 import { FC } from 'react';
 
-type Item = {
-  id: string;
-  name: string;
-  contents: string;
-  startPrice: number;
-  category: string;
-};
+import { ProductWithStartPrice } from '../model/types';
 
 interface ProductCardProps {
-  item: Item;
+  item: ProductWithStartPrice;
   action?: React.ReactNode;
   imageUrl: () => URL;
 }
