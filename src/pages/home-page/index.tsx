@@ -2,11 +2,11 @@ import { FC } from 'react';
 
 import { getPizzaImageUrl } from '@/entities/product';
 import { ProductCard } from '@/entities/product';
+import { CategoryList } from '@/features/categoty-list';
 import { ProductList, ProductLists } from '@/features/product-list';
 import { Button } from '@/shared/ui/button';
 
 import { Layout } from './ui/layout';
-import { CategoryList } from './category-list';
 
 export const HomePage: FC = () => {
   return (

@@ -1,17 +1,21 @@
 export interface Category {
   id: string;
   name: string;
-  products: {
-    id: string;
-    name: string;
-    imageId: string;
-    contents: string;
-    startPrice: number;
-    ingredients?: {
-      id: string;
-      name: string;
-      imageId: string;
-      price: number;
-    }[];
-  }[];
+  products: Product[];
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  imageId: string;
+  ingredients: Ingredient[];
+  startPrice: number;
+  contents: string;
+}
+
+export interface Ingredient {
+  id: string;
+  name: string;
+  imageId: string;
+  price: number;
 }

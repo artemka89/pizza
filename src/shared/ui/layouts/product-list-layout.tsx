@@ -16,7 +16,7 @@ export const ProductListLayout: FC<ProductListLayoutProps> = ({
   children,
 }) => {
   return (
-    <div>
+    <div id={title}>
       <Title size='lg'>{title}</Title>
       <div
         className={cn(
