@@ -1,16 +1,22 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
-import { CategoryItem, useGetCategories } from '@/entities/category';
+import {
+  CategoryItem,
+  useCategoryStore,
+  useGetCategories,
+} from '@/entities/category';
 
 export const CategoryList: FC = () => {
   const { data } = useGetCategories();
-
-  const [activeCategory, setActiveCategory] = useState('');
+  const [activeCategoryId, setActiveCategoryId] = useCategoryStore((state) => [
+    state.activeCategoryId,
+    state.setActiveCategoryId,
+  ]);
 
   const categories = data?.filter((item) => item.products.length > 0);
 
   const handleCategoryClick = (id: string) => {
-    setActiveCategory(id);
+    setActiveCategoryId(id);
   };
 
   return (
@@ -22,7 +28,7 @@ export const CategoryList: FC = () => {
         <li key={item.id}>
           <CategoryItem
             item={item}
-            activeId={activeCategory}
+            activeId={activeCategoryId}
             changeCategory={handleCategoryClick}
           />
         </li>

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 
@@ -10,15 +10,15 @@ interface ProductListLayoutProps {
   children: React.ReactNode;
 }
 
-export const ProductListLayout: FC<ProductListLayoutProps> = ({
-  title,
-  columnsNumber = 'auto',
-  children,
-}) => {
+export const ProductListLayout = forwardRef<
+  HTMLDivElement,
+  ProductListLayoutProps
+>(({ title, columnsNumber = 'auto', children }, ref) => {
   return (
     <div id={title}>
       <Title size='lg'>{title}</Title>
       <div
+        ref={ref}
         className={cn(
           `my-10 grid w-full justify-center gap-4`,
           {
@@ -30,4 +30,4 @@ export const ProductListLayout: FC<ProductListLayoutProps> = ({
       </div>
     </div>
   );
-};
+});
