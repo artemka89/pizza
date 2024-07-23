@@ -13,7 +13,7 @@ export const CategoryList: FC = () => {
     state.setActiveCategoryId,
   ]);
 
-  const categories = data?.filter((item) => item.products.length > 0);
+  const categories = data?.filter((item) => item.productAmount > 0);
 
   const handleCategoryClick = (id: string) => {
     setActiveCategoryId(id);

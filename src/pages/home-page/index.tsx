@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
-import { getPizzaImageUrl } from '@/entities/product';
-import { ProductCard } from '@/entities/product';
+import { getProductImageUrl, ProductCard } from '@/entities/products';
 import { CategoryList } from '@/features/category-list';
 import { ProductList, ProductLists } from '@/features/product-list';
 import { Button } from '@/shared/ui/button';
@@ -12,16 +11,16 @@ export const HomePage: FC = () => {
   return (
     <Layout topBar={<CategoryList />}>
       <ProductLists
-        renderCategoriesWithProducts={(category) => (
+        renderProducts={(productCategory) => (
           <ProductList
-            key={category.id}
-            items={category.products}
-            category={category}
+            key={productCategory.id}
+            items={productCategory.products}
+            category={productCategory}
             renderProducts={(product) => (
               <ProductCard
                 key={product.id}
                 item={product}
-                imageUrl={() => getPizzaImageUrl({ id: product.imageId })}
+                imageUrl={() => getProductImageUrl({ id: product.imageId })}
                 action={<Button variant='outline'>Добавить</Button>}
               />
             )}

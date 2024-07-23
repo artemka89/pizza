@@ -15,3 +15,9 @@ export interface Product {
     price: number;
   };
 }
+
+export interface SearchProduct {
+  id: string;
+  name: string;
+  imageId: string;
+}

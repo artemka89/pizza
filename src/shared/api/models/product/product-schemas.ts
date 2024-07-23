@@ -1,29 +1,24 @@
 import { z } from 'zod';
 
-const ProductOptionSchemaDto = z.object({
-  $id: z.string(),
-  size: z.number(),
-  weight: z.number(),
-  price: z.number(),
-});
-
-const IngredientSchemaDto = z.object({
+const ProductSchemaDto = z.object({
   $id: z.string(),
   name: z.string(),
   imageId: z.string(),
-  price: z.number(),
+  contents: z.string().optional(),
+  options: z
+    .object({
+      $id: z.string(),
+      price: z.number(),
+    })
+    .array(),
 });
 
-export const ProductSchemaDto = z.object({
+export const ProductsSchemaDto = z.object({
   $id: z.string(),
   name: z.string(),
-  imageId: z.string(),
-  contents: z.string(),
-  ingredients: IngredientSchemaDto.array(),
-  options: ProductOptionSchemaDto.array(),
+  type: z.string(),
+  products: ProductSchemaDto.array(),
 });
-
-export type ProductDto = z.infer<typeof ProductSchemaDto>;
 
 export const ProductNameSchemaDto = z.object({
   $id: z.string(),
@@ -31,4 +26,6 @@ export const ProductNameSchemaDto = z.object({
   imageId: z.string(),
 });
 
+export type ProductsDto = z.infer<typeof ProductsSchemaDto>;
+export type ProductDto = z.infer<typeof ProductSchemaDto>;
 export type ProductNameDto = z.infer<typeof ProductNameSchemaDto>;

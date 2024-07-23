@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-import { ProductWithStartPrice } from '../model/types';
+import { Product } from '../model/types';
 
 interface ProductCardProps {
-  item: ProductWithStartPrice;
+  item: Product;
   action?: React.ReactNode;
   imageUrl: () => URL;
 }
@@ -13,14 +13,12 @@ export const ProductCard: FC<ProductCardProps> = ({
   action,
   imageUrl,
 }) => {
+  const image = imageUrl().toString();
+
   return (
     <div className='flex h-[418px] cursor-pointer flex-col items-center p-4'>
       <div className='h-[220px] w-[220px] transition-transform hover:translate-y-1'>
-        <img
-          src={imageUrl().toString()}
-          alt={item.name}
-          className='h-full w-full'
-        />
+        <img src={image} alt={item.name} className='h-full w-full' />
       </div>
       <h4 className='pb-1 pt-2 text-center text-xl font-bold leading-tight'>
         {item.name}
@@ -30,7 +28,7 @@ export const ProductCard: FC<ProductCardProps> = ({
       </div>
 
       <div className='flex w-full items-center justify-between'>
-        <span className='text-lg font-bold'>от {item.startPrice} ₽</span>
+        <span className='text-lg font-bold'>от {item.option.price} ₽</span>
         {action}
       </div>
     </div>

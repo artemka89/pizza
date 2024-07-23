@@ -6,26 +6,6 @@ export const CategorySchemaDto = z.object({
   products: z
     .object({
       $id: z.string(),
-      name: z.string(),
-      imageId: z.string(),
-      contents: z.string(),
-      options: z
-        .object({
-          $id: z.string(),
-          size: z.number(),
-          weight: z.number(),
-          price: z.number(),
-        })
-        .array(),
-      ingredients: z
-        .object({
-          $id: z.string(),
-          name: z.string(),
-          imageId: z.string(),
-          price: z.number(),
-        })
-        .array()
-        .optional(),
     })
     .array(),
 });

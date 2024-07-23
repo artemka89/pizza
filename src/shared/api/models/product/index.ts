@@ -4,32 +4,18 @@ import { databases } from '@/shared/api/config/appwrite-config';
 
 import { APPWRITE } from '../../config/appwrite';
 
-import {
-  ProductDto,
-  ProductNameDto,
-  ProductNameSchemaDto,
-  ProductSchemaDto,
-} from './product-schemas';
+import { ProductNameSchemaDto, ProductsSchemaDto } from './product-schemas';
 
 export const productApi = {
-  getProducts: async (): Promise<ProductDto[]> => {
-    const products = await databases.listDocuments(
+  getProducts: async () => {
+    const categories = await databases.listDocuments(
       APPWRITE.DATABASE_ID,
-      APPWRITE.PRODUCT_COLLECTION_ID,
+      APPWRITE.PRODUCT_CATEGORIES_COLLECTION_ID,
     );
 
-    return ProductSchemaDto.array().parse(products.documents);
+    return ProductsSchemaDto.array().parse(categories.documents);
   },
-  getProductById: async (id: string): Promise<ProductDto> => {
-    const product = await databases.getDocument(
-      APPWRITE.DATABASE_ID,
-      APPWRITE.PRODUCT_COLLECTION_ID,
-      id,
-    );
-
-    return ProductSchemaDto.parse(product);
-  },
-  getPizzasNameAndImage: async (name: string): Promise<ProductNameDto[]> => {
+  getPizzasNameAndImage: async (name: string) => {
     const products = await databases.listDocuments(
       APPWRITE.DATABASE_ID,
       APPWRITE.PRODUCT_COLLECTION_ID,

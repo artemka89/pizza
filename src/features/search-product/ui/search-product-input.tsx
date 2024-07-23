@@ -1,8 +1,10 @@
 import { FC, useState } from 'react';
 import { Search } from 'lucide-react';
 
-import { getPizzaImageUrl } from '@/entities/product';
-import { useGetSearchProductList } from '@/entities/product';
+import {
+  getProductImageUrl,
+  useGetSearchingProductList,
+} from '@/entities/products';
 import { cn } from '@/shared/lib/cn';
 import { useDebouncedValue } from '@/shared/lib/use-debounced-value';
 import { useFocusElement } from '@/shared/lib/use-focus-element';
@@ -17,7 +19,7 @@ export const SearchProductInput: FC<SearchInputProps> = ({ className }) => {
   const [focused, setFocused, ref] = useFocusElement();
   const debouncedValue = useDebouncedValue(searchValue);
 
-  const { data } = useGetSearchProductList(debouncedValue);
+  const { data } = useGetSearchingProductList(debouncedValue);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -59,7 +61,7 @@ export const SearchProductInput: FC<SearchInputProps> = ({ className }) => {
               onClick={onClickItem}
               className='flex w-full cursor-pointer items-center gap-3 px-3 py-2 hover:bg-primary/10'>
               <img
-                src={getPizzaImageUrl({ id: item.imageId }).toString()}
+                src={getProductImageUrl({ id: item.imageId }).toString()}
                 alt={item.name}
                 className='size-10'
               />
