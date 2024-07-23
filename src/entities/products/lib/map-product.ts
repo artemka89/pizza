@@ -7,7 +7,7 @@ export const mapProduct = (data: ProductsDto): Products => {
     id: product.$id,
     name: product.name,
     imageId: product.imageId,
-    contents: product.contents,
+    contents: product.contents || undefined,
     option: {
       id: product.options[0].$id,
       price: product.options[0].price,

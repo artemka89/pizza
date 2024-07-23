@@ -4,7 +4,7 @@ const ProductSchemaDto = z.object({
   $id: z.string(),
   name: z.string(),
   imageId: z.string(),
-  contents: z.string().optional(),
+  contents: z.string().nullable(),
   options: z
     .object({
       $id: z.string(),

@@ -20,10 +20,7 @@ export const CategoryList: FC = () => {
   };
 
   return (
-    <ul
-      className={
-        'inline-flex h-12 items-center gap-2 rounded-2xl bg-secondary px-1'
-      }>
+    <ul className={'inline-flex h-12 items-center gap-2 px-1'}>
       {categories?.map((item) => (
         <li key={item.id}>
           <CategoryItem

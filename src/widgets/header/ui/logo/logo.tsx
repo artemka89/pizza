@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
+import logoIcon from '@/shared/assets/icons/logo.png';
 import { cn } from '@/shared/lib/cn';
-
-import logoIcon from './logo.png';
 
 interface LogoProps {
   className?: string;

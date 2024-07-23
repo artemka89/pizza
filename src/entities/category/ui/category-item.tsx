@@ -23,7 +23,7 @@ export const CategoryItem: FC<CategoryItemProps> = ({
       onClick={() => changeCategory(item.id)}
       className={cn(
         'h-10 px-4 py-2 font-bold transition-colors hover:text-primary',
-        isActive && 'rounded-2xl bg-background text-primary shadow-sm',
+        isActive && 'text-primary',
         className,
       )}>
       {item.name}

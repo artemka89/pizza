@@ -13,7 +13,8 @@ interface HeaderProps {
 
 export const Header: FC<HeaderProps> = ({ className }) => {
   return (
-    <header className={cn('border-b border-secondary py-2', className)}>
+    <header
+      className={cn('container border-b border-secondary py-2', className)}>
       <div className='flex h-16 items-center justify-between gap-4'>
         <Logo />
         <SearchProductInput />
