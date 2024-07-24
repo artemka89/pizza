@@ -1,40 +1,21 @@
-import { FC, useEffect, useRef } from 'react';
-import { useIntersection } from 'react-use';
+import { FC } from 'react';
 
-import { useCategoryStore } from '@/entities/category';
-import { ProductListLayout } from '@/shared/ui/layouts/product-list-layout';
+import { useGetProducts } from '@/entities/products';
 
-import { Product } from '../model/types';
+import { Products } from '../model/types';
 
 interface ProductListProps {
-  items: Product[];
-  category: { id: string; name: string };
-  renderProducts: (product: Product) => React.ReactNode;
+  renderProducts: (products: Products) => React.ReactNode;
 }
 
-export const ProductList: FC<ProductListProps> = ({
-  items,
-  category,
-  renderProducts,
-}) => {
-  const [setActiveCategoryId] = useCategoryStore((state) => [
-    state.setActiveCategoryId,
-  ]);
+export const ProductList: FC<ProductListProps> = ({ renderProducts }) => {
+  const { data } = useGetProducts();
 
-  const intersectionRef = useRef(null);
-  const intersection = useIntersection(intersectionRef, {
-    threshold: 1,
-  });
-
-  useEffect(() => {
-    if (intersection?.isIntersecting) {
-      setActiveCategoryId(category.id);
-    }
-  }, [category.id, intersection?.isIntersecting, setActiveCategoryId]);
+  const categoryWithProducts = data?.filter((item) => item.products.length > 0);
 
   return (
-    <ProductListLayout title={category.name} ref={intersectionRef}>
-      {items.map(renderProducts)}
-    </ProductListLayout>
+    <div className='space-y-10'>
+      {categoryWithProducts?.map(renderProducts)}
+    </div>
   );
 };

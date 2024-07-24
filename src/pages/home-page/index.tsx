@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { getProductImageUrl, ProductCard } from '@/entities/products';
 import { CategoryList } from '@/features/category-list';
-import { ProductList, ProductLists } from '@/features/product-list';
+import { ProductGroup, ProductList } from '@/features/product-list';
 import { Button } from '@/shared/ui/button';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 
@@ -12,9 +12,9 @@ export const HomePage: FC = () => {
   return (
     <PageContainer>
       <Layout topBar={<CategoryList />}>
-        <ProductLists
+        <ProductList
           renderProducts={(productCategory) => (
-            <ProductList
+            <ProductGroup
               key={productCategory.id}
               items={productCategory.products}
               category={productCategory}
