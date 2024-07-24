@@ -18,3 +18,10 @@ export function searchProductListQuery(name: string) {
     queryFn: () => productApi.getPizzasNameAndImage(name),
   } satisfies QueryOptions;
 }
+
+export function getProductDetailQuery(id: string) {
+  return {
+    queryKey: [productsKey, id],
+    queryFn: () => productApi.getProductDetail(id),
+  } satisfies QueryOptions;
+}

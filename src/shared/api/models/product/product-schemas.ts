@@ -39,12 +39,14 @@ export const ProductDetailSchemaDto = z.object({
       price: z.number(),
     })
     .array(),
-  ingredients: z.object({
-    $id: z.string(),
-    name: z.string(),
-    price: z.number(),
-    imageId: z.string(),
-  }),
+  ingredients: z
+    .object({
+      $id: z.string(),
+      name: z.string(),
+      price: z.number(),
+      imageId: z.string(),
+    })
+    .array(),
 });
 
 export type ProductsDto = z.infer<typeof ProductsSchemaDto>;
