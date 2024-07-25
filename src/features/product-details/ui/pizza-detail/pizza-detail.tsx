@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSet } from 'react-use';
 
 import { getProductImageUrl, useGetProductDetail } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
@@ -15,6 +16,9 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
 
   const { data } = useGetProductDetail(id);
   const [activeOptionSize, setActiveOptionSize] = useState('30');
+  const [selectedIngredientsIds, { toggle: toggleIngredient }] = useSet<string>(
+    new Set([]),
+  );
 
   const activeOption = data?.options.find(
     (option) => option.size.toString() === activeOptionSize,
@@ -29,6 +33,16 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
     !open && navigate('/');
   };
 
+  const addToCart = () => {
+    const item = {
+      productId: data?.id,
+      optionId: activeOption?.id,
+      ingredientIds: [...selectedIngredientsIds],
+    };
+    // eslint-disable-next-line no-console
+    console.log(item);
+  };
+
   if (!data) return null;
 
   return (
@@ -37,7 +51,9 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
       title={data.name}
       image={<PizzaImage size={activeOption?.size} imageUrl={imageUrl} />}
       action={
-        <Button className='h-12 w-full text-base'>В корзину за 299 ₽</Button>
+        <Button onClick={addToCart} className='h-12 w-full text-base'>
+          В корзину за 299 ₽
+        </Button>
       }>
       <div className='mb-2 text-muted-foreground'>
         {activeOption?.size} см, {activeOption?.weight} гр
@@ -51,7 +67,11 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
 
       <h4 className='mb-2 text-[24px] font-medium'>Добавить по вкусу</h4>
       {data.ingredients.length > 0 && (
-        <ProductIngredientList ingredients={data.ingredients} />
+        <ProductIngredientList
+          ingredients={data.ingredients}
+          selectedIngredientsIds={selectedIngredientsIds}
+          toggleIngredient={toggleIngredient}
+        />
       )}
     </ProductDetailModalLayout>
   );
