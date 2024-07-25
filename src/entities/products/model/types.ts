@@ -29,7 +29,7 @@ export interface ProductDetail {
   contents?: string;
   options: {
     id: string;
-    size: number;
+    size: 25 | 30 | 35;
     weight: number;
     price: number;
   }[];
