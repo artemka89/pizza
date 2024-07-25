@@ -23,7 +23,7 @@ export const HomePage: FC = () => {
                   key={product.id}
                   item={product}
                   imageUrl={() => getProductImageUrl({ id: product.imageId })}
-                  action={<Button variant='outline'>Добавить</Button>}
+                  action={<Button>В корзину</Button>}
                 />
               )}
             />
