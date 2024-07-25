@@ -5,11 +5,10 @@ import { getProductImageUrl, useGetProductDetail } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
 
 import { ProductDetailModalLayout } from '../product-detail-modal-layout';
+import { ProductIngredientList } from '../product-ingredient-list';
 
 import { PizzaImage } from './pizza-image';
 import { PizzaOptions } from './pizza-options';
-
-const tags = Array.from({ length: 50 }).map((_, i) => `Ингридиент - ${i + 1}`);
 
 export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
   const navigate = useNavigate();
@@ -33,32 +32,27 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
   if (!data) return null;
 
   return (
-    <>
-      <ProductDetailModalLayout
-        onCloseModal={onCloseModal}
-        title={data.name}
-        image={<PizzaImage size={activeOption?.size} imageUrl={imageUrl} />}
-        action={
-          <Button className='h-12 w-full text-base'>В корзину за 299 ₽</Button>
-        }>
-        <div className='mb-2 text-muted-foreground'>
-          {activeOption?.size} см, {activeOption?.weight} гр
-        </div>
-        <div className='mb-4 text-sm leading-none'>{data?.contents}</div>
-        <PizzaOptions
-          options={data.options}
-          activeOptionSize={activeOptionSize}
-          setActiveOptionSize={setActiveOptionSize}
-        />
+    <ProductDetailModalLayout
+      onCloseModal={onCloseModal}
+      title={data.name}
+      image={<PizzaImage size={activeOption?.size} imageUrl={imageUrl} />}
+      action={
+        <Button className='h-12 w-full text-base'>В корзину за 299 ₽</Button>
+      }>
+      <div className='mb-2 text-muted-foreground'>
+        {activeOption?.size} см, {activeOption?.weight} гр
+      </div>
+      <div className='mb-4 text-sm leading-none'>{data?.contents}</div>
+      <PizzaOptions
+        options={data.options}
+        activeOptionSize={activeOptionSize}
+        setActiveOptionSize={setActiveOptionSize}
+      />
 
-        <h4 className='mb-2 text-[24px] font-medium'>Добавить по вкусу</h4>
-
-        {tags.map((tag) => (
-          <div key={tag} className='text-sm'>
-            {tag}
-          </div>
-        ))}
-      </ProductDetailModalLayout>
-    </>
+      <h4 className='mb-2 text-[24px] font-medium'>Добавить по вкусу</h4>
+      {data.ingredients.length > 0 && (
+        <ProductIngredientList ingredients={data.ingredients} />
+      )}
+    </ProductDetailModalLayout>
   );
 };

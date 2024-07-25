@@ -27,7 +27,7 @@ export const ProductDetailModalLayout: FC<ProductDetailModalLayoutProps> = ({
     <Dialog open={!!title} onOpenChange={onCloseModal}>
       <DialogContent className='h-[610px] w-[924px] max-w-[924px] bg-background pr-1'>
         <div className='flex'>
-          <div className='flex h-full w-[530px] items-center justify-center'>
+          <div className='flex h-full w-[504px] items-center justify-center'>
             {image}
           </div>
           <div className='flex-1'>
