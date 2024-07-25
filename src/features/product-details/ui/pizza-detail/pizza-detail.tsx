@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { getProductImageUrl, useGetProductDetail } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
@@ -11,7 +12,9 @@ import { PizzaOptions } from './pizza-options';
 const tags = Array.from({ length: 50 }).map((_, i) => `Ингридиент - ${i + 1}`);
 
 export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
-  const { data } = useGetProductDetail(id || '');
+  const navigate = useNavigate();
+
+  const { data } = useGetProductDetail(id);
   const [activeOptionSize, setActiveOptionSize] = useState('30');
 
   const activeOption = data?.options.find(
@@ -23,32 +26,39 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
     size: 'big',
   }).toString();
 
+  const onCloseModal = (open: boolean) => {
+    !open && navigate('/');
+  };
+
   if (!data) return null;
 
   return (
-    <ProductDetailModalLayout
-      title={data.name}
-      image={<PizzaImage size={activeOption?.size} imageUrl={imageUrl} />}
-      action={
-        <Button className='h-12 w-full text-base'>В корзину за 299 ₽</Button>
-      }>
-      <div className='mb-2 text-muted-foreground'>
-        {activeOption?.size} см, {activeOption?.weight} гр
-      </div>
-      <div className='mb-4 text-sm leading-none'>{data?.contents}</div>
-      <PizzaOptions
-        options={data.options}
-        activeOptionSize={activeOptionSize}
-        setActiveOptionSize={setActiveOptionSize}
-      />
-
-      <h4 className='mb-2 text-[24px] font-medium'>Добавить по вкусу</h4>
-
-      {tags.map((tag) => (
-        <div key={tag} className='text-sm'>
-          {tag}
+    <>
+      <ProductDetailModalLayout
+        onCloseModal={onCloseModal}
+        title={data.name}
+        image={<PizzaImage size={activeOption?.size} imageUrl={imageUrl} />}
+        action={
+          <Button className='h-12 w-full text-base'>В корзину за 299 ₽</Button>
+        }>
+        <div className='mb-2 text-muted-foreground'>
+          {activeOption?.size} см, {activeOption?.weight} гр
         </div>
-      ))}
-    </ProductDetailModalLayout>
+        <div className='mb-4 text-sm leading-none'>{data?.contents}</div>
+        <PizzaOptions
+          options={data.options}
+          activeOptionSize={activeOptionSize}
+          setActiveOptionSize={setActiveOptionSize}
+        />
+
+        <h4 className='mb-2 text-[24px] font-medium'>Добавить по вкусу</h4>
+
+        {tags.map((tag) => (
+          <div key={tag} className='text-sm'>
+            {tag}
+          </div>
+        ))}
+      </ProductDetailModalLayout>
+    </>
   );
 };

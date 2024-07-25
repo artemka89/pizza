@@ -13,6 +13,7 @@ interface ProductDetailModalLayoutProps {
   children: React.ReactNode;
   action: JSX.Element;
   image: JSX.Element;
+  onCloseModal: (open: boolean) => void;
 }
 
 export const ProductDetailModalLayout: FC<ProductDetailModalLayoutProps> = ({
@@ -20,9 +21,10 @@ export const ProductDetailModalLayout: FC<ProductDetailModalLayoutProps> = ({
   children,
   action,
   image,
+  onCloseModal,
 }) => {
   return (
-    <Dialog open={true}>
+    <Dialog open={!!title} onOpenChange={onCloseModal}>
       <DialogContent className='h-[610px] w-[924px] max-w-[924px] bg-background pr-1'>
         <div className='flex'>
           <div className='flex h-full w-[530px] items-center justify-center'>
