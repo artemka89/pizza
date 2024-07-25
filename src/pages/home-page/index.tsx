@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import { getProductImageUrl, ProductCard } from '@/entities/products';
 import { CategoryList } from '@/features/category-list';
+import { PizzaDetail } from '@/features/product-details';
 import { ProductGroup, ProductList } from '@/features/product-list';
-import { Button } from '@/shared/ui/button';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 
 import { Layout } from './ui/layout';
@@ -23,7 +23,7 @@ export const HomePage: FC = () => {
                   key={product.id}
                   item={product}
                   imageUrl={() => getProductImageUrl({ id: product.imageId })}
-                  action={<Button>В корзину</Button>}
+                  action={<PizzaDetail id={product.id} />}
                 />
               )}
             />

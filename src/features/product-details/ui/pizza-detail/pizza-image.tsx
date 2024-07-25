@@ -15,7 +15,7 @@ export const PizzaImage: React.FC<Props> = ({ className, imageUrl, size }) => {
       )}>
       <img
         src={imageUrl}
-        alt='Logo'
+        alt={`${size}`}
         className={cn(
           'relative left-0 top-0 z-10 transition-all duration-300',
           {
