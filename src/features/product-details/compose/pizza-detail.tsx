@@ -1,23 +1,21 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useGetProductDetail } from '@/entities/products';
 import { ProductIngredientList } from '@/features/product-details/product-ingredient-list';
 import { IngredientItem } from '@/features/product-details/ui/product-ingredient/ingredient-item';
 import { Button } from '@/shared/ui/button';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
 import { mapSizes } from '../lib/map-sizes-with-name';
-import { PizzaOptionType } from '../model/types/pizza';
+import { Pizza } from '../model/types/pizza';
 import { OptionSwitcher } from '../ui/option-switcher';
 import { PizzaDetailLayout } from '../ui/pizza-detail/pizza-detail-layout';
 import { PizzaImage } from '../ui/pizza-detail/pizza-image';
 
-export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
+export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
   const [activeSize, setActiveSize] = useState('30');
 
-  const { data } = useGetProductDetail(id);
-  const sizesWithName = mapSizes(data?.options as PizzaOptionType[]);
+  const sizesWithName = mapSizes(data?.options);
   const activeOption = data?.options.find(
     (option) => option.size.toString() === activeSize,
   );

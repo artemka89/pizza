@@ -1,4 +1,4 @@
-import { ProductCategory } from './types';
+import { ProductCategory, ProductIngredient } from './types';
 
 export interface Pizza {
   id: string;
@@ -7,17 +7,12 @@ export interface Pizza {
   contents: string;
   category: ProductCategory;
   options: PizzaOptionType[];
-  ingredients: {
-    id: string;
-    name: string;
-    price: number;
-    imageId: string;
-  }[];
+  ingredients: ProductIngredient[];
 }
 
 export interface PizzaOptionType {
   id: string;
-  size: 25 | 30 | 35;
+  size: number;
   weight: number;
   price: number;
 }
