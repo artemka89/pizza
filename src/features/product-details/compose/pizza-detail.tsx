@@ -8,6 +8,7 @@ import { Button } from '@/shared/ui/button';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
 import { mapSizes } from '../lib/map-sizes-with-name';
+import { PizzaOptionType } from '../model/types/pizza';
 import { OptionSwitcher } from '../ui/option-switcher';
 import { PizzaDetailLayout } from '../ui/pizza-detail/pizza-detail-layout';
 import { PizzaImage } from '../ui/pizza-detail/pizza-image';
@@ -16,7 +17,7 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
   const [activeSize, setActiveSize] = useState('30');
 
   const { data } = useGetProductDetail(id);
-  const sizesWithName = mapSizes(data?.options);
+  const sizesWithName = mapSizes(data?.options as PizzaOptionType[]);
   const activeOption = data?.options.find(
     (option) => option.size.toString() === activeSize,
   );
@@ -39,7 +40,9 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
         contents={data.contents}
         image={<PizzaImage imageId={data.imageId} size={activeOption?.size} />}
         addToCartButton={
-          <Button className='h-12 w-full text-base'>В корзину 299 ₽</Button>
+          <Button className='h-12 w-full text-base'>
+            В корзину {activeOption?.price} ₽
+          </Button>
         }>
         <>
           <OptionSwitcher

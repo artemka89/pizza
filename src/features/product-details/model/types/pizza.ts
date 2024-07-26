@@ -1,8 +1,11 @@
+import { ProductCategory } from './types';
+
 export interface Pizza {
   id: string;
   name: string;
   imageId: string;
-  contents?: string;
+  contents: string;
+  category: ProductCategory;
   options: PizzaOptionType[];
   ingredients: {
     id: string;

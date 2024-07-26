@@ -4,10 +4,10 @@ import { CircleCheck } from 'lucide-react';
 import { cn } from '@/shared/lib/cn';
 
 import { getIngredientImageUrl } from '../../lib/get-ingredient-image-url';
-import { IngredientItemType } from '../../model/types/types';
+import { ProductIngredient } from '../../model/types/types';
 
 interface IngredientItemProps {
-  item: IngredientItemType;
+  item: ProductIngredient;
 }
 
 export const IngredientItem: FC<IngredientItemProps> = ({ item }) => {

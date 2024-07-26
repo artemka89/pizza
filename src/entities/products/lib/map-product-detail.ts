@@ -3,6 +3,12 @@ import { ProductDetailDto } from '@/shared/api/models/product/product-schemas';
 import { ProductDetail } from '../model/types';
 
 export function mapProductDetail(data: ProductDetailDto): ProductDetail {
+  const category = {
+    id: data.categories.$id,
+    type: data.categories.type,
+    name: data.categories.name,
+  };
+
   const options = data.options.map((option) => ({
     id: option.$id,
     size: option.size,
@@ -22,6 +28,7 @@ export function mapProductDetail(data: ProductDetailDto): ProductDetail {
     name: data.name,
     imageId: data.imageId,
     contents: data.contents || '',
+    category,
     options,
     ingredients,
   };

@@ -27,9 +27,14 @@ export interface ProductDetail {
   name: string;
   imageId: string;
   contents: string;
+  category: {
+    id: string;
+    type: string;
+    name: string;
+  };
   options: {
     id: string;
-    size: 25 | 30 | 35;
+    size: number;
     weight: number;
     price: number;
   }[];

@@ -31,10 +31,15 @@ export const ProductDetailSchemaDto = z.object({
   name: z.string(),
   imageId: z.string(),
   contents: z.string().nullable(),
+  categories: z.object({
+    $id: z.string(),
+    type: z.string(),
+    name: z.string(),
+  }),
   options: z
     .object({
       $id: z.string(),
-      size: z.literal(25).or(z.literal(30)).or(z.literal(35)),
+      size: z.number(),
       weight: z.number(),
       price: z.number(),
     })
