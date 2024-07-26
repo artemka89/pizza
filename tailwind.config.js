@@ -75,7 +75,8 @@ export default {
     },
   },
   plugins: [
-    import('tailwindcss-animate'),
+    // eslint-disable-next-line no-undef
+    require('tailwindcss-animate'),
     plugin(({ addVariant }) => {
       // Hover media queries
       addVariant('has-hover', '@media (hover: hover)');
