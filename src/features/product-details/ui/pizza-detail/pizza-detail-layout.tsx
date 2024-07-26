@@ -29,7 +29,9 @@ export const PizzaDetailLayout: FC<PizzaDetailLayoutProps> = ({
         <div className='absolute -mr-[22px]'>
           <ScrollArea className='h-[488px]'>
             <div className='px-7'>
-              <Title className='mb-1 text-[24px] font-medium'>{title}</Title>
+              <Title className='mb-1 text-[24px] font-medium leading-none'>
+                {title}
+              </Title>
               <div className='mb-2 text-muted-foreground'>{params}</div>
               <div className='mb-4 text-sm leading-none'>{contents}</div>
               {children}

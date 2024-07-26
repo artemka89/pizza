@@ -6,8 +6,8 @@ import { PizzaDetail } from '@/features/product-details';
 import { CoffeeDetail } from '@/features/product-details';
 
 enum CATEGORY_TYPE {
-  PIZZA = 'пиццы',
-  COFFEE = 'кофе',
+  PIZZA = 'Пиццы',
+  COFFEE = 'Кофе',
 }
 export const ProductDetailPage: FC = () => {
   const { id } = useParams<{ id: string }>();

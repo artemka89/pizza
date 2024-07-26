@@ -24,8 +24,8 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
 
   const navigate = useNavigate();
 
-  const onCloseModal = (open: boolean) => {
-    !open && navigate('/');
+  const onCloseModal = () => {
+    navigate('/');
   };
 
   if (!data) return null;
@@ -38,7 +38,7 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
         contents={data.contents}
         image={<PizzaImage imageId={data.imageId} size={activeOption?.size} />}
         addToCartButton={
-          <Button className='h-12 w-full text-base'>
+          <Button onClick={onCloseModal} className='h-12 w-full text-base'>
             В корзину {activeOption?.price} ₽
           </Button>
         }>
