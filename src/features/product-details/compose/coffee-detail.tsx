@@ -1,26 +1,28 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getProductImageUrl } from '@/entities/products';
 import { IngredientItem } from '@/features/product-details/ui/product-ingredient/ingredient-item';
 import { Button } from '@/shared/ui/button';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
-import { mapSizes } from '../lib/map-sizes-with-name';
 import { Pizza } from '../model/types/pizza';
+import { CoffeeDetailLayout } from '../ui/coffee-detail/coffee-detail-layout';
 import { OptionSwitcher } from '../ui/option-switcher';
-import { PizzaDetailLayout } from '../ui/pizza-detail/pizza-detail-layout';
-import { PizzaImage } from '../ui/pizza-detail/pizza-image';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
-export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
-  const [activeSize, setActiveSize] = useState('30');
+export const CoffeeDetail: FC<{ data: Pizza }> = ({ data }) => {
+  const [activeSize, setActiveSize] = useState(data.options[0].size.toString());
 
-  const sizesWithName = mapSizes(data?.options);
+  const sizeWithName = {
+    value: activeSize,
+    disabled: true,
+  };
   const activeOption = data?.options.find(
     (option) => option.size.toString() === activeSize,
   );
 
-  const pizzaParams = `${activeOption?.size} см, ${activeOption?.weight} гр`;
+  const pizzaParams = `${activeSize} л, ${activeOption?.weight} гр`;
 
   const navigate = useNavigate();
 
@@ -28,15 +30,20 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
     !open && navigate('/');
   };
 
+  const imageUrl = getProductImageUrl({
+    id: data.imageId,
+    size: 'big',
+  }).toString();
+
   if (!data) return null;
 
   return (
     <ProductModalLayout open={!!data} onCloseModal={onCloseModal}>
-      <PizzaDetailLayout
+      <CoffeeDetailLayout
         title={data.name}
         params={pizzaParams}
         contents={data.contents}
-        image={<PizzaImage imageId={data.imageId} size={activeOption?.size} />}
+        imageUrl={imageUrl}
         addToCartButton={
           <Button className='h-12 w-full text-base'>
             В корзину {activeOption?.price} ₽
@@ -44,7 +51,8 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
         }>
         <>
           <OptionSwitcher
-            options={sizesWithName}
+            options={[sizeWithName]}
+            quantityType='л'
             activeOptionValue={activeSize}
             onClickOption={setActiveSize}
           />
@@ -56,7 +64,7 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
             </ProductIngredientList>
           )}
         </>
-      </PizzaDetailLayout>
+      </CoffeeDetailLayout>
     </ProductModalLayout>
   );
 };

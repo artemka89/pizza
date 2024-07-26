@@ -1,4 +1,4 @@
-import { PizzaOptionType } from '../model/types/pizza';
+import { ProductOption } from '../model/types/types';
 
 interface Option {
   value: string;
@@ -11,7 +11,7 @@ const SIZES: Record<number, string> = {
   35: 'Большая',
 };
 
-export const mapSizes = (options?: PizzaOptionType[]): Option[] => {
+export const mapSizes = (options?: ProductOption[]): Option[] => {
   return Object.entries(SIZES).map(([sizeKey, sizeName]) => {
     const matchingOption = options?.find(
       (option) => option.size === Number(sizeKey),

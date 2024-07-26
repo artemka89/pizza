@@ -1,3 +1,13 @@
+export interface Product {
+  id: string;
+  name: string;
+  imageId: string;
+  contents: string;
+  category: ProductCategory;
+  options: ProductOption[];
+  ingredients: ProductIngredient[];
+}
+
 export interface ProductCategory {
   id: string;
   name: string;
