@@ -26,7 +26,7 @@ export interface ProductDetail {
   id: string;
   name: string;
   imageId: string;
-  contents?: string;
+  contents: string;
   options: {
     id: string;
     size: 25 | 30 | 35;

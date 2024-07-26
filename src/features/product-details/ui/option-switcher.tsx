@@ -12,7 +12,7 @@ interface OptionSwitcherProps {
   options: Option[];
   quantityType?: string;
   className?: string;
-  setOptionValue: (value: string) => void;
+  onClickOption: (value: string) => void;
   activeOptionValue: string;
 }
 
@@ -21,7 +21,7 @@ export const OptionSwitcher: FC<OptionSwitcherProps> = ({
   quantityType,
   className,
   activeOptionValue,
-  setOptionValue,
+  onClickOption,
 }) => {
   const activeOption = options.findIndex(
     (option) => option.value === activeOptionValue,
@@ -37,7 +37,8 @@ export const OptionSwitcher: FC<OptionSwitcherProps> = ({
         <div
           className={cn(
             'absolute bottom-0 left-0 top-0 p-0.5 transition-transform',
-            'before:block before:h-full before:w-full before:rounded-full before:bg-background before:drop-shadow-xl',
+            'before:block before:h-full before:w-full before:rounded-full',
+            'before:bg-background before:drop-shadow-xl',
           )}
           style={{
             width: `${100 / options.length}%`,
@@ -49,7 +50,7 @@ export const OptionSwitcher: FC<OptionSwitcherProps> = ({
         <button
           key={option.value}
           disabled={option.disabled}
-          onClick={() => setOptionValue(option.value)}
+          onClick={() => onClickOption(option.value)}
           className={cn(
             'z-10 flex flex-1 items-center justify-center py-1 text-xs font-medium text-foreground',
             option.value === activeOptionValue
@@ -58,7 +59,7 @@ export const OptionSwitcher: FC<OptionSwitcherProps> = ({
             option.disabled &&
               'disabled:pointer-events-none disabled:opacity-50',
           )}>
-          {option.name} {quantityType}
+          {option.name || option.value} {quantityType}
         </button>
       ))}
     </div>

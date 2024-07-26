@@ -3,13 +3,14 @@ import { useIntersection } from 'react-use';
 
 import logoIcon from '@/shared/assets/icons/logo.png';
 import { cn } from '@/shared/lib/cn';
+import { PageContainer } from '@/shared/ui/layouts/page-container';
 interface LayoutProps {
   topBar?: React.ReactNode;
   sideBar?: React.ReactNode;
-  children: React.ReactNode;
+  productList: React.ReactNode;
 }
 
-export const Layout: FC<LayoutProps> = ({ topBar, sideBar, children }) => {
+export const Layout: FC<LayoutProps> = ({ topBar, sideBar, productList }) => {
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
     root: null,
@@ -20,7 +21,7 @@ export const Layout: FC<LayoutProps> = ({ topBar, sideBar, children }) => {
   const isAnimate = intersection && intersection.intersectionRatio < 1;
 
   return (
-    <>
+    <PageContainer>
       <nav
         className={cn(
           'sticky top-0 z-10 w-full bg-background/75 py-2 backdrop-blur-xl transition-colors',
@@ -39,8 +40,8 @@ export const Layout: FC<LayoutProps> = ({ topBar, sideBar, children }) => {
       </nav>
       <div className='container mt-10 flex gap-16'>
         {sideBar}
-        <div className='flex-1'>{children}</div>
+        <div className='flex-1'>{productList}</div>
       </div>
-    </>
+    </PageContainer>
   );
 };

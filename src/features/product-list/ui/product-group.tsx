@@ -2,6 +2,8 @@ import { FC, useEffect, useRef } from 'react';
 import { useIntersection } from 'react-use';
 
 import { useCategoryStore } from '@/entities/category';
+import { getProductImageUrl, ProductCard } from '@/entities/products';
+import { Button } from '@/shared/ui/button';
 import { ProductListLayout } from '@/shared/ui/layouts/product-list-layout';
 
 import { Product } from '../model/types';
@@ -9,14 +11,9 @@ import { Product } from '../model/types';
 interface ProductGroupProps {
   items: Product[];
   category: { id: string; name: string };
-  renderProducts: (product: Product) => React.ReactNode;
 }
 
-export const ProductGroup: FC<ProductGroupProps> = ({
-  items,
-  category,
-  renderProducts,
-}) => {
+export const ProductGroup: FC<ProductGroupProps> = ({ items, category }) => {
   const [setActiveCategoryId] = useCategoryStore((state) => [
     state.setActiveCategoryId,
   ]);
@@ -34,7 +31,14 @@ export const ProductGroup: FC<ProductGroupProps> = ({
 
   return (
     <ProductListLayout title={category.name} ref={intersectionRef}>
-      {items.map(renderProducts)}
+      {items.map((product) => (
+        <ProductCard
+          key={product.id}
+          item={product}
+          imageUrl={() => getProductImageUrl({ id: product.imageId })}
+          action={<Button>В корзину</Button>}
+        />
+      ))}
     </ProductListLayout>
   );
 };

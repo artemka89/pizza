@@ -3,8 +3,8 @@ import { CircleCheck } from 'lucide-react';
 
 import { cn } from '@/shared/lib/cn';
 
-import { getIngredientImageUrl } from '../lib/get-ingredient-image-url';
-import { IngredientItemType } from '../model/types';
+import { getIngredientImageUrl } from '../../lib/get-ingredient-image-url';
+import { IngredientItemType } from '../../model/types/types';
 
 interface IngredientItemProps {
   item: IngredientItemType;

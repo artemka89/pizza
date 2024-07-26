@@ -21,7 +21,7 @@ export function mapProductDetail(data: ProductDetailDto): ProductDetail {
     id: data.$id,
     name: data.name,
     imageId: data.imageId,
-    contents: data.contents || undefined,
+    contents: data.contents || '',
     options,
     ingredients,
   };

@@ -1,12 +1,18 @@
+import { getProductImageUrl } from '@/entities/products';
 import { cn } from '@/shared/lib/cn';
 
 interface Props {
   className?: string;
-  imageUrl: string;
+  imageId: string;
   size?: number;
 }
 
-export const PizzaImage: React.FC<Props> = ({ className, imageUrl, size }) => {
+export const PizzaImage: React.FC<Props> = ({ className, imageId, size }) => {
+  const imageUrl = getProductImageUrl({
+    id: imageId,
+    size: 'big',
+  }).toString();
+
   return (
     <div
       className={cn(

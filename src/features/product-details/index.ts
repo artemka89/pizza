@@ -1,1 +1,1 @@
-export { PizzaDetail } from './ui/pizza-detail/pizza-detail';
+export { PizzaDetail } from './compose/pizza-detail';
