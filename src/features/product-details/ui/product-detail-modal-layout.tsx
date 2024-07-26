@@ -25,17 +25,19 @@ export const ProductDetailModalLayout: FC<ProductDetailModalLayoutProps> = ({
 }) => {
   return (
     <Dialog open={!!title} onOpenChange={onCloseModal}>
-      <DialogContent className='h-[610px] w-[924px] max-w-[924px] bg-background pr-1'>
-        <div className='flex'>
-          <div className='flex h-full w-[504px] items-center justify-center'>
+      <DialogContent className='h-[610px] w-[924px] max-w-[924px] bg-background'>
+        <div className='relative flex'>
+          <div className='flex h-full w-[506px] items-center justify-center'>
             {image}
           </div>
           <div className='flex-1'>
-            <ScrollArea className='h-[488px] px-7'>
-              <DialogTitle className='mb-1 text-[24px] font-medium'>
-                {title}
-              </DialogTitle>
-              {children}
+            <ScrollArea className='absolute -mr-[22px] h-[488px]'>
+              <div className='px-7'>
+                <DialogTitle className='mb-1 text-[24px] font-medium'>
+                  {title}
+                </DialogTitle>
+                {children}
+              </div>
             </ScrollArea>
             <div className='mx-7 mt-6'>{action}</div>
           </div>

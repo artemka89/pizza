@@ -10,3 +10,8 @@ export function useGetProductDetail(id: string) {
     select: mapProductDetail,
   });
 }
+
+export function useGetProductIngredients(productId: string) {
+  const { data, isPending } = useGetProductDetail(productId);
+  return { data: data?.ingredients, isPending };
+}

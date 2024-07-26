@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSet } from 'react-use';
 
 import { getProductImageUrl, useGetProductDetail } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
@@ -16,9 +15,6 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
 
   const { data } = useGetProductDetail(id);
   const [activeOptionSize, setActiveOptionSize] = useState('30');
-  const [selectedIngredientsIds, { toggle: toggleIngredient }] = useSet<string>(
-    new Set([]),
-  );
 
   const activeOption = data?.options.find(
     (option) => option.size.toString() === activeOptionSize,
@@ -37,7 +33,7 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
     const item = {
       productId: data?.id,
       optionId: activeOption?.id,
-      ingredientIds: [...selectedIngredientsIds],
+      // ingredientIds: [...selectedIngredientsIds],
     };
     // eslint-disable-next-line no-console
     console.log(item);
@@ -66,13 +62,7 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
       />
 
       <h4 className='mb-2 text-[24px] font-medium'>Добавить по вкусу</h4>
-      {data.ingredients.length > 0 && (
-        <ProductIngredientList
-          ingredients={data.ingredients}
-          selectedIngredientsIds={selectedIngredientsIds}
-          toggleIngredient={toggleIngredient}
-        />
-      )}
+      {data.ingredients.length > 0 && <ProductIngredientList productId={id} />}
     </ProductDetailModalLayout>
   );
 };
