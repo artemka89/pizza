@@ -10,7 +10,7 @@ export const getProductImageUrl = ({
   id: string;
   size?: 'small' | 'big';
 }) => {
-  const sizeImage = size === 'small' ? 210 : 800;
+  const sizeImage = size === 'small' ? 210 : 584;
 
   const url = storage.getFilePreview(
     APPWRITE.PRODUCT_BUCKET_ID,

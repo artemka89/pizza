@@ -5,7 +5,6 @@ import { getProductImageUrl, useGetProductDetail } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
 
 import { ProductDetailModalLayout } from '../product-detail-modal-layout';
-import { ProductIngredientList } from '../product-ingredient-list';
 
 import { PizzaImage } from './pizza-image';
 import { PizzaOptions } from './pizza-options';
@@ -62,7 +61,6 @@ export const PizzaDetail: FC<{ id: string }> = ({ id }) => {
       />
 
       <h4 className='mb-2 text-[24px] font-medium'>Добавить по вкусу</h4>
-      {data.ingredients.length > 0 && <ProductIngredientList productId={id} />}
     </ProductDetailModalLayout>
   );
 };

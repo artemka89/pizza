@@ -1,18 +1,13 @@
 import { FC, useState } from 'react';
 import { CircleCheck } from 'lucide-react';
 
-import { getIngredientImageUrl } from '@/entities/products';
 import { cn } from '@/shared/lib/cn';
 
-type Item = {
-  id: string;
-  name: string;
-  price: number;
-  imageId: string;
-};
+import { getIngredientImageUrl } from '../lib/get-ingredient-image-url';
+import { IngredientItemType } from '../model/types';
 
 interface IngredientItemProps {
-  item: Item;
+  item: IngredientItemType;
 }
 
 export const IngredientItem: FC<IngredientItemProps> = ({ item }) => {
