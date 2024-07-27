@@ -8,9 +8,10 @@ import { ProductIngredient } from '../../model/types/types';
 
 interface IngredientItemProps {
   item: ProductIngredient;
+  setItem: (id: string) => void;
 }
 
-export const IngredientItem: FC<IngredientItemProps> = ({ item }) => {
+export const IngredientItem: FC<IngredientItemProps> = ({ item, setItem }) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const imageUrl = getIngredientImageUrl({
@@ -19,6 +20,7 @@ export const IngredientItem: FC<IngredientItemProps> = ({ item }) => {
 
   const toggleSelected = () => {
     setIsSelected((prev) => !prev);
+    setItem(item.id);
   };
 
   return (

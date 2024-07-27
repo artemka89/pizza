@@ -1,34 +1,32 @@
 import { getProductImageUrl } from '@/entities/products';
 import { cn } from '@/shared/lib/cn';
 
-interface Props {
-  className?: string;
+import { useSelectedItems } from '../../model/selected-items-store';
+
+interface PizzaImageProps {
   imageId: string;
-  size?: number;
 }
 
-export const PizzaImage: React.FC<Props> = ({ className, imageId, size }) => {
+export const PizzaImage: React.FC<PizzaImageProps> = ({ imageId }) => {
+  const [activeSize] = useSelectedItems((state) => [state.size]);
+
   const imageUrl = getProductImageUrl({
     id: imageId,
     size: 'big',
   }).toString();
 
   return (
-    <div
-      className={cn(
-        'relative flex w-full flex-1 items-center justify-center',
-        className,
-      )}>
+    <div className='relative flex w-full flex-1 items-center justify-center'>
       <img
         src={imageUrl}
-        alt={`${size}`}
+        alt={`${activeSize}`}
         className={cn(
           'relative left-0 top-0 z-10 transition-all duration-300',
           {
-            'size-[300px]': size === 25,
-            'size-[380px]': size === 30,
-            'size-[460px]': size === 35,
-          },
+            '25': 'size-[300px]',
+            '30': 'size-[380px]',
+            '35': 'size-[460px]',
+          }[activeSize],
         )}
       />
 

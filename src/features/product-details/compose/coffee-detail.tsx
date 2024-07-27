@@ -61,7 +61,11 @@ export const CoffeeDetail: FC<{ data: Pizza }> = ({ data }) => {
           {data.ingredients.length > 0 && (
             <ProductIngredientList>
               {data.ingredients.map((ingredient) => (
-                <IngredientItem key={ingredient.id} item={ingredient} />
+                <IngredientItem
+                  key={ingredient.id}
+                  item={ingredient}
+                  setItem={() => {}}
+                />
               ))}
             </ProductIngredientList>
           )}
