@@ -29,7 +29,7 @@ export const IngredientItem: FC<IngredientItemProps> = ({ item, setItem }) => {
       onClick={toggleSelected}
       className={cn(
         'relative flex h-[166px] cursor-pointer flex-col items-center rounded-md border border-transparent',
-        'bg-background p-2 text-center shadow-xl transition hover:shadow-md',
+        'select-none bg-background p-2 text-center shadow-xl transition hover:shadow-md',
         {
           'border-primary shadow-sm': isSelected,
         },

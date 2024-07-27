@@ -3,10 +3,9 @@ import { FC } from 'react';
 import { cn } from '@/shared/lib/cn';
 
 import { useSelectedItems } from '../../model/selected-items-store';
-import { PizzaOption } from '../../model/types/pizza';
 
 interface PizzaParamTextProps {
-  options: PizzaOption[];
+  options: { size: number; weight: number }[];
   className?: string;
 }
 
@@ -22,7 +21,7 @@ export const PizzaParamText: FC<PizzaParamTextProps> = ({
 
   return (
     <div className={cn(className)}>
-      {activeOption?.size} см, ${activeOption?.weight} гр
+      {activeOption?.size} см, {activeOption?.weight} гр
     </div>
   );
 };

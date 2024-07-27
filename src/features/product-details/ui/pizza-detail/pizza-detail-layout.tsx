@@ -6,7 +6,7 @@ import { Title } from '@/shared/ui/title';
 interface PizzaDetailLayoutProps {
   title: string;
   image: JSX.Element;
-  params: string;
+  params: JSX.Element;
   contents: string;
   addToCartButton: JSX.Element;
   children: React.ReactNode;

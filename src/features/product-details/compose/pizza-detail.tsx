@@ -9,6 +9,7 @@ import { Pizza } from '../model/types/pizza';
 import { AddToCartButton } from '../ui/pizza-detail/add-to-cart-button';
 import { PizzaDetailLayout } from '../ui/pizza-detail/pizza-detail-layout';
 import { PizzaImage } from '../ui/pizza-detail/pizza-image';
+import { PizzaParamText } from '../ui/pizza-detail/pizza-param-text';
 import { PizzaSwitchOptions } from '../ui/pizza-detail/pizza-switch-options';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
@@ -31,7 +32,7 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
     <ProductModalLayout open={!!data} onCloseModal={onCloseModal}>
       <PizzaDetailLayout
         title={data.name}
-        params={'pizzaParams'}
+        params={<PizzaParamText options={data.options} />}
         contents={data.contents}
         image={<PizzaImage imageId={data.imageId} />}
         addToCartButton={
