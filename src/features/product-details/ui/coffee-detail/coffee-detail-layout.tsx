@@ -22,6 +22,7 @@ export const CoffeeDetailLayout: FC<CoffeeDetailLayoutProps> = ({
 }) => {
   return (
     <div className='relative flex'>
+      <button className='h-0 w-0 opacity-0'>fist outline element</button>
       <div className='flex h-full w-[506px] items-center justify-center'>
         <img
           src={imageUrl}

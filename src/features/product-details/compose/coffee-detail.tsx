@@ -15,6 +15,7 @@ export const CoffeeDetail: FC<{ data: Pizza }> = ({ data }) => {
   const [activeSize, setActiveSize] = useState(data.options[0].size.toString());
 
   const sizeWithName = {
+    id: data.options[0].id,
     value: activeSize,
     disabled: true,
   };
@@ -56,6 +57,7 @@ export const CoffeeDetail: FC<{ data: Pizza }> = ({ data }) => {
             activeOptionValue={activeSize}
             onClickOption={setActiveSize}
           />
+
           {data.ingredients.length > 0 && (
             <ProductIngredientList>
               {data.ingredients.map((ingredient) => (

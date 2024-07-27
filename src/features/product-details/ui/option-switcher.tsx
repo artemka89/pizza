@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { cn } from '@/shared/lib/cn';
 
 type Option = {
+  id: string;
   value: string;
   name?: string;
   disabled: boolean;
@@ -11,7 +12,6 @@ type Option = {
 interface OptionSwitcherProps {
   options: Option[];
   quantityType?: string;
-  className?: string;
   onClickOption: (value: string) => void;
   activeOptionValue: string;
 }
@@ -19,11 +19,10 @@ interface OptionSwitcherProps {
 export const OptionSwitcher: FC<OptionSwitcherProps> = ({
   options,
   quantityType,
-  className,
   activeOptionValue,
   onClickOption,
 }) => {
-  const activeOption = options.findIndex(
+  const activeOptionIndex = options.findIndex(
     (option) => option.value === activeOptionValue,
   );
 
@@ -31,7 +30,6 @@ export const OptionSwitcher: FC<OptionSwitcherProps> = ({
     <div
       className={cn(
         'relative my-2 flex h-8 w-full overflow-hidden rounded-full bg-muted',
-        className,
       )}>
       {options.length > 1 && (
         <div
@@ -42,7 +40,7 @@ export const OptionSwitcher: FC<OptionSwitcherProps> = ({
           )}
           style={{
             width: `${100 / options.length}%`,
-            transform: `translateX(${activeOption * 100}%)`,
+            transform: `translateX(${activeOptionIndex * 100}%)`,
           }}></div>
       )}
 

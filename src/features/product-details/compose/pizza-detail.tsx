@@ -5,17 +5,15 @@ import { IngredientItem } from '@/features/product-details/ui/product-ingredient
 import { Button } from '@/shared/ui/button';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
-import { mapSizes } from '../lib/map-sizes-with-name';
 import { Pizza } from '../model/types/pizza';
-import { OptionSwitcher } from '../ui/option-switcher';
 import { PizzaDetailLayout } from '../ui/pizza-detail/pizza-detail-layout';
 import { PizzaImage } from '../ui/pizza-detail/pizza-image';
+import { PizzaSwitchOptions } from '../ui/pizza-detail/pizza-switch-options';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
 export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
   const [activeSize, setActiveSize] = useState('30');
 
-  const sizesWithName = mapSizes(data?.options);
   const activeOption = data?.options.find(
     (option) => option.size.toString() === activeSize,
   );
@@ -24,7 +22,16 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
 
   const navigate = useNavigate();
 
+  const addToCart = () => {
+    const activeOption = data?.options.find(
+      (option) => option.size.toString() === activeSize,
+    );
+    // eslint-disable-next-line no-console
+    console.log({ option: activeOption, ingredientIds: '' });
+  };
+
   const onCloseModal = () => {
+    addToCart();
     navigate('/');
   };
 
@@ -43,10 +50,9 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
           </Button>
         }>
         <>
-          <OptionSwitcher
-            options={sizesWithName}
-            activeOptionValue={activeSize}
-            onClickOption={setActiveSize}
+          <PizzaSwitchOptions
+            options={data.options}
+            setOption={setActiveSize}
           />
           {data.ingredients.length > 0 && (
             <ProductIngredientList>
