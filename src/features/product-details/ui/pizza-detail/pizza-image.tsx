@@ -8,7 +8,7 @@ interface PizzaImageProps {
 }
 
 export const PizzaImage: React.FC<PizzaImageProps> = ({ imageId }) => {
-  const [activeSize] = useSelectedItems((state) => [state.size]);
+  const [selectedOption] = useSelectedItems((state) => [state.option]);
 
   const imageUrl = getProductImageUrl({
     id: imageId,
@@ -19,14 +19,14 @@ export const PizzaImage: React.FC<PizzaImageProps> = ({ imageId }) => {
     <div className='relative flex w-full flex-1 items-center justify-center'>
       <img
         src={imageUrl}
-        alt={`${activeSize}`}
+        alt={`${selectedOption?.size}`}
         className={cn(
           'relative left-0 top-0 z-10 transition-all duration-300',
           {
-            '25': 'size-[300px]',
-            '30': 'size-[380px]',
-            '35': 'size-[460px]',
-          }[activeSize],
+            25: 'size-[300px]',
+            30: 'size-[380px]',
+            35: 'size-[460px]',
+          }[selectedOption?.size || 20],
         )}
       />
 

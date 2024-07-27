@@ -14,8 +14,8 @@ import { PizzaSwitchOptions } from '../ui/pizza-detail/pizza-switch-options';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
 export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
-  const [setIngredient, clearItems] = useSelectedItems((state) => [
-    state.setIngredient,
+  const [toggleIngredient, clearItems] = useSelectedItems((state) => [
+    state.toggleIngredient,
     state.clearItems,
   ]);
 
@@ -32,12 +32,10 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
     <ProductModalLayout open={!!data} onCloseModal={onCloseModal}>
       <PizzaDetailLayout
         title={data.name}
-        params={<PizzaParamText options={data.options} />}
+        params={<PizzaParamText />}
         contents={data.contents}
         image={<PizzaImage imageId={data.imageId} />}
-        addToCartButton={
-          <AddToCartButton options={data.options} closeModal={onCloseModal} />
-        }>
+        addToCartButton={<AddToCartButton closeModal={onCloseModal} />}>
         <>
           <PizzaSwitchOptions options={data.options} />
           {data.ingredients.length > 0 && (
@@ -46,7 +44,7 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
                 <IngredientItem
                   key={ingredient.id}
                   item={ingredient}
-                  setItem={setIngredient}
+                  setItem={toggleIngredient}
                 />
               ))}
             </ProductIngredientList>

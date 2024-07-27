@@ -1,24 +1,30 @@
 import { createStore } from '@/shared/lib/store/create-store';
 
+import { PizzaOption } from './types/pizza';
+import { ProductIngredient } from './types/types';
+
 interface SelectedItemsStore {
-  ingredientIds: string[];
-  setIngredient: (ingredientId: string) => void;
-  size: string;
-  setSize: (size: string) => void;
+  ingredients: ProductIngredient[];
+  toggleIngredient: (item: ProductIngredient) => void;
+  option: PizzaOption | null;
+  setOption: (item?: PizzaOption) => void;
   clearItems: () => void;
 }
 
 export const useSelectedItems = createStore<SelectedItemsStore>((set) => ({
-  ingredientIds: [],
-  size: '30',
-  setSize: (size) => set({ size }),
-  setIngredient: (ingredientId) =>
+  ingredients: [],
+  option: null,
+  setOption: (option) => set({ option }),
+  toggleIngredient: (item) =>
     set((state) => {
-      if (state.ingredientIds.includes(ingredientId)) {
-        state.ingredientIds.filter((id) => id !== ingredientId);
-      } else {
-        state.ingredientIds.push(ingredientId);
+      const ingredient = state.ingredients.find(
+        (ingredient) => ingredient.id === item.id,
+      );
+
+      if (ingredient) {
+        state.ingredients.push(item);
       }
+      state.ingredients.filter((ingredient) => ingredient.id !== item.id);
     }),
-  clearItems: () => set({ ingredientIds: [], size: '30' }),
+  clearItems: () => set({ ingredients: [], option: null }),
 }));
