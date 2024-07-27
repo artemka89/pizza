@@ -15,7 +15,10 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({ closeModal }) => {
 
   const addToCart = () => {
     // eslint-disable-next-line no-console
-    console.log({ optionId: selectedOption?.id, selectedIngredients });
+    console.log({
+      optionId: selectedOption?.id,
+      ingredientsIds: selectedIngredients.map((i) => i.id),
+    });
   };
 
   const onclickButton = () => {
@@ -23,9 +26,14 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({ closeModal }) => {
     closeModal();
   };
 
+  const price =
+    selectedOption &&
+    selectedOption?.price +
+      selectedIngredients.reduce((a, b) => a + b.price, 0);
+
   return (
     <Button onClick={onclickButton} className='h-12 w-full text-base'>
-      В корзину {selectedOption?.price} ₽
+      В корзину {price} ₽
     </Button>
   );
 };

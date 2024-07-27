@@ -22,9 +22,12 @@ export const useSelectedItems = createStore<SelectedItemsStore>((set) => ({
       );
 
       if (ingredient) {
+        state.ingredients = state.ingredients.filter(
+          (ingredient) => ingredient.id !== item.id,
+        );
+      } else {
         state.ingredients.push(item);
       }
-      state.ingredients.filter((ingredient) => ingredient.id !== item.id);
     }),
   clearItems: () => set({ ingredients: [], option: null }),
 }));

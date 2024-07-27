@@ -36,7 +36,12 @@ export const ProductGroup: FC<ProductGroupProps> = ({ items, category }) => {
           key={product.id}
           item={product}
           imageUrl={() => getProductImageUrl({ id: product.imageId })}
-          action={<Button>В корзину</Button>}
+          action={
+            // eslint-disable-next-line no-console
+            <Button onClick={() => console.log(product.option.id)}>
+              Выбрать
+            </Button>
+          }
         />
       ))}
     </ProductListLayout>
