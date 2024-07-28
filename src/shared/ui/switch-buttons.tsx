@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { cn } from '../lib/cn';
 
 interface SwitchButtonsProps {
-  values: { key: string; name: string; disabled: boolean }[];
+  values: { param: string; name: string; disabled: boolean }[];
   initialKey?: string;
   onChangeValue: (value: string) => void;
   quantityType?: string;
@@ -16,11 +16,11 @@ export const SwitchButtons: FC<SwitchButtonsProps> = ({
   quantityType,
 }) => {
   const [activeValue, setActiveValue] = useState<string>(
-    initialKey || values[0].key,
+    initialKey || values[0].param,
   );
 
   const activeValueIndex = values.findIndex(
-    (value) => value.key === activeValue,
+    (value) => value.param === activeValue,
   );
 
   const onClickButton = (key: string) => {
@@ -45,12 +45,12 @@ export const SwitchButtons: FC<SwitchButtonsProps> = ({
 
       {values.map((value) => (
         <button
-          key={value.key}
+          key={value.param}
           disabled={value.disabled}
-          onClick={() => onClickButton(value.key)}
+          onClick={() => onClickButton(value.param)}
           className={cn(
             'z-10 flex flex-1 select-none items-center justify-center py-1 text-xs font-medium text-foreground',
-            value.key === activeValue
+            value.param === activeValue
               ? 'cursor-default text-primary'
               : 'cursor-pointer hover:drop-shadow',
             value.disabled &&

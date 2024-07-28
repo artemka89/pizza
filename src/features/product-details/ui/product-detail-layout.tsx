@@ -3,16 +3,16 @@ import React, { FC } from 'react';
 import { ScrollArea } from '@/shared/ui/scroll-area';
 import { Title } from '@/shared/ui/title';
 
-interface PizzaDetailLayoutProps {
+interface ProductDetailLayoutProps {
   title: string;
   image: JSX.Element;
-  params: JSX.Element;
-  contents: string;
+  params?: JSX.Element;
+  contents?: string;
   addToCartButton: JSX.Element;
   children: React.ReactNode;
 }
 
-export const PizzaDetailLayout: FC<PizzaDetailLayoutProps> = ({
+export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
   image,
   title,
   params,
@@ -32,8 +32,12 @@ export const PizzaDetailLayout: FC<PizzaDetailLayoutProps> = ({
               <Title className='mb-1 text-[24px] font-medium leading-none'>
                 {title}
               </Title>
-              <div className='mb-2 text-muted-foreground'>{params}</div>
-              <div className='mb-4 text-sm leading-none'>{contents}</div>
+              {params && (
+                <div className='mb-2 text-muted-foreground'>{params}</div>
+              )}
+              {contents && (
+                <div className='mb-4 text-sm leading-none'>{contents}</div>
+              )}
               {children}
             </div>
           </ScrollArea>

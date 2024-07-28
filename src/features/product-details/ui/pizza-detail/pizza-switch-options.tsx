@@ -2,9 +2,15 @@ import { FC, useEffect } from 'react';
 
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
-import { mapSizes } from '../../lib/map-sizes';
+import { mapOptions } from '../../lib/map-options';
 import { useSelectedItems } from '../../model/selected-items-store';
 import { PizzaOption } from '../../model/types/pizza';
+
+export const SIZES: Record<number, string> = {
+  25: 'Маленькая',
+  30: 'Средняя',
+  35: 'Большая',
+} as const;
 
 interface PizzaSwitchOptionsProps {
   options: PizzaOption[];
@@ -27,7 +33,7 @@ export const PizzaSwitchOptions: FC<PizzaSwitchOptionsProps> = ({
     setOption(selectedOption);
   };
 
-  const mappedSizes = mapSizes(options);
+  const mappedSizes = mapOptions(options, SIZES, 'size');
 
   return (
     <SwitchButtons

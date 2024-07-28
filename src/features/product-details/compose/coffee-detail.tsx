@@ -2,21 +2,21 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getProductImageUrl } from '@/entities/products';
-import { IngredientItem } from '@/features/product-details/ui/product-ingredient/ingredient-item';
 import { Button } from '@/shared/ui/button';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
+import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
 import { Pizza } from '../model/types/pizza';
-import { CoffeeDetailLayout } from '../ui/coffee-detail/coffee-detail-layout';
-import { OptionSwitcher } from '../ui/option-switcher';
+import { ProductDetailLayout } from '../ui/product-detail-layout';
+import { IngredientItem } from '../ui/product-ingredient/ingredient-item';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
 export const CoffeeDetail: FC<{ data: Pizza }> = ({ data }) => {
-  const [activeSize, setActiveSize] = useState(data.options[0].size.toString());
+  const [activeSize] = useState(data.options[0].size.toString());
 
   const sizeWithName = {
-    id: data.options[0].id,
-    value: activeSize,
+    param: activeSize,
+    name: activeSize,
     disabled: true,
   };
   const activeOption = data?.options.find(
@@ -40,37 +40,25 @@ export const CoffeeDetail: FC<{ data: Pizza }> = ({ data }) => {
 
   return (
     <ProductModalLayout open={!!data} onCloseModal={onCloseModal}>
-      <CoffeeDetailLayout
+      <ProductDetailLayout
         title={data.name}
-        params={pizzaParams}
+        params={<div>{pizzaParams}</div>}
         contents={data.contents}
-        imageUrl={imageUrl}
-        addToCartButton={
-          <Button onClick={onCloseModal} className='h-12 w-full text-base'>
-            В корзину {activeOption?.price} ₽
-          </Button>
-        }>
-        <>
-          <OptionSwitcher
-            options={[sizeWithName]}
-            quantityType='л'
-            activeOptionValue={activeSize}
-            onClickOption={setActiveSize}
-          />
-
-          {data.ingredients.length > 0 && (
-            <ProductIngredientList>
-              {data.ingredients.map((ingredient) => (
-                <IngredientItem
-                  key={ingredient.id}
-                  item={ingredient}
-                  setItem={() => {}}
-                />
-              ))}
-            </ProductIngredientList>
-          )}
-        </>
-      </CoffeeDetailLayout>
+        image={<img src={imageUrl} alt={data.name} />}
+        addToCartButton={<Button onClick={onCloseModal}>Выбрать</Button>}>
+        <SwitchButtons values={[sizeWithName]} onChangeValue={() => {}} />
+        {data.ingredients.length > 0 && (
+          <ProductIngredientList>
+            {data.ingredients.map((ingredient) => (
+              <IngredientItem
+                key={ingredient.id}
+                item={ingredient}
+                setItem={() => {}}
+              />
+            ))}
+          </ProductIngredientList>
+        )}
+      </ProductDetailLayout>
     </ProductModalLayout>
   );
 };

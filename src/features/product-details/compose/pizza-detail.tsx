@@ -7,10 +7,10 @@ import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { useSelectedItems } from '../model/selected-items-store';
 import { Pizza } from '../model/types/pizza';
 import { AddToCartButton } from '../ui/pizza-detail/add-to-cart-button';
-import { PizzaDetailLayout } from '../ui/pizza-detail/pizza-detail-layout';
 import { PizzaImage } from '../ui/pizza-detail/pizza-image';
 import { PizzaParamText } from '../ui/pizza-detail/pizza-param-text';
 import { PizzaSwitchOptions } from '../ui/pizza-detail/pizza-switch-options';
+import { ProductDetailLayout } from '../ui/product-detail-layout';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
 export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
@@ -30,7 +30,7 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
 
   return (
     <ProductModalLayout open={!!data} onCloseModal={onCloseModal}>
-      <PizzaDetailLayout
+      <ProductDetailLayout
         title={data.name}
         params={<PizzaParamText />}
         contents={data.contents}
@@ -50,7 +50,7 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
             </ProductIngredientList>
           )}
         </>
-      </PizzaDetailLayout>
+      </ProductDetailLayout>
     </ProductModalLayout>
   );
 };
