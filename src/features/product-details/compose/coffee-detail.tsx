@@ -2,12 +2,12 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getProductImageUrl } from '@/entities/products';
-import { Button } from '@/shared/ui/button';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
 import { Pizza } from '../model/types/pizza';
 import { ProductDetailLayout } from '../ui/product-detail-layout';
+import { AddToCartButton } from '../ui/product-ingredient/add-to-cart-button';
 import { IngredientItem } from '../ui/product-ingredient/ingredient-item';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
@@ -45,7 +45,7 @@ export const CoffeeDetail: FC<{ data: Pizza }> = ({ data }) => {
         params={<div>{pizzaParams}</div>}
         contents={data.contents}
         image={<img src={imageUrl} alt={data.name} />}
-        addToCartButton={<Button onClick={onCloseModal}>Выбрать</Button>}>
+        addToCartButton={<AddToCartButton closeModal={onCloseModal} />}>
         <SwitchButtons values={[sizeWithName]} onChangeValue={() => {}} />
         {data.ingredients.length > 0 && (
           <ProductIngredientList>
