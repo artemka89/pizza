@@ -55,7 +55,7 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
                 <IngredientItem
                   key={ingredient.id}
                   item={ingredient}
-                  setItem={toggleIngredient}
+                  toggleItem={toggleIngredient}
                 />
               ))}
             </ProductIngredientList>

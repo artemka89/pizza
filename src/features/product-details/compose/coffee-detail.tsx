@@ -5,6 +5,7 @@ import { getProductImageUrl } from '@/entities/products';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
+import { useSelectedItems } from '../model/selected-items-store';
 import { Coffee } from '../model/types/coffee';
 import { useMappedOptionToParam } from '../model/use-mapped-option-to-param';
 import { AddToCartButton } from '../ui/add-to-cart-button';
@@ -14,14 +15,20 @@ import { IngredientItem } from '../ui/product-ingredient/ingredient-item';
 import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
 export const CoffeeDetail: FC<{ data: Coffee }> = ({ data }) => {
+  const navigate = useNavigate();
+
   const { mappedOptions, setOptionParam } = useMappedOptionToParam(
     data.options,
     'size',
   );
 
-  const navigate = useNavigate();
+  const [toggleIngredient, clearItems] = useSelectedItems((state) => [
+    state.toggleIngredient,
+    state.clearItems,
+  ]);
 
   const onCloseModal = () => {
+    clearItems();
     navigate('/');
   };
 
@@ -51,7 +58,7 @@ export const CoffeeDetail: FC<{ data: Coffee }> = ({ data }) => {
               <IngredientItem
                 key={ingredient.id}
                 item={ingredient}
-                setItem={() => {}}
+                toggleItem={toggleIngredient}
               />
             ))}
           </ProductIngredientList>

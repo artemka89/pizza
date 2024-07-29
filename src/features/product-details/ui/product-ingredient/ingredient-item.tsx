@@ -8,10 +8,13 @@ import { ProductIngredient } from '../../model/types/types';
 
 interface IngredientItemProps {
   item: ProductIngredient;
-  setItem: (item: ProductIngredient) => void;
+  toggleItem: (item: ProductIngredient) => void;
 }
 
-export const IngredientItem: FC<IngredientItemProps> = ({ item, setItem }) => {
+export const IngredientItem: FC<IngredientItemProps> = ({
+  item,
+  toggleItem,
+}) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const imageUrl = getIngredientImageUrl({
@@ -20,7 +23,7 @@ export const IngredientItem: FC<IngredientItemProps> = ({ item, setItem }) => {
 
   const toggleSelected = () => {
     setIsSelected((prev) => !prev);
-    setItem(item);
+    toggleItem(item);
   };
 
   return (
@@ -39,7 +42,7 @@ export const IngredientItem: FC<IngredientItemProps> = ({ item, setItem }) => {
       )}
 
       <img src={imageUrl} alt={item.name} className='size-[88px]' />
-      <span className='mb-1 text-xs'>{item.name}</span>
+      <span className='mb-1 text-xs leading-none'>{item.name}</span>
       <span className='mt-auto font-bold'>{item.price} ₽</span>
     </button>
   );
