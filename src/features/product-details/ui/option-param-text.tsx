@@ -3,8 +3,8 @@ import { FC } from 'react';
 import { useSelectedItems } from '../model/selected-items-store';
 
 interface OptionParamText {
-  sizeName: string;
-  weightName: string;
+  sizeName?: string;
+  weightName?: string;
 }
 
 export const OptionParamText: FC<OptionParamText> = ({
@@ -15,8 +15,8 @@ export const OptionParamText: FC<OptionParamText> = ({
 
   return (
     <span className='text-muted-foregrounds'>
-      {selectedOption?.size && selectedOption?.size + sizeName}
-      {selectedOption?.weight && ', ' + selectedOption?.weight + weightName}
+      {sizeName && selectedOption?.size} {sizeName}
+      {weightName && ', ' + selectedOption?.weight} {weightName}
     </span>
   );
 };

@@ -37,7 +37,7 @@ export const DrinkDetail: FC<{ data: Drink }> = ({ data }) => {
     <ProductModalLayout open={!!data} onCloseModal={onCloseModal}>
       <ProductDetailLayout
         title={data.name}
-        params={<OptionParamText sizeName=' см' weightName=' г' />}
+        params={<OptionParamText sizeName=' л' />}
         contents={data.contents}
         image={<img src={imageUrl} alt={data.name} />}
         addToCartButton={<AddToCartButton closeModal={onCloseModal} />}>

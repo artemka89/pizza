@@ -12,7 +12,7 @@ export function mapProductDetail(data: ProductDetailDto): ProductDetail {
   const options = data.options.map((option) => ({
     id: option.$id,
     size: option.size,
-    weight: option.weight,
+    weight: option.weight ?? 0,
     price: option.price,
   }));
 
