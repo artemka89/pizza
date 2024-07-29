@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Button } from '@/shared/ui/button';
 
-import { useSelectedItems } from '../../model/selected-items-store';
+import { useSelectedItems } from '../model/selected-items-store';
 
 interface AddToCartButtonProps {
   closeModal: () => void;

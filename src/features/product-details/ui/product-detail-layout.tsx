@@ -26,15 +26,13 @@ export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
         {image}
       </div>
       <div className='flex-1'>
-        <div className='absolute -mr-[22px]'>
+        <div className='absolute -mr-[22px] w-[388px]'>
           <ScrollArea className='h-[488px]'>
             <div className='px-7'>
               <Title className='mb-1 text-[24px] font-medium leading-none'>
                 {title}
               </Title>
-              {params && (
-                <div className='mb-2 text-muted-foreground'>{params}</div>
-              )}
+              {params && <div className='mb-2'>{params}</div>}
               {contents && (
                 <div className='mb-4 text-sm leading-none'>{contents}</div>
               )}

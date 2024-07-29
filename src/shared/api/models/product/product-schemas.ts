@@ -40,7 +40,7 @@ export const ProductDetailSchemaDto = z.object({
     .object({
       $id: z.string(),
       size: z.number(),
-      weight: z.number(),
+      weight: z.number().nullable(),
       price: z.number(),
     })
     .array(),

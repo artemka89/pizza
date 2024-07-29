@@ -5,57 +5,47 @@ import { getProductImageUrl } from '@/entities/products';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
-import { Coffee } from '../model/types/coffee';
+import { ACTIVE_PIZZA_SIZE } from '../lib/constants';
+import { useSelectedItems } from '../model/selected-items-store';
+import { Drink } from '../model/types/drink';
 import { useMappedOptionToParam } from '../model/use-mapped-option-to-param';
 import { AddToCartButton } from '../ui/add-to-cart-button';
 import { OptionParamText } from '../ui/option-param-text';
 import { ProductDetailLayout } from '../ui/product-detail-layout';
-import { IngredientItem } from '../ui/product-ingredient/ingredient-item';
-import { ProductIngredientList } from '../ui/product-ingredient/product-ingredient-list';
 
-export const CoffeeDetail: FC<{ data: Coffee }> = ({ data }) => {
+export const DrinkDetail: FC<{ data: Drink }> = ({ data }) => {
+  const navigate = useNavigate();
+
+  const [clearItems] = useSelectedItems((state) => [state.clearItems]);
+
   const { mappedOptions, setOptionParam } = useMappedOptionToParam(
     data.options,
     'size',
   );
-
-  const navigate = useNavigate();
-
-  const onCloseModal = () => {
-    navigate('/');
-  };
 
   const imageUrl = getProductImageUrl({
     id: data.imageId,
     size: 'big',
   }).toString();
 
-  if (!data) return null;
+  const onCloseModal = () => {
+    clearItems();
+    navigate('/');
+  };
 
   return (
     <ProductModalLayout open={!!data} onCloseModal={onCloseModal}>
       <ProductDetailLayout
         title={data.name}
-        params={<OptionParamText sizeName='л' weightName='г' />}
+        params={<OptionParamText sizeName=' см' weightName=' г' />}
         contents={data.contents}
         image={<img src={imageUrl} alt={data.name} />}
         addToCartButton={<AddToCartButton closeModal={onCloseModal} />}>
         <SwitchButtons
           values={mappedOptions}
+          activeParam={ACTIVE_PIZZA_SIZE}
           onChangeValue={setOptionParam}
-          quantityType='л'
         />
-        {data.ingredients.length > 0 && (
-          <ProductIngredientList>
-            {data.ingredients.map((ingredient) => (
-              <IngredientItem
-                key={ingredient.id}
-                item={ingredient}
-                setItem={() => {}}
-              />
-            ))}
-          </ProductIngredientList>
-        )}
       </ProductDetailLayout>
     </ProductModalLayout>
   );

@@ -3,3 +3,5 @@ export const PIZZA_SIZES: Record<number, string> = {
   30: 'Средняя',
   35: 'Большая',
 } as const;
+
+export const ACTIVE_PIZZA_SIZE = '30';

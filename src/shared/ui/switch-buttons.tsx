@@ -4,27 +4,23 @@ import { cn } from '../lib/cn';
 
 interface SwitchButtonsProps {
   values: { param: string; name: string; disabled: boolean }[];
-  initialKey?: string;
+  activeParam?: string;
   onChangeValue: (value: string) => void;
   quantityType?: string;
 }
 
 export const SwitchButtons: FC<SwitchButtonsProps> = ({
   values,
-  initialKey,
+  activeParam,
   onChangeValue,
   quantityType,
 }) => {
-  const [activeValue, setActiveValue] = useState<string>(
-    initialKey || values[0].param,
-  );
+  const [active, setActive] = useState(activeParam);
 
-  const activeValueIndex = values.findIndex(
-    (value) => value.param === activeValue,
-  );
+  const activeValueIndex = values.findIndex((value) => value.param === active);
 
   const onClickButton = (key: string) => {
-    setActiveValue(key);
+    setActive(key);
     onChangeValue(key);
   };
 
@@ -50,7 +46,7 @@ export const SwitchButtons: FC<SwitchButtonsProps> = ({
           onClick={() => onClickButton(value.param)}
           className={cn(
             'z-10 flex flex-1 select-none items-center justify-center py-1 text-xs font-medium text-foreground',
-            value.param === activeValue
+            value.param === active
               ? 'cursor-default text-primary'
               : 'cursor-pointer hover:drop-shadow',
             value.disabled &&
