@@ -4,7 +4,11 @@ import { databases } from '@/shared/api/config/appwrite-config';
 
 import { APPWRITE } from '../../config/appwrite';
 
-import { ProductNameSchemaDto, ProductsSchemaDto } from './product-schemas';
+import {
+  ProductDetailSchemaDto,
+  ProductNameSchemaDto,
+  ProductsSchemaDto,
+} from './product-schemas';
 
 export const productApi = {
   getProducts: async () => {
@@ -25,5 +29,13 @@ export const productApi = {
       ],
     );
     return ProductNameSchemaDto.array().parse(products.documents);
+  },
+  getProductDetail: async (id: string) => {
+    const product = await databases.getDocument(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.PRODUCT_COLLECTION_ID,
+      id,
+    );
+    return ProductDetailSchemaDto.parse(product);
   },
 };

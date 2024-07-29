@@ -12,9 +12,12 @@ type MiddlewareStoreCreator<T> = StateCreator<
   T
 >;
 
-export function createStore<T>(config: MiddlewareStoreCreator<T>) {
+export function createStore<T>(
+  config: MiddlewareStoreCreator<T>,
+  name?: string,
+) {
   return createWithEqualityFn(
-    subscribeWithSelector(immer(devtools(config))),
+    subscribeWithSelector(immer(devtools(config, { name }))),
     shallow,
   );
 }

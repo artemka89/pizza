@@ -3,20 +3,18 @@ import { ImageFormat, ImageGravity } from 'appwrite';
 import { APPWRITE } from '@/shared/api/config/appwrite';
 import { storage } from '@/shared/api/config/appwrite-config';
 
-export const getProductImageUrl = ({
+export const getIngredientImageUrl = ({
   id,
-  size = 'small',
+  size = 88,
 }: {
   id: string;
-  size?: 'small' | 'big';
+  size?: number;
 }) => {
-  const sizeImage = size === 'small' ? 210 : 584;
-
   const url = storage.getFilePreview(
-    APPWRITE.PRODUCT_BUCKET_ID,
+    APPWRITE.INGREDIENT_BUCKET_ID,
     id,
-    sizeImage,
-    sizeImage,
+    size,
+    size,
     ImageGravity.Center,
     70,
     undefined,
