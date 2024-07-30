@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
+import { Cart } from '@/features/cart';
 import { SearchProductInput } from '@/features/search-product';
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
 
 import { Logo } from './logo/logo';
-import { CartButton } from './cart-button';
 
 interface HeaderProps {
   className?: string;
@@ -20,7 +20,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
         <SearchProductInput />
         <div className='flex gap-2'>
           <Button variant='outline'>Войти</Button>
-          <CartButton />
+          <Cart />
         </div>
       </div>
     </header>

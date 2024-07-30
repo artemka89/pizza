@@ -27,7 +27,7 @@ export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
       </div>
       <div className='flex-1'>
         <div className='absolute -mr-[22px] w-[388px]'>
-          <ScrollArea className='h-[488px]'>
+          <ScrollArea className='h-[488px] max-h-full'>
             <div className='px-7'>
               <Title className='mb-1 text-[24px] font-medium leading-none'>
                 {title}
