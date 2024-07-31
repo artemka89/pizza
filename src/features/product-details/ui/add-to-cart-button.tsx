@@ -2,12 +2,18 @@ import { FC } from 'react';
 
 import { Button } from '@/shared/ui/button';
 
-import { useSelectedItems } from '../model/selected-items-store';
+import { useSelectedItems } from '../model/use-selected-items-store';
 
 interface AddToCartButtonProps {
+  productId: string;
+  categoryId: string;
   closeModal: () => void;
 }
-export const AddToCartButton: FC<AddToCartButtonProps> = ({ closeModal }) => {
+export const AddToCartButton: FC<AddToCartButtonProps> = ({
+  closeModal,
+  productId,
+  categoryId,
+}) => {
   const [selectedOption, selectedIngredients, price] = useSelectedItems(
     (state) => [state.option, state.ingredients, state.price],
   );
@@ -15,6 +21,8 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({ closeModal }) => {
   const addToCart = () => {
     // eslint-disable-next-line no-console
     console.log({
+      productId,
+      categoryId,
       optionId: selectedOption?.id,
       ingredientsIds: selectedIngredients.map((i) => i.id),
       price,

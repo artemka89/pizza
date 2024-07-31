@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { mapOptionsToParams } from '../lib/map-options-to-params';
 
-import { useSelectedItems } from './selected-items-store';
+import { useSelectedItems } from './use-selected-items-store';
 
 export function useMappedOptionToParam<T extends string>(
   options: { [K in T]: number | string }[],
