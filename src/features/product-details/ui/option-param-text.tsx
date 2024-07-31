@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useSelectedItems } from '../model/selected-items-store';
+import { useSelectedItems } from '../model/use-selected-items-store';
 
 interface OptionParamText {
   sizeName?: string;

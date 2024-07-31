@@ -5,12 +5,18 @@ import logoIcon from '@/shared/assets/icons/logo.png';
 import { cn } from '@/shared/lib/cn';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 interface LayoutProps {
-  topBar?: React.ReactNode;
+  nav?: React.ReactNode;
+  actions?: React.ReactNode;
   sideBar?: React.ReactNode;
   productList: React.ReactNode;
 }
 
-export const Layout: FC<LayoutProps> = ({ topBar, sideBar, productList }) => {
+export const Layout: FC<LayoutProps> = ({
+  nav,
+  actions,
+  sideBar,
+  productList,
+}) => {
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
     root: null,
@@ -27,14 +33,23 @@ export const Layout: FC<LayoutProps> = ({ topBar, sideBar, productList }) => {
           'sticky top-0 z-10 w-full bg-background/75 py-2 backdrop-blur-xl transition-colors',
           isAnimate && 'bg-secondary/75 drop-shadow-sm',
         )}>
-        <div ref={intersectionRef} className='container overflow-hidden'>
+        <div
+          ref={intersectionRef}
+          className='container flex items-center overflow-hidden'>
           <div
             className={cn(
-              'inline-flex -translate-x-16 items-center transition-transform',
+              'flex -translate-x-16 items-center transition-transform ease-in-out',
               isAnimate && 'translate-x-0',
             )}>
             <img src={logoIcon} alt='Logo' className='mr-4 size-8' />
-            <div>{topBar}</div>
+            <div>{nav}</div>
+          </div>
+          <div
+            className={cn(
+              'ml-auto -translate-y-16 transition-transform ease-in-out',
+              isAnimate && 'translate-y-0',
+            )}>
+            {actions}
           </div>
         </div>
       </nav>

@@ -5,12 +5,8 @@ import { useGetProductDetail } from '@/entities/products';
 import { PizzaDetail } from '@/features/product-details';
 import { CoffeeDetail } from '@/features/product-details';
 import { DrinkDetail } from '@/features/product-details';
+import { CATEGORY_TYPE } from '@/shared/lib/constants/category- type';
 
-enum CATEGORY_TYPE {
-  PIZZA = 'Пиццы',
-  COFFEE = 'Кофе',
-  DRINK = 'Напитки',
-}
 export const ProductDetailPage: FC = () => {
   const { id } = useParams<{ id: string }>();
 

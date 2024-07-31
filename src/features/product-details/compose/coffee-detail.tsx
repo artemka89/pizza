@@ -5,9 +5,9 @@ import { getProductImageUrl } from '@/entities/products';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
-import { useSelectedItems } from '../model/selected-items-store';
 import { Coffee } from '../model/types/coffee';
 import { useMappedOptionToParam } from '../model/use-mapped-option-to-param';
+import { useSelectedItems } from '../model/use-selected-items-store';
 import { AddToCartButton } from '../ui/add-to-cart-button';
 import { OptionParamText } from '../ui/option-param-text';
 import { ProductDetailLayout } from '../ui/product-detail-layout';
@@ -46,7 +46,13 @@ export const CoffeeDetail: FC<{ data: Coffee }> = ({ data }) => {
         params={<OptionParamText sizeName='л' weightName='г' />}
         contents={data.contents}
         image={<img src={imageUrl} alt={data.name} />}
-        addToCartButton={<AddToCartButton closeModal={onCloseModal} />}>
+        addToCartButton={
+          <AddToCartButton
+            closeModal={onCloseModal}
+            productId={data.id}
+            categoryId={data.category.id}
+          />
+        }>
         <SwitchButtons
           values={mappedOptions}
           onChangeValue={setOptionParam}

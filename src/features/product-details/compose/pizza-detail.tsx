@@ -6,9 +6,9 @@ import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
 import { ACTIVE_PIZZA_SIZE, PIZZA_SIZES } from '../lib/constants';
-import { useSelectedItems } from '../model/selected-items-store';
 import { Pizza } from '../model/types/pizza';
 import { useMappedOptionToParam } from '../model/use-mapped-option-to-param';
+import { useSelectedItems } from '../model/use-selected-items-store';
 import { AddToCartButton } from '../ui/add-to-cart-button';
 import { OptionParamText } from '../ui/option-param-text';
 import { PizzaImage } from '../ui/pizza-detail/pizza-image';
@@ -42,7 +42,13 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
         params={<OptionParamText sizeName=' см' weightName=' г' />}
         contents={data.contents}
         image={<PizzaImage imageId={data.imageId} />}
-        addToCartButton={<AddToCartButton closeModal={onCloseModal} />}>
+        addToCartButton={
+          <AddToCartButton
+            closeModal={onCloseModal}
+            productId={data.id}
+            categoryId={data.category.id}
+          />
+        }>
         <>
           <SwitchButtons
             values={mappedOptions}

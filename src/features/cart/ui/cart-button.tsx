@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 
+import { useCartStore } from '@/entities/cart';
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
 
@@ -9,8 +10,12 @@ interface CartButtonProps {
 }
 
 export const CartButton: FC<CartButtonProps> = ({ className }) => {
+  const [setShowCart] = useCartStore((state) => [state.setShow]);
+
   return (
-    <Button className={cn('group relative', className)}>
+    <Button
+      onClick={() => setShowCart(true)}
+      className={cn('group relative', className)}>
       <span>{500} ₽</span>
       <span className='mx-3 h-full w-[1px] bg-primary-foreground/40' />
       <div className='flex items-center gap-1 transition duration-300 group-hover:opacity-0'>
