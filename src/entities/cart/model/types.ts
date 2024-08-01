@@ -1,8 +1,6 @@
 export interface Cart {
   id: string;
   cartItem: CartItem[];
-  totalAmount: number;
-  totalPrice: number;
 }
 
 interface CartItem {

@@ -34,7 +34,5 @@ export function mapCart(data: CartDto): Cart {
   return {
     id: data.$id,
     cartItem,
-    totalAmount: data.totalAmount,
-    totalPrice: data.totalPrice,
   };
 }

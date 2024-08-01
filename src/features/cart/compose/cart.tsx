@@ -12,14 +12,23 @@ import { PayButton } from '../ui/pay-button';
 export const Cart: FC = () => {
   const { data } = useGetCart('66a2b7d7002431abd04c');
 
+  const totalAmount = data?.cartItem.reduce(
+    (acc, item) => acc + item.amount,
+    0,
+  );
+  const totalPrice = data?.cartItem.reduce(
+    (acc, item) => acc + item.amount * item.option.price,
+    0,
+  );
+
   if (!data) return null;
 
   return (
     <CartSheet>
       <CartContentLayout
-        header={<CartHeader productAmount={data.totalAmount} />}
+        header={<CartHeader productAmount={totalAmount || 0} />}
         payButton={<PayButton />}
-        footer={<CartFooter totalPrice={data.totalPrice} />}>
+        footer={<CartFooter totalPrice={totalPrice || 0} />}>
         {data.cartItem.map((item) => (
           <CartItem
             key={item.id}

@@ -34,7 +34,7 @@ export const CartContentLayout: FC<CartContentLayoutProps> = ({
       <SheetFooter className='block w-full bg-background p-6 shadow-[0px_-22px_52px_-4px_rgba(34,60,80,0.15)]'>
         {footer}
         <div className='my-6 w-full'>
-          <SheetClose asChild>{payButton}</SheetClose>
+          <SheetClose className='w-full'>{payButton}</SheetClose>
         </div>
       </SheetFooter>
       <SheetTitle className='invisible' />

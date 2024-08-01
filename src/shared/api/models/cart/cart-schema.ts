@@ -32,8 +32,6 @@ const CartItem = z.object({
 export const CartSchemaDto = z.object({
   $id: z.string(),
   cartItem: CartItem.array(),
-  totalAmount: z.number(),
-  totalPrice: z.number(),
 });
 
 export type CartDto = z.infer<typeof CartSchemaDto>;

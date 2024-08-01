@@ -33,7 +33,7 @@ export const PlusMinusAmountButton: FC<PlusMinusAmountButtonProps> = ({
         disabled={amount <= 1 || updateCartItemAmount.isPending}
         variant='outline'
         size='icon'
-        className='size-7 rounded-lg p-0'>
+        className='size-6 rounded-lg p-0'>
         <Minus />
       </Button>
       <span className='font-bold'>{amount}</span>
@@ -42,7 +42,7 @@ export const PlusMinusAmountButton: FC<PlusMinusAmountButtonProps> = ({
         disabled={amount >= 99 && updateCartItemAmount.isPending}
         variant='outline'
         size='icon'
-        className='size-7 rounded-lg p-0'>
+        className='size-6 rounded-lg p-0'>
         <Plus />
       </Button>
     </div>
