@@ -8,28 +8,28 @@ import { Title } from '@/shared/ui/title';
 import { RemoveCartItemButton } from '../remove-cart-item/ui/remove-cart-item-button';
 import { PlusMinusAmountButton } from '../update-cart-item-amount/ui/plus-minus-amount-button';
 
-interface CartItemProps {
+type Item = {
   id: string;
   product: { id: string; name: string; imageId: string };
   category: { name: string };
   option: { size: number; price: number; weight?: number };
   amount: number;
   ingredients: { name: string }[];
+};
+
+interface CartItemProps {
+  item: Item;
 }
 
-export const CartItem: FC<CartItemProps> = ({
-  id,
-  product,
-  category,
-  option,
-  amount,
-  ingredients,
-}) => {
+export const CartItem: FC<CartItemProps> = ({ item }) => {
+  const { id, product, category, option, amount, ingredients } = item;
+
   const imageUrl = getProductImageUrl({ id: product.imageId }).toString();
 
   const ingredientsText = ingredients
-    ?.map((item) => {
-      const result = item.name.charAt(0).toLowerCase() + item.name.slice(1);
+    ?.map((ingredient) => {
+      const result =
+        ingredient.name.charAt(0).toLowerCase() + ingredient.name.slice(1);
       return result;
     })
     .join(', ');
@@ -45,10 +45,7 @@ export const CartItem: FC<CartItemProps> = ({
           <RemoveCartItemButton cartItemId={id} />
         </div>
         <div className='text-sm text-secondary-foreground'>
-          <TextOptionParams
-            category={category.name}
-            params={{ size: option.size, weight: option.weight }}
-          />
+          <TextOptionParams category={category.name} params={option} />
         </div>
         {ingredients.length > 0 && (
           <div className='text-xs leading-4 text-secondary-foreground'>

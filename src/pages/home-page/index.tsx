@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { CartButton } from '@/features/cart';
+import { CartIconButton } from '@/features/cart';
 import { CategoryList } from '@/features/category-list';
 import { ProductList } from '@/features/product-list';
 
@@ -12,7 +12,7 @@ export const HomePage: FC = () => {
     <>
       <Layout
         nav={<CategoryList />}
-        actions={<CartButton />}
+        actions={<CartIconButton />}
         productList={<ProductList />}
       />
       <Outlet />
