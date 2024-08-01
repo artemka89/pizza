@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { CartButton } from '@/features/cart';
+import { CartIconButton } from '@/features/cart';
 import { SearchProductInput } from '@/features/search-product';
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
@@ -20,7 +20,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
         <SearchProductInput />
         <div className='flex gap-2'>
           <Button variant='outline'>Войти</Button>
-          <CartButton />
+          <CartIconButton />
         </div>
       </div>
     </header>
