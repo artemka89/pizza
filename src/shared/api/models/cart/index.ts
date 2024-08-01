@@ -13,4 +13,30 @@ export const cartApi = {
 
     return CartSchemaDto.parse(cart);
   },
+  addItem: async (data: {
+    cartId: string;
+    productId: string;
+    optionId: string;
+    categoryId: string;
+    ingredientsIds: string[];
+    amount: number;
+  }) => {
+    const item = await databases.updateDocument(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.CART_COLLECTION_ID,
+      data.cartId,
+      {
+        cartItem: [
+          {
+            amount: 1,
+            product: { $id: data.productId },
+            category: { $id: data.categoryId },
+            option: { $id: data.optionId },
+            ingredients: data.ingredientsIds.map((id) => ({ $id: id })),
+          },
+        ],
+      },
+    );
+    return item;
+  },
 };
