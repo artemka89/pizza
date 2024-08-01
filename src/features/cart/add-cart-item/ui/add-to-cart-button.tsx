@@ -4,8 +4,8 @@ import { useGetCart } from '@/entities/cart';
 import { useSelectedItems } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
 
-import { useCreateCartItem } from '../model/create-cart-item';
-import { useUpdateCartItem } from '../model/update-cart-items';
+import { useCreateCartItem } from '../model/use-create-cart-item';
+import { useUpdateCartItem } from '../model/use-update-cart-items';
 
 interface AddToCartButtonProps {
   productId: string;

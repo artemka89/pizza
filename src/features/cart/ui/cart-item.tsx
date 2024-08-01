@@ -1,13 +1,14 @@
 import { FC } from 'react';
-import { Minus, Plus } from 'lucide-react';
 
 import { getProductImageUrl } from '@/entities/products';
-import { Button } from '@/shared/ui/button';
 import { TextOptionParams } from '@/shared/ui/layouts/text-option-params';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 
+import { PlusMinusAmountButton } from '../update-cart-item-amount/ui/plus-minus-amount-button';
+
 interface CartItemProps {
+  id: string;
   product: { id: string; name: string; imageId: string };
   category: { name: string };
   option: { size: number; price: number; weight?: number };
@@ -16,6 +17,7 @@ interface CartItemProps {
 }
 
 export const CartItem: FC<CartItemProps> = ({
+  id,
   product,
   category,
   option,
@@ -51,21 +53,7 @@ export const CartItem: FC<CartItemProps> = ({
         )}
         <Separator className='mb-4 mt-3' />
         <div className='flex items-center justify-between'>
-          <div className='flex items-center gap-2'>
-            <Button
-              variant={'outline'}
-              size={'icon'}
-              className='size-7 rounded-lg p-0'>
-              <Minus />
-            </Button>
-            <span className='font-bold'>{amount}</span>
-            <Button
-              variant={'outline'}
-              size={'icon'}
-              className='size-7 rounded-lg p-0'>
-              <Plus />
-            </Button>
-          </div>
+          <PlusMinusAmountButton amount={amount} cartItemId={id} />
           <div className='font-bold'>{option.price} ₽</div>
         </div>
       </div>

@@ -23,6 +23,7 @@ export const Cart: FC = () => {
         {data.cartItem.map((item) => (
           <CartItem
             key={item.id}
+            id={item.id}
             product={item.product}
             category={item.category}
             option={item.option}

@@ -63,4 +63,15 @@ export const cartApi = {
     );
     return item;
   },
+  plusItemAmount: async ({ id, amount }: { id: string; amount: number }) => {
+    const item = await databases.updateDocument(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.CART_ITEM_COLLECTION_ID,
+      id,
+      {
+        amount,
+      },
+    );
+    return item;
+  },
 };
