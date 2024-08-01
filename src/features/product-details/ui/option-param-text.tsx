@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useSelectedItems } from '../model/use-selected-items-store';
+import { useSelectedItems } from '@/entities/products';
 
 interface OptionParamText {
   sizeName?: string;

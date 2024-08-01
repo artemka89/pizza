@@ -1,6 +1,9 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useSelectedItems } from '@/entities/products';
+// eslint-disable-next-line boundaries/entry-point, boundaries/element-types
+import { AddToCartButton } from '@/features/cart/add-cart-item/ui/add-to-cart-button';
 import { IngredientItem } from '@/features/product-details/ui/product-ingredient/ingredient-item';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
@@ -8,8 +11,6 @@ import { SwitchButtons } from '@/shared/ui/switch-buttons';
 import { ACTIVE_PIZZA_SIZE, PIZZA_SIZES } from '../lib/constants';
 import { Pizza } from '../model/types/pizza';
 import { useMappedOptionToParam } from '../model/use-mapped-option-to-param';
-import { useSelectedItems } from '../model/use-selected-items-store';
-import { AddToCartButton } from '../ui/add-to-cart-button';
 import { OptionParamText } from '../ui/option-param-text';
 import { PizzaImage } from '../ui/pizza-detail/pizza-image';
 import { ProductDetailLayout } from '../ui/product-detail-layout';
@@ -44,9 +45,9 @@ export const PizzaDetail: FC<{ data: Pizza }> = ({ data }) => {
         image={<PizzaImage imageId={data.imageId} />}
         addToCartButton={
           <AddToCartButton
-            closeModal={onCloseModal}
-            productId={data.id}
             categoryId={data.category.id}
+            productId={data.id}
+            closeModal={onCloseModal}
           />
         }>
         <>

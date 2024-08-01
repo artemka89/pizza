@@ -15,6 +15,7 @@ export const cartApi = {
   },
   addItem: async (data: {
     cartId: string;
+    cartItemIds: string[];
     productId: string;
     optionId: string;
     categoryId: string;
@@ -27,14 +28,37 @@ export const cartApi = {
       data.cartId,
       {
         cartItem: [
+          ...data.cartItemIds,
           {
             amount: 1,
             product: { $id: data.productId },
             category: { $id: data.categoryId },
             option: { $id: data.optionId },
-            ingredients: data.ingredientsIds.map((id) => ({ $id: id })),
+            ingredients: data.ingredientsIds.map((id) => id),
           },
         ],
+      },
+    );
+    return item;
+  },
+  updateItem: async (data: {
+    id: string;
+    productId: string;
+    optionId: string;
+    categoryId: string;
+    ingredientsIds: string[];
+    amount: number;
+  }) => {
+    const item = await databases.updateDocument(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.CART_ITEM_COLLECTION_ID,
+      data.id,
+      {
+        amount: data.amount,
+        product: { $id: data.productId },
+        category: { $id: data.categoryId },
+        option: { $id: data.optionId },
+        ingredients: data.ingredientsIds.map((id) => id),
       },
     );
     return item;

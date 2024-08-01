@@ -11,4 +11,5 @@ export const APPWRITE = {
   PRODUCT_CATEGORIES_COLLECTION_ID: 'categories',
 
   CART_COLLECTION_ID: 'carts',
+  CART_ITEM_COLLECTION_ID: 'cart-item',
 };

@@ -1,7 +1,5 @@
-import { getProductImageUrl } from '@/entities/products';
+import { getProductImageUrl, useSelectedItems } from '@/entities/products';
 import { cn } from '@/shared/lib/cn';
-
-import { useSelectedItems } from '../../model/use-selected-items-store';
 
 interface PizzaImageProps {
   imageId: string;
