@@ -5,6 +5,7 @@ import { TextOptionParams } from '@/shared/ui/layouts/text-option-params';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 
+import { RemoveCartItemButton } from '../remove-cart-item/ui/remove-cart-item-button';
 import { PlusMinusAmountButton } from '../update-cart-item-amount/ui/plus-minus-amount-button';
 
 interface CartItemProps {
@@ -39,7 +40,10 @@ export const CartItem: FC<CartItemProps> = ({
         <img src={imageUrl} alt={product.name} className='h-full w-full' />
       </div>
       <div className='flex-1'>
-        <Title size='xs'>{product.name}</Title>
+        <div className='flex items-center justify-between'>
+          <Title size='xs'>{product.name}</Title>
+          <RemoveCartItemButton cartItemId={id} />
+        </div>
         <div className='text-sm text-secondary-foreground'>
           <TextOptionParams
             category={category.name}

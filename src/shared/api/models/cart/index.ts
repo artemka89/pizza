@@ -63,7 +63,7 @@ export const cartApi = {
     );
     return item;
   },
-  plusItemAmount: async ({ id, amount }: { id: string; amount: number }) => {
+  updateItemAmount: async ({ id, amount }: { id: string; amount: number }) => {
     const item = await databases.updateDocument(
       APPWRITE.DATABASE_ID,
       APPWRITE.CART_ITEM_COLLECTION_ID,
@@ -71,6 +71,14 @@ export const cartApi = {
       {
         amount,
       },
+    );
+    return item;
+  },
+  removeItem: async (id: string) => {
+    const item = await databases.deleteDocument(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.CART_ITEM_COLLECTION_ID,
+      id,
     );
     return item;
   },
