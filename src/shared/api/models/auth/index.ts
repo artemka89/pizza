@@ -6,4 +6,8 @@ export const authApi = {
 
     return session;
   },
+  getUser: async () => {
+    const user = await account.get();
+    return user;
+  },
 };
