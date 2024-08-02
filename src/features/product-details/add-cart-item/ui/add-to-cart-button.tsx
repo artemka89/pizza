@@ -17,7 +17,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
   productId,
   categoryId,
 }) => {
-  const { data } = useGetCart('66a2b7d7002431abd04c');
+  const { data } = useGetCart('66831065000fa0deec70');
 
   const [selectedOption, selectedIngredients, price] = useSelectedItems(
     (state) => [state.option, state.ingredients, state.price],
@@ -52,7 +52,6 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
     } else {
       createCartItem(
         {
-          cartId: '66a2b7d7002431abd04c',
           cartItemIds: data?.cartItem.map((item) => item.id) || [],
           productId,
           categoryId,

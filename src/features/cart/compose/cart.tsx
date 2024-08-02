@@ -9,7 +9,7 @@ import { CartSheet } from '../ui/cart-sheet/cart-sheet';
 import { PayButton } from '../ui/pay-button';
 
 export const Cart: FC = () => {
-  const { data } = useGetCart('66a2b7d7002431abd04c');
+  const { data } = useGetCart('66831065000fa0deec70');
 
   const totalAmount = data?.cartItem.reduce(
     (acc, item) => acc + item.amount,

@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { CartIconButton } from '@/features/cart';
 import { SearchProductInput } from '@/features/search-product';
 import { cn } from '@/shared/lib/cn';
+import { ROUTES } from '@/shared/lib/constants/routes';
 import { Button } from '@/shared/ui/button';
 
 import { Logo } from './logo/logo';
@@ -19,7 +21,9 @@ export const Header: FC<HeaderProps> = ({ className }) => {
         <Logo />
         <SearchProductInput />
         <div className='flex gap-2'>
-          <Button variant='outline'>Войти</Button>
+          <Link to={ROUTES.AUTH}>
+            <Button variant='outline'>Войти</Button>
+          </Link>
           <CartIconButton />
         </div>
       </div>

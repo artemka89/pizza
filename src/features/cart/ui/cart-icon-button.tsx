@@ -12,7 +12,7 @@ interface CartIconButtonProps {
 export const CartIconButton: FC<CartIconButtonProps> = ({ className }) => {
   const [setShowCart] = useCartStore((state) => [state.setShow]);
 
-  const { data } = useGetCart('66a2b7d7002431abd04c');
+  const { data } = useGetCart('66831065000fa0deec70');
 
   const totalAmount = data?.cartItem.reduce(
     (acc, item) => acc + item.amount,

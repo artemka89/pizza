@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { ROUTES } from '@/shared/lib/constants/routes';
+
 import { Product } from '../model/types';
 
 interface ProductCardProps {
@@ -17,7 +19,7 @@ export const ProductCard: FC<ProductCardProps> = ({
   const image = imageUrl().toString();
 
   return (
-    <Link to={`/product/${item.id}`}>
+    <Link to={ROUTES.PRODUCTS(item.id)}>
       <div className='flex h-[418px] cursor-pointer flex-col items-center p-4'>
         <div className='h-[220px] w-[220px] transition-transform hover:translate-y-1'>
           <img src={image} alt={item.name} className='h-full w-full' />
