@@ -14,11 +14,11 @@ interface CartContentLayoutProps {
   payButton: JSX.Element;
   children: React.ReactNode;
   totalPrice: number;
-  totalAmount: number;
+  totalAmountText: string;
 }
 
 export const CartContentLayout: FC<CartContentLayoutProps> = ({
-  totalAmount,
+  totalAmountText,
   totalPrice,
   payButton,
   children,
@@ -27,7 +27,7 @@ export const CartContentLayout: FC<CartContentLayoutProps> = ({
     <SheetContent className='flex flex-col gap-0 bg-secondary p-0'>
       <SheetHeader className='px-4 py-5 text-xl shadow'>
         <Title>
-          В корзине <span className='font-bold'>{totalAmount} товара</span>
+          В корзине <span className='font-bold'>{totalAmountText}</span>
         </Title>
       </SheetHeader>
       <div className='relative -z-10 flex-grow'>
