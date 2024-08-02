@@ -1,13 +1,20 @@
 import { FC } from 'react';
 
+import { SignInSchemaType } from '../model/schemas';
+import { useSignIn } from '../model/use-sign-in';
 import { AuthModal } from '../ui/auth-modal';
 import { SignInForm } from '../ui/sign-in-form';
 
 export const SignIn: FC = () => {
+  const { mutate } = useSignIn();
+
+  const onSubmit = (data: SignInSchemaType) => {
+    mutate(data);
+  };
+
   return (
     <AuthModal title='Войти'>
-      {/* eslint-disable-next-line no-console */}
-      <SignInForm onSubmit={(data) => console.log(data)} />
+      <SignInForm onSubmit={onSubmit} />
     </AuthModal>
   );
 };
