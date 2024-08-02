@@ -9,4 +9,7 @@ export const APPWRITE = {
   INGREDIENT_BUCKET_ID: 'ingredient',
 
   PRODUCT_CATEGORIES_COLLECTION_ID: 'categories',
+
+  CART_COLLECTION_ID: 'carts',
+  CART_ITEM_COLLECTION_ID: 'cart-item',
 };

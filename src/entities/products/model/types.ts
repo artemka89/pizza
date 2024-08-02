@@ -27,21 +27,27 @@ export interface ProductDetail {
   name: string;
   imageId: string;
   contents: string;
-  category: {
-    id: string;
-    type: string;
-    name: string;
-  };
-  options: {
-    id: string;
-    size: number;
-    weight: number;
-    price: number;
-  }[];
-  ingredients: {
-    id: string;
-    name: string;
-    price: number;
-    imageId: string;
-  }[];
+  category: ProductCategory;
+  options: ProductOption[];
+  ingredients: ProductIngredient[];
+}
+
+export interface ProductOption {
+  id: string;
+  size: number;
+  weight: number;
+  price: number;
+}
+
+export interface ProductIngredient {
+  id: string;
+  name: string;
+  price: number;
+  imageId: string;
+}
+
+export interface ProductCategory {
+  id: string;
+  name: string;
+  type: string;
 }
