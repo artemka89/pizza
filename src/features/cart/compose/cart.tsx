@@ -2,11 +2,11 @@ import { FC } from 'react';
 
 import { useGetCart } from '@/entities/cart';
 
-import { CartContentLayout } from '../cart-sheet/cart-content';
-import { CartItem } from '../cart-sheet/cart-item';
-import { CartSheet } from '../cart-sheet/cart-sheet';
-import { PayButton } from '../cart-sheet/pay-button';
 import { formatAmountText } from '../lib/format-amount-text';
+import { CartContentLayout } from '../ui/cart-sheet/cart-content';
+import { CartItem } from '../ui/cart-sheet/cart-item';
+import { CartSheet } from '../ui/cart-sheet/cart-sheet';
+import { PayButton } from '../ui/pay-button';
 
 export const Cart: FC = () => {
   const { data } = useGetCart('66a2b7d7002431abd04c');

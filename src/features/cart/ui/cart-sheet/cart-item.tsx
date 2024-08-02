@@ -5,8 +5,8 @@ import { TextOptionParams } from '@/shared/ui/layouts/text-option-params';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 
-import { RemoveCartItemButton } from '../remove-cart-item/ui/remove-cart-item-button';
-import { PlusMinusAmountButton } from '../update-cart-item-amount/ui/plus-minus-amount-button';
+import { RemoveCartItemButton } from '../remove-cart-item-button';
+import { UpdateCartItemAmountButton } from '../update-cart-item-amount-buttons';
 
 type Item = {
   id: string;
@@ -54,7 +54,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
         )}
         <Separator className='mb-4 mt-3' />
         <div className='flex items-center justify-between'>
-          <PlusMinusAmountButton amount={amount} cartItemId={id} />
+          <UpdateCartItemAmountButton amount={amount} cartItemId={id} />
           <div className='font-bold'>{option.price} ₽</div>
         </div>
       </div>

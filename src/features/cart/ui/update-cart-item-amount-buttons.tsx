@@ -5,15 +5,14 @@ import { Button } from '@/shared/ui/button';
 
 import { useUpdateCartItemAmount } from '../model/use-update-item-amount';
 
-interface PlusMinusAmountButtonProps {
+interface UpdateCartItemAmountButtonProps {
   cartItemId: string;
   amount: number;
 }
 
-export const PlusMinusAmountButton: FC<PlusMinusAmountButtonProps> = ({
-  cartItemId,
-  amount,
-}) => {
+export const UpdateCartItemAmountButton: FC<
+  UpdateCartItemAmountButtonProps
+> = ({ cartItemId, amount }) => {
   const updateCartItemAmount = useUpdateCartItemAmount();
 
   const onCLickPlus = () => {
