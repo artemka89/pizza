@@ -5,25 +5,25 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/shared/ui/button';
 import { Spinner } from '@/shared/ui/spinner';
 
-import { SignInSchema, SignInSchemaType } from '../model/schemas';
+import { SignUpSchema, SignUpSchemaType } from '../model/schemas';
 
 import { FormInput } from './form-input';
 
-interface SignInFormProps {
-  onSubmit: (data: SignInSchemaType) => void;
+interface SignUpFormProps {
+  onSubmit: (data: SignUpSchemaType) => void;
 }
 
-export const SignInForm: FC<SignInFormProps> = ({ onSubmit }) => {
-  const methods = useForm<SignInSchemaType>({
+export const SignUpForm: FC<SignUpFormProps> = ({ onSubmit }) => {
+  const methods = useForm<SignUpSchemaType>({
     mode: 'onBlur',
     defaultValues: {
       email: '',
       password: '',
     },
-    resolver: zodResolver(SignInSchema),
+    resolver: zodResolver(SignUpSchema),
   });
 
-  const onSubmitHandler: SubmitHandler<SignInSchemaType> = (data) => {
+  const onSubmitHandler: SubmitHandler<SignUpSchemaType> = (data) => {
     onSubmit(data);
   };
 
@@ -54,7 +54,7 @@ export const SignInForm: FC<SignInFormProps> = ({ onSubmit }) => {
           {false && (
             <Spinner className='mr-2 h-4 w-4' aria-label='Загрузка входа' />
           )}
-          Войти в аккаунт
+          Создать аккаунт
         </Button>
       </form>
     </FormProvider>

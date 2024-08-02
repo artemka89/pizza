@@ -5,7 +5,7 @@ import { useSignIn } from '../model/use-sign-in';
 import { AuthModal } from '../ui/auth-modal';
 import { SignInForm } from '../ui/sign-in-form';
 
-export const SignIn: FC = () => {
+export const SignInModal: FC = () => {
   const { mutate } = useSignIn();
 
   const onSubmit = (data: SignInSchemaType) => {

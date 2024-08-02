@@ -1,4 +1,4 @@
-import { SignIn } from '@/features/auth';
+import { SignUpModal } from '@/features/auth';
 import { Cart } from '@/features/cart';
 import { HomePage } from '@/pages/home-page';
 import { Header } from '@/widgets/header';
@@ -9,7 +9,7 @@ export function App() {
       <Header />
       <HomePage />
       <Cart />
-      <SignIn />
+      <SignUpModal />
     </div>
   );
 }

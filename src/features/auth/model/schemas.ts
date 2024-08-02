@@ -1,5 +1,16 @@
 import { z } from 'zod';
 
+export const SignUpSchema = z.object({
+  email: z.string().min(1, { message: 'Обязательное поле' }).email({
+    message: 'Email неверный',
+  }),
+  password: z
+    .string()
+    .min(8, { message: 'Пароль должен быть более 8 символов' }),
+});
+
+export type SignUpSchemaType = z.infer<typeof SignUpSchema>;
+
 export const SignInSchema = z.object({
   email: z.string().min(1, { message: 'Обязательное поле' }).email({
     message: 'Email неверный',
