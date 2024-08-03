@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { AuthGuard } from '@/features/auth';
+import { AuthGuard, GuestGuard } from '@/features/auth';
 import { AuthPage } from '@/pages/auth-page';
 import { HomePage } from '@/pages/home-page';
 import { ProductDetailPage } from '@/pages/product-detail-page';
@@ -31,6 +31,14 @@ export const router = createBrowserRouter([
             ),
           },
         ],
+      },
+      {
+        path: '/profile',
+        element: (
+          <GuestGuard>
+            <div>Профиль</div>
+          </GuestGuard>
+        ),
       },
     ],
   },
