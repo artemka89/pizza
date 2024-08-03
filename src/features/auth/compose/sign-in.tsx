@@ -13,7 +13,6 @@ export const SignIn: FC<SignInProps> = ({ onCloseModal }) => {
 
   const onSubmit = (data: SignInSchemaType) => {
     mutate(data, { onSuccess: () => onCloseModal?.() });
-    onCloseModal?.();
   };
 
   return <SignInForm onSubmit={onSubmit} />;

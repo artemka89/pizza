@@ -16,7 +16,7 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ className }) => {
-  const { isSuccess } = useGetUser();
+  const user = useGetUser();
 
   return (
     <header
@@ -25,7 +25,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
         <Logo />
         <SearchProductInput />
         <div className='flex gap-2'>
-          {isSuccess ? (
+          {user.data ? (
             <SignOutButton />
           ) : (
             <Link to={ROUTES.AUTH}>

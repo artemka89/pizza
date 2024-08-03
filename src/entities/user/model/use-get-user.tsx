@@ -7,5 +7,9 @@ export function useGetUser() {
   return useQuery({
     ...getUserQuery(),
     select: mapUser,
+    enabled: () => {
+      const cookieFallback = localStorage.getItem('cookieFallback');
+      return !!cookieFallback && cookieFallback !== '[]';
+    },
   });
 }
