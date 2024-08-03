@@ -18,4 +18,7 @@ export const authApi = {
     const user = await account.get();
     return UserDtoSchema.parse(user);
   },
+  signOut: async () => {
+    await account.deleteSession('current');
+  },
 };

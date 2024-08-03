@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useGetUser } from '@/entities/user';
+import { SignOutButton } from '@/features/auth';
 import { CartIconButton } from '@/features/cart';
 import { SearchProductInput } from '@/features/search-product';
 import { cn } from '@/shared/lib/cn';
@@ -14,6 +16,8 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ className }) => {
+  const { isSuccess } = useGetUser();
+
   return (
     <header
       className={cn('container border-b border-secondary py-2', className)}>
@@ -21,9 +25,14 @@ export const Header: FC<HeaderProps> = ({ className }) => {
         <Logo />
         <SearchProductInput />
         <div className='flex gap-2'>
-          <Link to={ROUTES.AUTH}>
-            <Button variant='outline'>Войти</Button>
-          </Link>
+          {isSuccess ? (
+            <SignOutButton />
+          ) : (
+            <Link to={ROUTES.AUTH}>
+              <Button variant='outline'>Войти</Button>{' '}
+            </Link>
+          )}
+
           <CartIconButton />
         </div>
       </div>
