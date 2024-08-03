@@ -1,2 +1,2 @@
-export { SignInModal } from './compose/sign-in-modal';
-export { SignUpModal } from './compose/sign-up-modal';
+export { SignIn } from './compose/sign-in';
+export { SignUp } from './compose/sign-up';
