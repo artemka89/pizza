@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { AuthGuard } from '@/features/auth';
 import { AuthPage } from '@/pages/auth-page';
 import { HomePage } from '@/pages/home-page';
 import { ProductDetailPage } from '@/pages/product-detail-page';
@@ -23,7 +24,11 @@ export const router = createBrowserRouter([
           },
           {
             path: ROUTES.AUTH,
-            element: <AuthPage />,
+            element: (
+              <AuthGuard>
+                <AuthPage />
+              </AuthGuard>
+            ),
           },
         ],
       },

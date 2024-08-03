@@ -2,7 +2,7 @@ import { QueryOptions, useQueryClient } from '@tanstack/react-query';
 
 import { authApi } from '@/shared/api/models/auth';
 
-const authKey = 'auth';
+const authKey = 'get-user';
 
 export function getUserQuery() {
   return {
@@ -11,7 +11,7 @@ export function getUserQuery() {
   } satisfies QueryOptions;
 }
 
-export function useInvalidateCart() {
+export function useInvalidateUser() {
   const queryClient = useQueryClient();
   return () => queryClient.invalidateQueries({ queryKey: [authKey] });
 }
