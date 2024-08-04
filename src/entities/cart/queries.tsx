@@ -15,3 +15,8 @@ export function useInvalidateCart() {
   const queryClient = useQueryClient();
   return () => queryClient.invalidateQueries({ queryKey: [cartKey] });
 }
+
+export function useResetCart() {
+  const queryClient = useQueryClient();
+  return () => queryClient.resetQueries({ queryKey: [cartKey] });
+}

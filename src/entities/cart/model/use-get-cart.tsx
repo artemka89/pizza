@@ -7,5 +7,6 @@ export function useGetCart(id: string) {
   return useQuery({
     ...getCartQuery(id),
     select: mapCart,
+    enabled: !!id,
   });
 }

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { useGetCart } from '@/entities/cart';
+import { useGetUser } from '@/entities/user';
 
 import { formatAmountText } from '../lib/format-amount-text';
 import { CartContentLayout } from '../ui/cart-sheet/cart-content';
@@ -9,16 +10,20 @@ import { CartSheet } from '../ui/cart-sheet/cart-sheet';
 import { PayButton } from '../ui/pay-button';
 
 export const Cart: FC = () => {
-  const { data } = useGetCart('66831065000fa0deec70');
+  const user = useGetUser();
+  const { data } = useGetCart(user.data?.id || '');
 
   const totalAmount = data?.cartItem.reduce(
     (acc, item) => acc + item.amount,
     0,
   );
-  const totalPrice = data?.cartItem.reduce(
-    (acc, item) => acc + item.amount * item.option.price,
-    0,
-  );
+  const totalPrice = data?.cartItem.reduce((acc, item) => {
+    const ingredientPrice = item.ingredients.reduce(
+      (ingredientAcc, ingredient) => ingredientAcc + ingredient.price,
+      0,
+    );
+    return acc + item.amount * item.option.price + ingredientPrice;
+  }, 0);
 
   const totalAmountText = formatAmountText(totalAmount || 0);
 

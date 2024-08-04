@@ -1,13 +1,35 @@
-import { ID } from 'appwrite';
+import { ID, Permission, Role } from 'appwrite';
 
-import { account } from '../../config/appwrite-config';
+import { APPWRITE } from '../../config/appwrite';
+import { account, databases } from '../../config/appwrite-config';
 
 import { UserDtoSchema } from './auth-schemas';
 
 export const authApi = {
   signUp: async ({ email, password }: { email: string; password: string }) => {
-    const user = await account.create(ID.unique(), email, password);
-    return user;
+    const userAccount = await account.create(ID.unique(), email, password);
+    if (!userAccount) return;
+
+    const session = await account.createEmailPasswordSession(email, password);
+    if (!session) return;
+
+    await account.get();
+
+    await databases.createDocument(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.CART_COLLECTION_ID,
+      userAccount.$id,
+      {
+        cartItem: [],
+      },
+      [
+        Permission.create(Role.user(userAccount.$id)),
+        Permission.read(Role.user(userAccount.$id)),
+        Permission.update(Role.user(userAccount.$id)),
+      ],
+    );
+
+    return userAccount;
   },
   signIn: async ({ email, password }: { email: string; password: string }) => {
     const session = await account.createEmailPasswordSession(email, password);

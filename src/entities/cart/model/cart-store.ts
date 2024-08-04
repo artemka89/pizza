@@ -8,7 +8,7 @@ interface CartStore {
 }
 
 export const useCartStore = createStore<CartStore>((set) => ({
-  cartId: '66831065000fa0deec70',
+  cartId: '',
   show: false,
   setShow: (value) => set({ show: value }),
   setCartId: (value) => set({ cartId: value }),
