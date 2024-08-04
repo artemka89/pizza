@@ -23,7 +23,7 @@ export const authApi = {
         cartItem: [],
       },
       [
-        Permission.create(Role.user(userAccount.$id)),
+        Permission.write(Role.user(userAccount.$id)),
         Permission.read(Role.user(userAccount.$id)),
         Permission.update(Role.user(userAccount.$id)),
       ],

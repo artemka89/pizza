@@ -1,17 +1,14 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { useInvalidateUser } from '@/entities/user';
+import { ErrorHandler } from '@/shared/api/config/error-handler';
 import { authApi } from '@/shared/api/models/auth';
+import { useToast } from '@/shared/ui/use-toast';
 
 import { SignInSchemaType } from './schemas';
 
-interface AppwriteError {
-  message: string;
-  type: string;
-  code: number;
-}
-
 export function useSignIn() {
+  const { toast } = useToast();
   const invalidateUser = useInvalidateUser();
 
   return useMutation({
@@ -21,26 +18,12 @@ export function useSignIn() {
       await invalidateUser();
     },
     onError: (error) => {
-      if (isAppwriteError(error))
-        // eslint-disable-next-line no-console
-        console.log({
-          message: error.message,
-          type: error.type,
-          code: error.code,
-        });
+      const message = ErrorHandler(error);
+      toast({
+        variant: 'destructive',
+        title: message,
+        description: 'Повторите попытку.',
+      });
     },
   });
-}
-
-export function isAppwriteError(error: unknown): error is AppwriteError {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    'message' in error &&
-    typeof (error as AppwriteError).message === 'string' &&
-    'type' in error &&
-    typeof (error as AppwriteError).type === 'string' &&
-    'code' in error &&
-    typeof (error as AppwriteError).code === 'number'
-  );
 }
