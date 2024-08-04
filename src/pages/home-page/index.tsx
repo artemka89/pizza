@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { CartIconButton } from '@/features/cart';
+import { Cart, CartIconButton } from '@/features/cart';
 import { CategoryList } from '@/features/category-list';
 import { ProductList } from '@/features/product-list';
 
@@ -16,6 +16,7 @@ export const HomePage: FC = () => {
         productList={<ProductList />}
       />
       <Outlet />
+      <Cart />
     </>
   );
 };

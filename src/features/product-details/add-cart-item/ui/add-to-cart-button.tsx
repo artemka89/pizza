@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { useGetCart } from '@/entities/cart';
 import { useSelectedItems } from '@/entities/products';
+import { useGetUser } from '@/entities/user';
 import { Button } from '@/shared/ui/button';
 
 import { useCreateCartItem } from '../model/use-create-cart-item';
@@ -17,7 +18,8 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
   productId,
   categoryId,
 }) => {
-  const { data } = useGetCart('66a2b7d7002431abd04c');
+  const user = useGetUser();
+  const { data } = useGetCart(user.data?.id || '');
 
   const [selectedOption, selectedIngredients, price] = useSelectedItems(
     (state) => [state.option, state.ingredients, state.price],
@@ -52,7 +54,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
     } else {
       createCartItem(
         {
-          cartId: '66a2b7d7002431abd04c',
+          cartId: user.data?.id || '',
           cartItemIds: data?.cartItem.map((item) => item.id) || [],
           productId,
           categoryId,

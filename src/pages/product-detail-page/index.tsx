@@ -5,7 +5,7 @@ import { useGetProductDetail } from '@/entities/products';
 import { PizzaDetail } from '@/features/product-details';
 import { CoffeeDetail } from '@/features/product-details';
 import { DrinkDetail } from '@/features/product-details';
-import { CATEGORY_TYPE } from '@/shared/lib/constants/category- type';
+import { CATEGORY_TYPE } from '@/shared/lib/constants/category-type';
 
 export const ProductDetailPage: FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { cn } from '@/shared/lib/cn';
-import { CATEGORY_TYPE } from '@/shared/lib/constants/category- type';
+import { CATEGORY_TYPE } from '@/shared/lib/constants/category-type';
 
 interface TextOptionParamsLayoutProps {
   params: { size?: number; weight?: number };

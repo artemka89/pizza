@@ -1,18 +1,44 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { AuthGuard, GuestGuard } from '@/features/auth';
+import { AuthPage } from '@/pages/auth-page';
+import { HomePage } from '@/pages/home-page';
 import { ProductDetailPage } from '@/pages/product-detail-page';
+import { ROUTES } from '@/shared/lib/constants/routes';
 
-import { App } from '../App';
+import { Layout } from '../layout';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />,
+    path: ROUTES.HOME,
+    element: <Layout />,
     errorElement: <div>Произошла ошибка</div>,
     children: [
       {
-        path: '/product/:id',
-        element: <ProductDetailPage />,
+        path: '',
+        element: <HomePage />,
+        children: [
+          {
+            path: ROUTES.PRODUCTS(':id'),
+            element: <ProductDetailPage />,
+          },
+          {
+            path: ROUTES.AUTH,
+            element: (
+              <AuthGuard>
+                <AuthPage />
+              </AuthGuard>
+            ),
+          },
+        ],
+      },
+      {
+        path: '/profile',
+        element: (
+          <GuestGuard>
+            <div>Профиль</div>
+          </GuestGuard>
+        ),
       },
     ],
   },
