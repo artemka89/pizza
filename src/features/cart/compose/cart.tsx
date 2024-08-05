@@ -4,6 +4,7 @@ import { useGetCart } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
 
 import { formatAmountText } from '../lib/format-amount-text';
+import { getTotalAmount } from '../lib/get-total-amount';
 import { getTotalPrice } from '../lib/get-total-price';
 import { CartContentLayout } from '../ui/cart-sheet/cart-content';
 import { CartItem } from '../ui/cart-sheet/cart-item';
@@ -14,10 +15,7 @@ export const Cart: FC = () => {
   const user = useGetUser();
   const { data } = useGetCart(user.data?.id || '');
 
-  const totalAmount = data?.cartItem.reduce(
-    (acc, item) => acc + item.amount,
-    0,
-  );
+  const totalAmount = getTotalAmount(data?.cartItem);
 
   const totalPrice = getTotalPrice(data?.cartItem);
 
