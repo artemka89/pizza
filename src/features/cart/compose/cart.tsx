@@ -4,6 +4,7 @@ import { useGetCart } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
 
 import { formatAmountText } from '../lib/format-amount-text';
+import { getTotalPrice } from '../lib/get-total-price';
 import { CartContentLayout } from '../ui/cart-sheet/cart-content';
 import { CartItem } from '../ui/cart-sheet/cart-item';
 import { CartSheet } from '../ui/cart-sheet/cart-sheet';
@@ -17,13 +18,8 @@ export const Cart: FC = () => {
     (acc, item) => acc + item.amount,
     0,
   );
-  const totalPrice = data?.cartItem.reduce((acc, item) => {
-    const ingredientPrice = item.ingredients.reduce(
-      (ingredientAcc, ingredient) => ingredientAcc + ingredient.price,
-      0,
-    );
-    return acc + item.amount * item.option.price + ingredientPrice;
-  }, 0);
+
+  const totalPrice = getTotalPrice(data?.cartItem);
 
   const totalAmountText = formatAmountText(totalAmount || 0);
 
