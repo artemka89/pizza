@@ -19,7 +19,7 @@ export const Cart: FC = () => {
 
   const totalPrice = getTotalPrice(data?.cartItem);
 
-  const totalAmountText = formatAmountText(totalAmount || 0);
+  const totalAmountText = formatAmountText(totalAmount);
 
   if (!data) return null;
 

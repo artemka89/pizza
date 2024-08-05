@@ -1,4 +1,6 @@
-export function formatAmountText(amount: number): string {
+export function formatAmountText(amount?: number): string {
+  if (!amount) return 'нет товаров';
+
   const cases = [
     { min: 0, max: 1, text: 'товар' },
     { min: 2, max: 4, text: 'товара' },
