@@ -39,19 +39,20 @@ export const DrinkDetail: FC<{ data: Drink }> = ({ data }) => {
         params={<OptionParamText sizeName=' л' />}
         contents={data.contents}
         image={<img src={imageUrl} alt={data.name} />}
+        options={
+          <SwitchButtons
+            values={mappedOptions}
+            activeParam={ACTIVE_PIZZA_SIZE}
+            onChangeValue={setOptionParam}
+          />
+        }
         addToCartButton={
           <AddToCartButton
             categoryId={data.category.id}
             productId={data.id}
             closeModal={onCloseModal}
           />
-        }>
-        <SwitchButtons
-          values={mappedOptions}
-          activeParam={ACTIVE_PIZZA_SIZE}
-          onChangeValue={setOptionParam}
-        />
-      </ProductDetailLayout>
+        }></ProductDetailLayout>
     </ProductModalLayout>
   );
 };

@@ -1,15 +1,16 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { ScrollArea } from '@/shared/ui/scroll-area';
 import { Title } from '@/shared/ui/title';
 
 interface ProductDetailLayoutProps {
   title: string;
+  contents?: string;
   image: JSX.Element;
   params?: JSX.Element;
-  contents?: string;
+  options: JSX.Element;
+  ingredients?: JSX.Element;
   addToCartButton: JSX.Element;
-  children: React.ReactNode;
 }
 
 export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
@@ -17,7 +18,8 @@ export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
   title,
   params,
   contents,
-  children,
+  options,
+  ingredients,
   addToCartButton,
 }) => {
   return (
@@ -36,7 +38,8 @@ export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
               {contents && (
                 <div className='mb-4 text-sm leading-none'>{contents}</div>
               )}
-              {children}
+              {options}
+              {ingredients}
             </div>
           </ScrollArea>
           <div className='mx-7 mt-6'>{addToCartButton}</div>
