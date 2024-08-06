@@ -5,7 +5,7 @@ import { ProductIngredient, ProductOption } from './types';
 interface SelectedItemsStore {
   ingredients: ProductIngredient[];
   toggleIngredient: (item: ProductIngredient) => void;
-  option: Partial<ProductOption> | null;
+  option: Partial<ProductOption> | undefined;
   setOption: (item: Partial<ProductOption>) => void;
   clearItems: () => void;
   price: number;
@@ -13,7 +13,7 @@ interface SelectedItemsStore {
 
 export const useSelectedItems = createStore<SelectedItemsStore>(
   (set) => ({
-    option: null,
+    option: undefined,
     ingredients: [],
     price: 0,
     setOption: (option) =>
@@ -42,7 +42,7 @@ export const useSelectedItems = createStore<SelectedItemsStore>(
           state.ingredients.reduce((a, b) => a + b.price, 0);
       }),
 
-    clearItems: () => set({ ingredients: [], option: null, price: 0 }),
+    clearItems: () => set({ ingredients: [], option: undefined, price: 0 }),
   }),
   'Selected Product Items',
 );
