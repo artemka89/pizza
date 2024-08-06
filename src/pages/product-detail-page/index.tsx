@@ -2,10 +2,9 @@ import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetProductDetail } from '@/entities/products';
-import { CoffeeDetail } from '@/features/product-details';
 import { DrinkDetail } from '@/features/product-details';
 import { CATEGORY_TYPE } from '@/shared/lib/constants/category-type';
-import { PizzaDetail } from '@/widgets/product-detail';
+import { CoffeeDetail, PizzaDetail } from '@/widgets/product-detail';
 
 export const ProductDetailPage: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +15,7 @@ export const ProductDetailPage: FC = () => {
     case CATEGORY_TYPE.PIZZA:
       return <PizzaDetail />;
     case CATEGORY_TYPE.COFFEE:
-      return <CoffeeDetail data={data} />;
+      return <CoffeeDetail />;
     case CATEGORY_TYPE.DRINK:
       return <DrinkDetail data={data} />;
 
