@@ -5,7 +5,6 @@ import { getProductImageUrl, useSelectedItems } from '@/entities/products';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
-import { AddToCartButton } from '../add-cart-item/ui/add-to-cart-button';
 import { Coffee } from '../model/types/coffee';
 import { useMappedOptionToParam } from '../model/use-mapped-option-to-param';
 import { OptionParamText } from '../ui/option-param-text';
@@ -47,13 +46,7 @@ export const CoffeeDetail: FC<{ data: Coffee }> = ({ data }) => {
           />
         }
         ingredients={<ProductIngredientList items={data.ingredients} />}
-        addToCartButton={
-          <AddToCartButton
-            categoryId={data.category.id}
-            productId={data.id}
-            closeModal={onCloseModal}
-          />
-        }
+        addToCartButton={<></>}
       />
     </ProductModalLayout>
   );

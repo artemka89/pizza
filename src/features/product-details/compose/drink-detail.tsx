@@ -5,7 +5,6 @@ import { getProductImageUrl, useSelectedItems } from '@/entities/products';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 import { SwitchButtons } from '@/shared/ui/switch-buttons';
 
-import { AddToCartButton } from '../add-cart-item/ui/add-to-cart-button';
 import { ACTIVE_PIZZA_SIZE } from '../lib/constants';
 import { Drink } from '../model/types/drink';
 import { useMappedOptionToParam } from '../model/use-mapped-option-to-param';
@@ -46,13 +45,7 @@ export const DrinkDetail: FC<{ data: Drink }> = ({ data }) => {
             onChangeValue={setOptionParam}
           />
         }
-        addToCartButton={
-          <AddToCartButton
-            categoryId={data.category.id}
-            productId={data.id}
-            closeModal={onCloseModal}
-          />
-        }></ProductDetailLayout>
+        addToCartButton={<></>}></ProductDetailLayout>
     </ProductModalLayout>
   );
 };
