@@ -1,21 +1,33 @@
 import { FC } from 'react';
 
-import { cn } from '@/shared/lib/cn';
+import { useSelectedItems } from '@/entities/products';
 import { Title } from '@/shared/ui/title';
 
+import { ProductIngredient } from '../../model/types/types';
+
+import { IngredientItem } from './ingredient-item';
+
 interface ProductIngredientListProps {
-  children: React.ReactNode;
-  className?: string;
+  items: ProductIngredient[];
 }
 
 export const ProductIngredientList: FC<ProductIngredientListProps> = ({
-  children,
-  className,
+  items,
 }) => {
+  const [toggleItem] = useSelectedItems((state) => [state.toggleIngredient]);
+
+  if (!items.length) {
+    return null;
+  }
+
   return (
     <div>
       <Title className='mb-2 text-[24px] font-medium'>Добавить по вкусу</Title>
-      <div className={cn('grid grid-cols-3 gap-2', className)}>{children}</div>
+      <div className='grid grid-cols-3 gap-2'>
+        {items.map((item) => (
+          <IngredientItem key={item.id} item={item} toggleItem={toggleItem} />
+        ))}
+      </div>
     </div>
   );
 };
