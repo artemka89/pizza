@@ -20,6 +20,9 @@ export const useSelectedItems = createStore<SelectedItemsStore>(
       set((state) => {
         state.option = option;
         state.price = option?.price || 0;
+        state.price =
+          (state.option?.price || 0) +
+          state.ingredients.reduce((a, b) => a + b.price, 0);
       }),
     toggleIngredient: (item) =>
       set((state) => {
