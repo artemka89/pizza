@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-import { useGetCart } from '@/entities/cart';
 import { useSelectedItems } from '@/entities/products';
-import { useGetUser } from '@/entities/user';
 import { Button } from '@/shared/ui/button';
 
+import { useGetCartItemToAdd } from '../lib/use-get-cart-item-to-add';
+import { useGetCartItemToUpdate } from '../lib/use-get-cart-item-to-update';
 import { useCreateCartItem } from '../model/use-create-cart-item';
-import { useUpdateCartItem } from '../model/use-update-cart-items';
+import { useUpdateCartItemAmount } from '../model/use-update-cart-item-amount';
 
 interface AddToCartButtonProps {
   productId: string;
@@ -18,58 +18,28 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
   productId,
   categoryId,
 }) => {
-  const user = useGetUser();
-  const { data } = useGetCart(user.data?.id || '');
+  const createCartItem = useCreateCartItem();
+  const updateCartItem = useUpdateCartItemAmount();
 
-  const [selectedOption, selectedIngredients, price] = useSelectedItems(
-    (state) => [state.option, state.ingredients, state.price],
-  );
+  const [price] = useSelectedItems((state) => [state.price]);
 
-  const currentCartItem = data?.cartItem.find(
-    (item) =>
-      item.product.id === productId &&
-      item.option.id === selectedOption?.id &&
-      selectedIngredients.toString() === item.ingredients.toString(),
-  );
-
-  const { mutate: createCartItem, isPending: isPendingCreateCartItem } =
-    useCreateCartItem();
-
-  const { mutate: updateCartItem, isPending: isPendingUpdateCartItem } =
-    useUpdateCartItem();
+  const cartItemToAdd = useGetCartItemToAdd(productId, categoryId);
+  const cartItemToUpdate = useGetCartItemToUpdate(productId);
 
   const addToCart = () => {
-    if (currentCartItem?.id) {
-      updateCartItem(
-        {
-          id: currentCartItem?.id || '',
-          productId,
-          categoryId,
-          optionId: selectedOption?.id || '',
-          ingredientsIds: selectedIngredients.map((item) => item.id),
-          amount: currentCartItem ? currentCartItem.amount + 1 : 1,
-        },
-        { onSuccess: () => closeModal() },
-      );
+    if (cartItemToUpdate) {
+      updateCartItem.mutate(cartItemToUpdate, {
+        onSuccess: () => closeModal(),
+      });
     } else {
-      createCartItem(
-        {
-          cartId: user.data?.id || '',
-          cartItemIds: data?.cartItem.map((item) => item.id) || [],
-          productId,
-          categoryId,
-          optionId: selectedOption?.id || '',
-          ingredientsIds: selectedIngredients.map((item) => item.id) || [],
-          amount: 1,
-        },
-        { onSuccess: () => closeModal() },
-      );
+      cartItemToAdd &&
+        createCartItem.mutate(cartItemToAdd, { onSuccess: () => closeModal() });
     }
   };
 
   return (
     <Button
-      disabled={isPendingCreateCartItem || isPendingUpdateCartItem}
+      disabled={createCartItem.isPending || updateCartItem.isPending}
       onClick={addToCart}
       className='h-12 w-full text-base'>
       В корзину {price} ₽
