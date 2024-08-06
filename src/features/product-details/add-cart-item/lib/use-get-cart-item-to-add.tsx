@@ -11,7 +11,7 @@ export function useGetCartItemToAdd(productId: string, categoryId: string) {
     state.ingredients,
   ]);
 
-  if (!user.data || !cart.data || !selectedOption) return undefined;
+  if (!user.data || !cart.data || !selectedOption?.id) return undefined;
 
   const cartItemIds = cart.data.cartItem.map((item) => item.id);
   const ingredientsIds = selectedIngredients.map((item) => item.id);

@@ -1,19 +1,12 @@
 import { createStore } from '@/shared/lib/store/create-store';
 
-import { ProductIngredient } from './types';
+import { ProductIngredient, ProductOption } from './types';
 
 interface SelectedItemsStore {
   ingredients: ProductIngredient[];
   toggleIngredient: (item: ProductIngredient) => void;
-  option:
-    | { id: string; size: number; weight?: number; price: number }
-    | undefined;
-  setOption: (item: {
-    id: string;
-    size: number;
-    weight?: number;
-    price: number;
-  }) => void;
+  option: Partial<ProductOption> | undefined;
+  setOption: (item: Partial<ProductOption>) => void;
   clearItems: () => void;
   price: number;
 }
