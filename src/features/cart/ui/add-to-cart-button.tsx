@@ -11,10 +11,8 @@ import { useUpdateCartItemAmount } from '../model/use-update-cart-item-amount';
 interface AddToCartButtonProps {
   productId: string;
   categoryId: string;
-  closeModal: () => void;
 }
 export const AddToCartButton: FC<AddToCartButtonProps> = ({
-  closeModal,
   productId,
   categoryId,
 }) => {
@@ -28,12 +26,9 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
 
   const addToCart = () => {
     if (cartItemToUpdate) {
-      updateCartItem.mutate(cartItemToUpdate, {
-        onSuccess: () => closeModal(),
-      });
+      updateCartItem.mutate(cartItemToUpdate);
     } else {
-      cartItemToAdd &&
-        createCartItem.mutate(cartItemToAdd, { onSuccess: () => closeModal() });
+      cartItemToAdd && createCartItem.mutate(cartItemToAdd);
     }
   };
 

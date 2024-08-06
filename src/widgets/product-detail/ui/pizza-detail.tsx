@@ -46,7 +46,6 @@ export const PizzaDetail: FC = () => {
           <AddToCartButton
             categoryId={pizza.category.id}
             productId={pizza.id}
-            closeModal={onCloseModal}
           />
         }
       />
