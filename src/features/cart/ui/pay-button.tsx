@@ -1,16 +1,24 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 import { useCartStore } from '@/entities/cart';
+import { ROUTES } from '@/shared/lib/constants/routes';
 import { Button } from '@/shared/ui/button';
 
 interface PayButtonProps {}
 
 export const PayButton: FC<PayButtonProps> = () => {
-  const [setShowCart] = useCartStore((state) => [state.setShow]);
+  const navigate = useNavigate();
+
+  const [showCart, setShowCart] = useCartStore((state) => [
+    state.show,
+    state.setShow,
+  ]);
 
   const onClickPay = () => {
     setShowCart(false);
+    if (showCart) navigate(ROUTES.ORDER('1'));
   };
 
   return (
