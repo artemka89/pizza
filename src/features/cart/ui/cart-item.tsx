@@ -5,34 +5,27 @@ import { TextOptionParams } from '@/shared/ui/layouts/text-option-params';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 
-import { RemoveCartItemButton } from '../remove-cart-item-button';
-import { UpdateCartItemAmountButton } from '../update-cart-item-amount-buttons';
+import { getIngredientsText } from '../lib/get-ingredients-text';
+import { getTotalIngredientPrice } from '../lib/get-total-price';
+import { CartItemType } from '../model/types';
 
-type Item = {
-  id: string;
-  product: { id: string; name: string; imageId: string };
-  category: { name: string };
-  option: { size: number; price: number; weight?: number };
-  amount: number;
-  ingredients: { name: string }[];
-};
+import { RemoveCartItemButton } from './remove-cart-item-button';
+import { UpdateCartItemAmountButton } from './update-cart-item-amount-buttons';
 
 interface CartItemProps {
-  item: Item;
+  item: CartItemType;
 }
 
 export const CartItem: FC<CartItemProps> = ({ item }) => {
   const { id, product, category, option, amount, ingredients } = item;
 
-  const imageUrl = getProductImageUrl({ id: product.imageId }).toString();
+  const price = option.price * amount + getTotalIngredientPrice(ingredients);
 
-  const ingredientsText = ingredients
-    ?.map((ingredient) => {
-      const result =
-        ingredient.name.charAt(0).toLowerCase() + ingredient.name.slice(1);
-      return result;
-    })
-    .join(', ');
+  const ingredientsText = getIngredientsText(ingredients);
+
+  const imageUrl = getProductImageUrl({
+    id: product.imageId,
+  }).toString();
 
   return (
     <div className='flex gap-4 bg-background p-4'>
@@ -49,13 +42,13 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
         </div>
         {ingredients.length > 0 && (
           <div className='text-xs leading-4 text-secondary-foreground'>
-            + {ingredientsText}
+            {ingredientsText}
           </div>
         )}
         <Separator className='mb-4 mt-3' />
         <div className='flex items-center justify-between'>
           <UpdateCartItemAmountButton amount={amount} cartItemId={id} />
-          <div className='font-bold'>{option.price} ₽</div>
+          <div className='font-bold'>{price} ₽</div>
         </div>
       </div>
     </div>
