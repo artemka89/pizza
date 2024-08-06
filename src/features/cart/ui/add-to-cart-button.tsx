@@ -32,12 +32,14 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
     }
   };
 
+  const isLoading = createCartItem.isPending || updateCartItem.isPending;
+
   return (
     <Button
-      disabled={createCartItem.isPending || updateCartItem.isPending}
+      disabled={isLoading}
       onClick={addToCart}
       className='h-12 w-full text-base'>
-      В корзину {price} ₽
+      {isLoading ? <span>Добавляем...</span> : <span>В корзину {price} ₽</span>}
     </Button>
   );
 };
