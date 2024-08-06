@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { useSelectedItems } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
+import { useToast } from '@/shared/ui/use-toast';
 
 import { useGetCartItemToAdd } from '../lib/use-get-cart-item-to-add';
 import { useGetCartItemToUpdate } from '../lib/use-get-cart-item-to-update';
@@ -16,6 +17,8 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
   productId,
   categoryId,
 }) => {
+  const { toast } = useToast();
+
   const createCartItem = useCreateCartItem();
   const updateCartItem = useUpdateCartItemAmount();
 
@@ -26,9 +29,24 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
 
   const addToCart = () => {
     if (cartItemToUpdate) {
-      updateCartItem.mutate(cartItemToUpdate);
+      updateCartItem.mutate(cartItemToUpdate, {
+        onSuccess: () => {
+          toast({
+            variant: 'success',
+            title: 'Товар добавлен в корзину',
+          });
+        },
+      });
     } else {
-      cartItemToAdd && createCartItem.mutate(cartItemToAdd);
+      cartItemToAdd &&
+        createCartItem.mutate(cartItemToAdd, {
+          onSuccess: () => {
+            toast({
+              variant: 'success',
+              title: 'Товар добавлен в корзину',
+            });
+          },
+        });
     }
   };
 
