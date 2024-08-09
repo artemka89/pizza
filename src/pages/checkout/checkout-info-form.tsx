@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
 import { FormInput } from '@/shared/ui/form/form-input';
+import { FormPhoneInput } from '@/shared/ui/form/form-phone-input';
+import { FormTextarea } from '@/shared/ui/form/form-textarea';
 
 import { CheckoutAddressForm } from './checkout-address-form';
-import { FormPhoneInput } from './form-phone-input';
-import { FormTextarea } from './form-textarea';
 
 export const CheckoutInfoForm: FC = () => {
   return (
