@@ -5,11 +5,11 @@ import { useGetCart } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
 import { CheckoutCartItem, ClearCartButton } from '@/features/cart';
 import { CheckoutForm, CheckoutInfo } from '@/features/checkout';
+import { CheckoutDetails } from '@/features/checkout';
 import { CheckoutInfoFormType } from '@/features/checkout/';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 import { Title } from '@/shared/ui/title';
 
-import { CheckoutDetails } from './checkout-details';
 import { CheckoutSection } from './checkout-section';
 
 export const CheckoutPage: FC = () => {
