@@ -5,7 +5,7 @@ import { FormInput } from '@/shared/ui/form/form-input';
 import { FormPhoneInput } from '@/shared/ui/form/form-phone-input';
 import { FormTextarea } from '@/shared/ui/form/form-textarea';
 
-export const CheckoutInfoForm: FC = () => {
+export const CheckoutInfo: FC = () => {
   return (
     <>
       <FormInput
