@@ -1,14 +1,15 @@
-/* eslint-disable boundaries/entry-point */
 import { FC } from 'react';
 
 import { getProductImageUrl } from '@/entities/products';
-import { getIngredientsText } from '@/features/cart/lib/get-ingredients-text';
-import { getTotalIngredientPrice } from '@/features/cart/lib/get-total-price';
-import { CartItemType } from '@/features/cart/model/types';
-import { RemoveCartItemButton } from '@/features/cart/ui/remove-cart-item-button';
-import { UpdateCartItemAmountButton } from '@/features/cart/ui/update-cart-item-amount-buttons';
 import { TextOptionParams } from '@/shared/ui/layouts/text-option-params';
 import { Title } from '@/shared/ui/title';
+
+import { getIngredientsText } from '../lib/get-ingredients-text';
+import { getTotalIngredientPrice } from '../lib/get-total-price';
+import { CartItemType } from '../model/types';
+
+import { RemoveCartItemButton } from './remove-cart-item-button';
+import { UpdateCartItemAmountButton } from './update-cart-item-amount-buttons';
 
 interface CheckoutCartItemProps {
   item: CartItemType;

@@ -1,14 +1,13 @@
 import { FC } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Trash2 } from 'lucide-react';
 
 import { useGetCart } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
+import { CheckoutCartItem, ClearCartButton } from '@/features/cart';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 import { Title } from '@/shared/ui/title';
 
-import { CheckoutCartItem } from './checkout-cart-item';
 import { CheckoutDetails } from './checkout-details';
 import {
   CheckoutInfoFormSchema,
@@ -20,6 +19,8 @@ import { CheckoutSection } from './checkout-section';
 export const CheckoutPage: FC = () => {
   const user = useGetUser();
   const cart = useGetCart(user.data?.id || '');
+
+  const cartIsEmpty = cart.data?.cartItem.length === 0;
 
   const methods = useForm<CheckoutInfoFormType>({
     mode: 'onBlur',
@@ -49,12 +50,7 @@ export const CheckoutPage: FC = () => {
             <div className='flex flex-1 flex-col gap-8'>
               <CheckoutSection
                 title='1. Корзина'
-                actions={
-                  <div className='text-md flex items-center gap-1 text-muted-foreground'>
-                    <Trash2 size={18} />
-                    <span>Очистить корзину</span>
-                  </div>
-                }>
+                actions={<>{!cartIsEmpty && <ClearCartButton />}</>}>
                 <div className='space-y-10'>
                   {cart.data?.cartItem.map((item) => (
                     <CheckoutCartItem key={item.id} item={item} />
