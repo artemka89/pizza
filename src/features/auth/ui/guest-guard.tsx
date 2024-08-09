@@ -9,11 +9,11 @@ interface GuestGuardProps {
 }
 
 export const GuestGuard: FC<GuestGuardProps> = ({ children }) => {
-  const { data } = useGetUser();
+  const { data, isPending } = useGetUser();
 
   const location = useLocation();
 
-  if (!data) {
+  if (!data && !isPending) {
     return <Navigate to={ROUTES.AUTH} state={{ from: location }} replace />;
   }
   return children;

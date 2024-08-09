@@ -3,11 +3,10 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/shared/ui/button';
+import { FormInput } from '@/shared/ui/form/form-input';
 import { Spinner } from '@/shared/ui/spinner';
 
 import { SignUpSchema, SignUpSchemaType } from '../model/schemas';
-
-import { FormInput } from './form-input';
 
 interface SignUpFormProps {
   onSubmit: (data: SignUpSchemaType) => void;

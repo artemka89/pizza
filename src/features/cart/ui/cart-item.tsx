@@ -19,7 +19,7 @@ interface CartItemProps {
 export const CartItem: FC<CartItemProps> = ({ item }) => {
   const { id, product, category, option, amount, ingredients } = item;
 
-  const price = option.price * amount + getTotalIngredientPrice(ingredients);
+  const price = (option.price + getTotalIngredientPrice(ingredients)) * amount;
 
   const ingredientsText = getIngredientsText(ingredients);
 

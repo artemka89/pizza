@@ -18,7 +18,7 @@ export const PayButton: FC<PayButtonProps> = () => {
 
   const onClickPay = () => {
     setShowCart(false);
-    if (showCart) navigate(ROUTES.ORDER('1'));
+    if (showCart) navigate(ROUTES.CHECKOUT);
   };
 
   return (

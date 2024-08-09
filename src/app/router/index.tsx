@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { AuthGuard, GuestGuard } from '@/features/auth';
 import { AuthPage } from '@/pages/auth-page';
+import { CheckoutPage } from '@/pages/checkout';
 import { HomePage } from '@/pages/home-page';
-import { OrderPage } from '@/pages/order-page';
 import { ProductDetailPage } from '@/pages/product-detail-page';
 import { ROUTES } from '@/shared/lib/constants/routes';
 
@@ -42,10 +42,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: ROUTES.ORDER(':id'),
+        path: ROUTES.CHECKOUT,
         element: (
           <GuestGuard>
-            <OrderPage />
+            <CheckoutPage />
           </GuestGuard>
         ),
       },
