@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { AuthGuard, GuestGuard } from '@/features/auth';
 import { AuthPage } from '@/pages/auth-page';
-import { CheckoutPage } from '@/pages/checkout-page';
+import { CartPage } from '@/pages/cart-page';
 import { HomePage } from '@/pages/home-page';
 import { ProductDetailPage } from '@/pages/product-detail-page';
 import { ROUTES } from '@/shared/lib/constants/routes';
@@ -42,10 +42,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: ROUTES.CHECKOUT,
+        path: ROUTES.CART,
         element: (
           <GuestGuard>
-            <CheckoutPage />
+            <CartPage />
           </GuestGuard>
         ),
       },

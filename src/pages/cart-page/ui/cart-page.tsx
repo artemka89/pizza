@@ -7,29 +7,30 @@ import {
   useGetCart,
 } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
-import { CartItem, ClearCartButton } from '@/features/cart';
 import {
-  CheckoutForm,
-  CheckoutInfo,
-  useCreateOrder,
-} from '@/features/checkout';
-import { CheckoutDetails } from '@/features/checkout';
-import { CheckoutInfoFormType } from '@/features/checkout/';
+  CartDetails,
+  CartFormProvider,
+  CartInfoFormType,
+  CartInfoInputs,
+  CartItem,
+  ClearCartButton,
+} from '@/features/cart';
+import { useCreateOrder } from '@/features/order';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 import { Title } from '@/shared/ui/title';
 
-import { CheckoutSection } from './checkout-section';
+import { GraySection } from './gray-section';
 
 const DELIVERY_PRICE = 250;
 
-export const CheckoutPage: FC = () => {
+export const CartPage: FC = () => {
   const user = useGetUser();
   const cart = useGetCart(user.data?.id || '');
   const createOrder = useCreateOrder();
   const cartIsEmpty = cart.data?.cartItem.length === 0;
   const totalPrice = getTotalPrice(cart.data?.cartItem);
 
-  const onSubmitHandler: SubmitHandler<CheckoutInfoFormType> = (data) => {
+  const onSubmitHandler: SubmitHandler<CartInfoFormType> = (data) => {
     createOrder.mutate({
       userId: user.data?.id || '',
       userName: data.name,
@@ -61,9 +62,9 @@ export const CheckoutPage: FC = () => {
       <Title size='lg' className='p-6'>
         Оформление заказа
       </Title>
-      <CheckoutForm onSubmit={onSubmitHandler}>
+      <CartFormProvider onSubmit={onSubmitHandler}>
         <div className='flex flex-1 flex-col gap-8'>
-          <CheckoutSection
+          <GraySection
             title='1. Корзина'
             actions={<>{!cartIsEmpty && <ClearCartButton />}</>}>
             <div className='space-y-10'>
@@ -71,20 +72,20 @@ export const CheckoutPage: FC = () => {
                 <CartItem key={item.id} item={item} />
               ))}
             </div>
-          </CheckoutSection>
-          <CheckoutSection title='2. Персональная информация'>
-            <CheckoutInfo />
-          </CheckoutSection>
+          </GraySection>
+          <GraySection title='2. Персональная информация'>
+            <CartInfoInputs />
+          </GraySection>
         </div>
         <div className='flex max-w-[450px] flex-1 flex-col gap-8'>
-          <CheckoutSection title='Итого:'>
-            <CheckoutDetails
+          <GraySection title='Итого:'>
+            <CartDetails
               totalPrice={totalPrice}
               deliveryPrice={DELIVERY_PRICE}
             />
-          </CheckoutSection>
+          </GraySection>
         </div>
-      </CheckoutForm>
+      </CartFormProvider>
     </PageContainer>
   );
 };

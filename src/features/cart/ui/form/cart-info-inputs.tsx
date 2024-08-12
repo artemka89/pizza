@@ -1,11 +1,12 @@
 import { FC } from 'react';
 
-import { CheckoutAddressForm } from '@/features/checkout';
 import { FormInput } from '@/shared/ui/form/form-input';
 import { FormPhoneInput } from '@/shared/ui/form/form-phone-input';
 import { FormTextarea } from '@/shared/ui/form/form-textarea';
 
-export const CheckoutInfo: FC = () => {
+import { CartAddressInputForm } from './cart-address-input-form';
+
+export const CartInfoInputs: FC = () => {
   return (
     <>
       <FormInput
@@ -39,7 +40,7 @@ export const CheckoutInfo: FC = () => {
           className='w-full'
         />
       </div>
-      <CheckoutAddressForm name='address' label='Адрес' required />
+      <CartAddressInputForm name='address' label='Адрес' required />
       <FormTextarea
         name='comment'
         label='Комментарий к заказу'

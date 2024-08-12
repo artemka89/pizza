@@ -1,7 +1,7 @@
 import { isValidPhoneNumber, parsePhoneNumber } from 'libphonenumber-js';
 import { z } from 'zod';
 
-export const CheckoutInfoFormSchema = z.object({
+export const CartInfoFormSchema = z.object({
   name: z.string().min(2, { message: 'Обязательное поле' }),
   email: z.string().min(3, { message: 'Обязательное поле' }).email({
     message: 'Email неверный',
@@ -14,4 +14,4 @@ export const CheckoutInfoFormSchema = z.object({
   comment: z.string().optional(),
 });
 
-export type CheckoutInfoFormType = z.infer<typeof CheckoutInfoFormSchema>;
+export type CartInfoFormType = z.infer<typeof CartInfoFormSchema>;

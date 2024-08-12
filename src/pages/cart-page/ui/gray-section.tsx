@@ -3,14 +3,14 @@ import { FC } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { Title } from '@/shared/ui/title';
 
-interface CheckoutSectionProps {
+interface GraySectionProps {
   title?: string;
   actions?: JSX.Element;
   children: React.ReactNode;
   className?: string;
 }
 
-export const CheckoutSection: FC<CheckoutSectionProps> = ({
+export const GraySection: FC<GraySectionProps> = ({
   title,
   actions,
   children,
