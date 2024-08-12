@@ -10,7 +10,7 @@ import {
 import { AddToCartButton } from '@/features/cart';
 import {
   DrinkOptionSwitcher,
-  OptionParamText,
+  SelectedOptionText,
 } from '@/features/product-details';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
@@ -38,7 +38,7 @@ export const DrinkDetail: FC = () => {
     <ProductModalLayout open={!!drink} onCloseModal={onCloseModal}>
       <ProductDetailLayout
         title={drink.name}
-        params={<OptionParamText sizeName=' л' />}
+        params={<SelectedOptionText sizeName=' л' />}
         contents={drink.contents}
         image={<img src={imageUrl} alt={drink.name} />}
         options={<DrinkOptionSwitcher options={drink.options} />}

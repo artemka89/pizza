@@ -2,12 +2,12 @@ import { FC } from 'react';
 
 import { useSelectedItems } from '@/entities/products';
 
-interface OptionParamText {
+interface SelectedOptionTextProps {
   sizeName?: string;
   weightName?: string;
 }
 
-export const OptionParamText: FC<OptionParamText> = ({
+export const SelectedOptionText: FC<SelectedOptionTextProps> = ({
   sizeName,
   weightName,
 }) => {

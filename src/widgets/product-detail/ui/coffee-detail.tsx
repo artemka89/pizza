@@ -10,8 +10,8 @@ import {
 import { AddToCartButton } from '@/features/cart';
 import {
   CoffeeOptionSwitcher,
-  OptionParamText,
   ProductIngredientList,
+  SelectedOptionText,
 } from '@/features/product-details';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
@@ -42,7 +42,7 @@ export const CoffeeDetail: FC = () => {
         title={coffee.name}
         contents={coffee.contents}
         image={<img src={imageUrl} alt={coffee.name} />}
-        params={<OptionParamText sizeName='л' weightName='г' />}
+        params={<SelectedOptionText sizeName='л' weightName='г' />}
         options={<CoffeeOptionSwitcher options={coffee.options} />}
         ingredients={<ProductIngredientList items={coffee.ingredients} />}
         addToCartButton={

@@ -8,10 +8,10 @@ import {
 } from '@/entities/products';
 import { AddToCartButton } from '@/features/cart';
 import {
-  OptionParamText,
   PizzaImage,
   PizzaOptionSwitcher,
   ProductIngredientList,
+  SelectedOptionText,
 } from '@/features/product-details';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
@@ -39,7 +39,7 @@ export const PizzaDetail: FC = () => {
         title={pizza.name}
         contents={pizza.contents}
         image={<PizzaImage imageId={pizza.imageId} />}
-        params={<OptionParamText sizeName='см' weightName='г' />}
+        params={<SelectedOptionText sizeName='см' weightName='г' />}
         options={<PizzaOptionSwitcher options={pizza.options} />}
         ingredients={<ProductIngredientList items={pizza.ingredients} />}
         addToCartButton={
