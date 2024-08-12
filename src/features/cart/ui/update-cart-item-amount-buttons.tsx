@@ -40,6 +40,7 @@ export const UpdateCartItemAmountButton: FC<
         disabled={isDisabledMinus}
         variant='outline'
         size='icon'
+        type='button'
         className='size-6 rounded-lg p-0'>
         <Minus />
       </Button>
@@ -54,6 +55,7 @@ export const UpdateCartItemAmountButton: FC<
         disabled={isDisabledPlus}
         variant='outline'
         size='icon'
+        type='button'
         className='size-6 rounded-lg p-0'>
         <Plus />
       </Button>

@@ -2,12 +2,12 @@ import { FC } from 'react';
 
 import { Button } from '@/shared/ui/button';
 
-interface CheckoutDetailsProps {
+interface CartDetailsProps {
   totalPrice: number;
   deliveryPrice: number;
 }
 
-export const CheckoutDetails: FC<CheckoutDetailsProps> = ({
+export const CartDetails: FC<CartDetailsProps> = ({
   totalPrice,
   deliveryPrice,
 }) => {

@@ -3,17 +3,17 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
-  CheckoutInfoFormSchema,
-  CheckoutInfoFormType,
-} from '../model/checkout-form-schema';
+  CartInfoFormSchema,
+  CartInfoFormType,
+} from '../../model/cart-form-schema';
 
-interface CheckoutFormProps {
+interface CartFormProps {
   children: React.ReactNode;
-  onSubmit: (data: CheckoutInfoFormType) => void;
+  onSubmit: (data: CartInfoFormType) => void;
 }
 
-export const CheckoutForm: FC<CheckoutFormProps> = ({ children, onSubmit }) => {
-  const methods = useForm<CheckoutInfoFormType>({
+export const CartFormProvider: FC<CartFormProps> = ({ children, onSubmit }) => {
+  const methods = useForm<CartInfoFormType>({
     mode: 'onBlur',
     defaultValues: {
       name: '',
@@ -22,7 +22,7 @@ export const CheckoutForm: FC<CheckoutFormProps> = ({ children, onSubmit }) => {
       address: '',
       comment: '',
     },
-    resolver: zodResolver(CheckoutInfoFormSchema),
+    resolver: zodResolver(CartInfoFormSchema),
   });
 
   return (

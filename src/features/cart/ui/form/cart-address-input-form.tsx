@@ -8,14 +8,14 @@ import { Label } from '@/shared/ui/label';
 
 import 'react-dadata/dist/react-dadata.css';
 
-interface CheckoutAddressFormProps {
+interface CartAddressInputFormProps {
   name: string;
   label?: string;
   required?: boolean;
   className?: string;
 }
 
-export const CheckoutAddressForm: FC<CheckoutAddressFormProps> = ({
+export const CartAddressInputForm: FC<CartAddressInputFormProps> = ({
   name,
   label,
   required,

@@ -1,12 +1,9 @@
 import { FC } from 'react';
 
-import { getTotalIngredientPrice } from '@/entities/cart';
-import { getProductImageUrl } from '@/entities/products';
-import { TextOptionParams } from '@/shared/ui/layouts/text-option-params';
-import { Separator } from '@/shared/ui/separator';
+import { getIngredientsText, getTotalIngredientPrice } from '@/entities/cart';
+import { OptionText } from '@/entities/products';
 import { Title } from '@/shared/ui/title';
 
-import { getIngredientsText } from '../lib/get-ingredients-text';
 import { CartItemType } from '../model/types';
 
 import { RemoveCartItemButton } from './remove-cart-item-button';
@@ -17,40 +14,37 @@ interface CartItemProps {
 }
 
 export const CartItem: FC<CartItemProps> = ({ item }) => {
-  const { id, product, category, option, amount, ingredients } = item;
+  const price =
+    item.amount *
+    (item.option.price + getTotalIngredientPrice(item.ingredients));
 
-  const price = (option.price + getTotalIngredientPrice(ingredients)) * amount;
-
-  const ingredientsText = getIngredientsText(ingredients);
-
-  const imageUrl = getProductImageUrl({
-    id: product.imageId,
-  }).toString();
+  const ingredientsText = getIngredientsText(item.ingredients);
 
   return (
-    <div className='flex gap-4 bg-background p-4'>
-      <div className='size-[64px]'>
-        <img src={imageUrl} alt={product.name} className='h-full w-full' />
+    <div key={item.id} className='flex items-center'>
+      <div className='mr-4 size-[64px]'>
+        <img
+          src={item.product.imageUrl}
+          alt={item.product.name}
+          className='h-full w-full'
+        />
       </div>
       <div className='flex-1'>
-        <div className='flex items-center justify-between'>
-          <Title size='xs'>{product.name}</Title>
-          <RemoveCartItemButton cartItemId={id} />
-        </div>
+        <Title size='xs'>{item.product.name}</Title>
         <div className='text-sm text-secondary-foreground'>
-          <TextOptionParams category={category.name} params={option} />
+          <OptionText category={item.category.name} option={item.option} />
         </div>
-        {ingredients.length > 0 && (
+        {item.ingredients.length > 0 && (
           <div className='text-xs leading-4 text-secondary-foreground'>
             {ingredientsText}
           </div>
         )}
-        <Separator className='mb-4 mt-3' />
-        <div className='flex items-center justify-between'>
-          <UpdateCartItemAmountButton amount={amount} cartItemId={id} />
-          <div className='font-bold'>{price} ₽</div>
-        </div>
       </div>
+      <div className='mx-10 text-center font-bold'>{price} ₽</div>
+      <div className='mx-6'>
+        <UpdateCartItemAmountButton amount={item.amount} cartItemId={item.id} />
+      </div>
+      <RemoveCartItemButton cartItemId={item.id} />
     </div>
   );
 };
