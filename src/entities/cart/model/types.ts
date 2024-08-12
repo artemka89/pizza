@@ -15,19 +15,18 @@ interface CartItem {
 interface Product {
   id: string;
   name: string;
-  imageId: string;
+  imageUrl: string;
 }
 
-interface Option {
+export interface Option {
   id: string;
   size: number;
   price: number;
   weight?: number;
 }
 
-interface Ingredient {
+export interface Ingredient {
   id: string;
   name: string;
-  imageId: string;
   price: number;
 }

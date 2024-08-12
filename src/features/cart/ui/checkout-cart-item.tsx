@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { getTotalIngredientPrice } from '@/entities/cart';
-import { getProductImageUrl, OptionText } from '@/entities/products';
+import { OptionText } from '@/entities/products';
 import { Title } from '@/shared/ui/title';
 
 import { getIngredientsText } from '../lib/get-ingredients-text';
@@ -21,14 +21,14 @@ export const CheckoutCartItem: FC<CheckoutCartItemProps> = ({ item }) => {
 
   const ingredientsText = getIngredientsText(item.ingredients);
 
-  const imageUrl = getProductImageUrl({
-    id: item.product.imageId,
-  }).toString();
-
   return (
     <div key={item.id} className='flex items-center'>
       <div className='mr-4 size-[64px]'>
-        <img src={imageUrl} alt={item.product.name} className='h-full w-full' />
+        <img
+          src={item.product.imageUrl}
+          alt={item.product.name}
+          className='h-full w-full'
+        />
       </div>
       <div className='flex-1'>
         <Title size='xs'>{item.product.name}</Title>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { getTotalIngredientPrice } from '@/entities/cart';
-import { getProductImageUrl, OptionText } from '@/entities/products';
+import { OptionText } from '@/entities/products';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 
@@ -22,14 +22,14 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
 
   const ingredientsText = getIngredientsText(ingredients);
 
-  const imageUrl = getProductImageUrl({
-    id: product.imageId,
-  }).toString();
-
   return (
     <div className='flex gap-4 bg-background p-4'>
       <div className='size-[64px]'>
-        <img src={imageUrl} alt={product.name} className='h-full w-full' />
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className='h-full w-full'
+        />
       </div>
       <div className='flex-1'>
         <div className='flex items-center justify-between'>
