@@ -4,11 +4,13 @@ import { Button } from '@/shared/ui/button';
 
 interface CheckoutDetailsProps {
   totalPrice: number;
+  deliveryPrice: number;
 }
 
-export const CheckoutDetails: FC<CheckoutDetailsProps> = ({ totalPrice }) => {
-  const deliveryPrice = 120;
-
+export const CheckoutDetails: FC<CheckoutDetailsProps> = ({
+  totalPrice,
+  deliveryPrice,
+}) => {
   return (
     <div>
       <div className='mb-10 text-3xl font-extrabold'>

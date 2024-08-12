@@ -1,10 +1,18 @@
 import { FC } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 
-import { useGetCart } from '@/entities/cart';
+import {
+  getTotalIngredientPrice,
+  getTotalPrice,
+  useGetCart,
+} from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
 import { CheckoutCartItem, ClearCartButton } from '@/features/cart';
-import { CheckoutForm, CheckoutInfo } from '@/features/checkout';
+import {
+  CheckoutForm,
+  CheckoutInfo,
+  useCreateOrder,
+} from '@/features/checkout';
 import { CheckoutDetails } from '@/features/checkout';
 import { CheckoutInfoFormType } from '@/features/checkout/';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
@@ -12,15 +20,40 @@ import { Title } from '@/shared/ui/title';
 
 import { CheckoutSection } from './checkout-section';
 
+const DELIVERY_PRICE = 250;
+
 export const CheckoutPage: FC = () => {
   const user = useGetUser();
   const cart = useGetCart(user.data?.id || '');
-
+  const createOrder = useCreateOrder();
   const cartIsEmpty = cart.data?.cartItem.length === 0;
+  const totalPrice = getTotalPrice(cart.data?.cartItem);
 
   const onSubmitHandler: SubmitHandler<CheckoutInfoFormType> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    createOrder.mutate({
+      userId: user.data?.id || '',
+      userName: data.name,
+      userEmail: data.email,
+      userPhone: data.phone,
+      orderStatus: 'PENDING',
+      userAddress: data.address,
+      comment: data.comment,
+      paymentId: '1',
+      totalPrice: totalPrice + DELIVERY_PRICE,
+      orderItems:
+        cart.data?.cartItem.map((item) => ({
+          name: item.product.name,
+          imageId: item.product.imageId,
+          option: `${item.option.size}, ${item.option.weight || ''}`,
+          ingredients: item.ingredients
+            .map((ingredient) => ingredient.name)
+            .join(', '),
+          amount: item.amount,
+          price:
+            (totalPrice + getTotalIngredientPrice(item.ingredients)) *
+            item.amount,
+        })) || [],
+    });
   };
 
   return (
@@ -45,7 +78,10 @@ export const CheckoutPage: FC = () => {
         </div>
         <div className='flex max-w-[450px] flex-1 flex-col gap-8'>
           <CheckoutSection title='Итого:'>
-            <CheckoutDetails totalPrice={2005} />
+            <CheckoutDetails
+              totalPrice={totalPrice}
+              deliveryPrice={DELIVERY_PRICE}
+            />
           </CheckoutSection>
         </div>
       </CheckoutForm>

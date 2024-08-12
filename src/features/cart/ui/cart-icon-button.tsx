@@ -2,12 +2,11 @@ import { FC } from 'react';
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 
 import { useCartStore, useGetCart } from '@/entities/cart';
+import { getTotalAmount } from '@/entities/cart';
+import { getTotalPrice } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
-
-import { getTotalAmount } from '../lib/get-total-amount';
-import { getTotalPrice } from '../lib/get-total-price';
 
 interface CartIconButtonProps {
   className?: string;

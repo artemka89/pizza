@@ -12,4 +12,7 @@ export const APPWRITE = {
 
   CART_COLLECTION_ID: 'carts',
   CART_ITEM_COLLECTION_ID: 'cart-item',
+
+  ORDER_COLLECTION_ID: 'orders',
+  ORDER_ITEM_COLLECTION_ID: 'order-items',
 };

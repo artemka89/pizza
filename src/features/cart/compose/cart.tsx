@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
 import { useGetCart } from '@/entities/cart';
+import { getTotalAmount } from '@/entities/cart';
+import { getTotalPrice } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
 
 import { formatAmountText } from '../lib/format-amount-text';
-import { getTotalAmount } from '../lib/get-total-amount';
-import { getTotalPrice } from '../lib/get-total-price';
 import { CartContentLayout } from '../ui/cart-content-layout';
 import { CartItem } from '../ui/cart-item';
 import { PayButton } from '../ui/pay-button';
