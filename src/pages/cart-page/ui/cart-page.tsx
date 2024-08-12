@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { SubmitHandler } from 'react-hook-form';
+import { Navigate } from 'react-router-dom';
 
 import {
   getTotalIngredientPrice,
@@ -16,6 +17,7 @@ import {
   ClearCartButton,
 } from '@/features/cart';
 import { useCreateOrder } from '@/features/order';
+import { ROUTES } from '@/shared/lib/constants/routes';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 import { Title } from '@/shared/ui/title';
 
@@ -56,6 +58,10 @@ export const CartPage: FC = () => {
         })) || [],
     });
   };
+
+  if (cart.data?.cartItem.length === 0) {
+    return <Navigate to={ROUTES.HOME} />;
+  }
 
   return (
     <PageContainer className='container mb-20'>
