@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
 import { getTotalIngredientPrice } from '@/entities/cart';
-import { getProductImageUrl } from '@/entities/products';
-import { TextOptionParams } from '@/shared/ui/layouts/text-option-params';
+import { getProductImageUrl, TextOptionParams } from '@/entities/products';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 

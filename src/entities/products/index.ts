@@ -5,3 +5,4 @@ export { useGetSearchingProductList } from './model/use-get-search-product-list'
 export { useSelectedItems } from './model/use-selected-items-store';
 export { ProductCard } from './ui/product-card';
 export { ProductDetailLayout } from './ui/product-detail-layout';
+export { TextOptionParams } from './ui/text-option-params';
