@@ -1,10 +1,9 @@
 import { FC } from 'react';
 
-import { getTotalIngredientPrice } from '@/entities/cart';
+import { getIngredientsText, getTotalIngredientPrice } from '@/entities/cart';
 import { OptionText } from '@/entities/products';
 import { Title } from '@/shared/ui/title';
 
-import { getIngredientsText } from '../lib/get-ingredients-text';
 import { CartItemType } from '../model/types';
 
 import { RemoveCartItemButton } from './remove-cart-item-button';

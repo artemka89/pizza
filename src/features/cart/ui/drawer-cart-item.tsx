@@ -1,11 +1,10 @@
 import { FC } from 'react';
 
-import { getTotalIngredientPrice } from '@/entities/cart';
+import { getIngredientsText, getTotalIngredientPrice } from '@/entities/cart';
 import { OptionText } from '@/entities/products';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 
-import { getIngredientsText } from '../lib/get-ingredients-text';
 import { CartItemType } from '../model/types';
 
 import { RemoveCartItemButton } from './remove-cart-item-button';
@@ -39,9 +38,9 @@ export const DrawerCartItem: FC<DrawerCartItemProps> = ({ item }) => {
         <div className='text-sm text-secondary-foreground'>
           <OptionText category={category.name} option={option} />
         </div>
-        {ingredients.length && (
+        {ingredientsText && (
           <div className='text-xs leading-4 text-secondary-foreground'>
-            {ingredientsText}
+            + {ingredientsText}
           </div>
         )}
         <Separator className='mb-4 mt-3' />
