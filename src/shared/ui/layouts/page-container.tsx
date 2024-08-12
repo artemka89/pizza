@@ -11,5 +11,5 @@ export const PageContainer: FC<PageContainerProps> = ({
   children,
   className,
 }) => {
-  return <main className={cn(className, 'grow')}>{children}</main>;
+  return <main className={cn('grow', className)}>{children}</main>;
 };

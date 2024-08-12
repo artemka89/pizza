@@ -82,4 +82,15 @@ export const cartApi = {
     );
     return item;
   },
+  removeAllItems: async (cartId: string) => {
+    const cart = await databases.updateDocument(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.CART_COLLECTION_ID,
+      cartId,
+      {
+        cartItem: [],
+      },
+    );
+    return cart;
+  },
 };
