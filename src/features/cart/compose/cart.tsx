@@ -7,7 +7,7 @@ import { useGetUser } from '@/entities/user';
 
 import { formatAmountText } from '../lib/format-amount-text';
 import { CartContentLayout } from '../ui/cart-content-layout';
-import { CartItem } from '../ui/cart-item';
+import { DrawerCartItem } from '../ui/drawer-cart-item';
 import { PayButton } from '../ui/pay-button';
 
 export const Cart: FC = () => {
@@ -26,7 +26,7 @@ export const Cart: FC = () => {
       totalPrice={totalPrice}
       payButton={<PayButton />}>
       {data.cartItem.map((item) => (
-        <CartItem key={item.id} item={item} />
+        <DrawerCartItem key={item.id} item={item} />
       ))}
     </CartContentLayout>
   );

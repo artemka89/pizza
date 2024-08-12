@@ -7,7 +7,7 @@ import {
   useGetCart,
 } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
-import { CheckoutCartItem, ClearCartButton } from '@/features/cart';
+import { CartItem, ClearCartButton } from '@/features/cart';
 import {
   CheckoutForm,
   CheckoutInfo,
@@ -43,7 +43,7 @@ export const CheckoutPage: FC = () => {
       orderItems:
         cart.data?.cartItem.map((item) => ({
           name: item.product.name,
-          imageId: item.product.imageId,
+          imageId: item.product.imageUrl,
           option: `${item.option.size}, ${item.option.weight || ''}`,
           ingredients: item.ingredients
             .map((ingredient) => ingredient.name)
@@ -68,7 +68,7 @@ export const CheckoutPage: FC = () => {
             actions={<>{!cartIsEmpty && <ClearCartButton />}</>}>
             <div className='space-y-10'>
               {cart.data?.cartItem.map((item) => (
-                <CheckoutCartItem key={item.id} item={item} />
+                <CartItem key={item.id} item={item} />
               ))}
             </div>
           </CheckoutSection>
