@@ -4,10 +4,11 @@ import { AuthGuard, GuestGuard } from '@/features/auth';
 import { AuthPage } from '@/pages/auth-page';
 import { CartPage } from '@/pages/cart-page';
 import { HomePage } from '@/pages/home-page';
+import { OrderPage } from '@/pages/order-page';
 import { ProductDetailPage } from '@/pages/product-detail-page';
 import { ROUTES } from '@/shared/lib/constants/routes';
 
-import { Layout } from '../layout';
+import { CartLayout, Layout } from '../layout';
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,12 @@ export const router = createBrowserRouter([
           </GuestGuard>
         ),
       },
+    ],
+  },
+  {
+    path: '',
+    element: <CartLayout />,
+    children: [
       {
         path: ROUTES.CART,
         element: (
@@ -49,8 +56,17 @@ export const router = createBrowserRouter([
           </GuestGuard>
         ),
       },
+      {
+        path: ROUTES.ORDER,
+        element: (
+          <GuestGuard>
+            <OrderPage />
+          </GuestGuard>
+        ),
+      },
     ],
   },
+
   {
     path: '*',
     element: <div>Страница не найдена</div>,

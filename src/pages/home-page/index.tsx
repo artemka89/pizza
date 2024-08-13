@@ -5,12 +5,14 @@ import { CartIconButton } from '@/features/cart';
 import { CategoryList } from '@/features/category-list';
 import { ProductList } from '@/features/product-list';
 import { CartDrawer } from '@/widgets/cart-drawer';
+import { Header } from '@/widgets/header';
 
 import { Layout } from './ui/layout';
 
 export const HomePage: FC = () => {
   return (
     <>
+      <Header />
       <Layout
         nav={<CategoryList />}
         actions={<CartIconButton />}
