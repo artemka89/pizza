@@ -25,7 +25,7 @@ export const OrderSchemaDto = z.object({
   orderItems: OrderItemSchema.array(),
 });
 
-export type CartDto = z.infer<typeof OrderSchemaDto>;
+export type OrderDto = z.infer<typeof OrderSchemaDto>;
 
 export interface CreateOrderDto {
   orderStatus: 'PENDING' | 'SUCCEEDED' | 'CANCELLED';

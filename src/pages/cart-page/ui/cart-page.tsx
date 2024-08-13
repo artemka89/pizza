@@ -15,6 +15,7 @@ import {
   CartInfoInputs,
   CartItem,
   ClearCartButton,
+  useRemoveAllCartItems,
 } from '@/features/cart';
 import { useCreateOrder } from '@/features/order';
 import { ROUTES } from '@/shared/lib/constants/routes';
@@ -29,34 +30,38 @@ export const CartPage: FC = () => {
   const user = useGetUser();
   const cart = useGetCart(user.data?.id || '');
   const createOrder = useCreateOrder();
+  const clearCart = useRemoveAllCartItems();
   const cartIsEmpty = cart.data?.cartItem.length === 0;
   const totalPrice = getTotalPrice(cart.data?.cartItem);
 
   const onSubmitHandler: SubmitHandler<CartInfoFormType> = (data) => {
-    createOrder.mutate({
-      userId: user.data?.id || '',
-      userName: data.name,
-      userEmail: data.email,
-      userPhone: data.phone,
-      orderStatus: 'PENDING',
-      userAddress: data.address,
-      comment: data.comment,
-      paymentId: '1',
-      totalPrice: totalPrice + DELIVERY_PRICE,
-      orderItems:
-        cart.data?.cartItem.map((item) => ({
-          name: item.product.name,
-          imageId: item.product.imageUrl,
-          option: `${item.option.size}, ${item.option.weight || ''}`,
-          ingredients: item.ingredients
-            .map((ingredient) => ingredient.name)
-            .join(', '),
-          amount: item.amount,
-          price:
-            (totalPrice + getTotalIngredientPrice(item.ingredients)) *
-            item.amount,
-        })) || [],
-    });
+    createOrder.mutate(
+      {
+        userId: user.data?.id || '',
+        userName: data.name,
+        userEmail: data.email,
+        userPhone: data.phone,
+        orderStatus: 'PENDING',
+        userAddress: data.address,
+        comment: data.comment,
+        paymentId: '1',
+        totalPrice: totalPrice + DELIVERY_PRICE,
+        orderItems:
+          cart.data?.cartItem.map((item) => ({
+            name: item.product.name,
+            imageId: item.product.imageUrl,
+            option: `${item.option.size}, ${item.option.weight || ''}`,
+            ingredients: item.ingredients
+              .map((ingredient) => ingredient.name)
+              .join(', '),
+            amount: item.amount,
+            price:
+              (item.option.price + getTotalIngredientPrice(item.ingredients)) *
+              item.amount,
+          })) || [],
+      },
+      { onSuccess: () => clearCart.mutate() },
+    );
   };
 
   if (cart.data?.cartItem.length === 0) {
