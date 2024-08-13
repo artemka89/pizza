@@ -1,4 +1,4 @@
-import { ID, Permission, Role } from 'appwrite';
+import { ID, Permission, Query, Role } from 'appwrite';
 
 import { APPWRITE } from '../../config/appwrite';
 import { databases } from '../../config/appwrite-config';
@@ -30,5 +30,13 @@ export const orderApi = {
       ],
     );
     return OrderSchemaDto.parse(order);
+  },
+  getOrders: async (userId: string) => {
+    const orders = await databases.listDocuments(
+      APPWRITE.DATABASE_ID,
+      APPWRITE.ORDER_COLLECTION_ID,
+      [Query.equal('userId', userId)],
+    );
+    return OrderSchemaDto.array().parse(orders.documents);
   },
 };

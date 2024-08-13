@@ -1,5 +1,7 @@
-export interface CreateOrder {
-  orderStatus: OrderStatusType;
+export interface Order {
+  id: string;
+  createdAt: Date;
+  orderStatus: 'PENDING' | 'SUCCEEDED' | 'CANCELLED';
   paymentId: string;
   userId: string;
   userName: string;
@@ -8,14 +10,7 @@ export interface CreateOrder {
   userAddress: string;
   comment?: string;
   totalPrice: number;
-  orderItems: {
-    name: string;
-    imageId: string;
-    option: string;
-    ingredients: string;
-    amount: number;
-    price: number;
-  }[];
+  orderItems: OrderItemType[];
 }
 
 export interface OrderItemType {
@@ -28,4 +23,8 @@ export interface OrderItemType {
   price: number;
 }
 
-export type OrderStatusType = 'PENDING' | 'SUCCEEDED' | 'CANCELLED';
+export enum ORDER_STATUS {
+  SUCCEEDED = 'SUCCEEDED',
+  CANCELLED = 'CANCELLED',
+  PENDING = 'PENDING',
+}
