@@ -12,7 +12,7 @@ import { Layout } from './ui/layout';
 export const HomePage: FC = () => {
   return (
     <>
-      <Header />
+      <Header isProfile showSearch showCartIcon />
       <Layout
         nav={<CategoryList />}
         actions={<CartIconButton />}

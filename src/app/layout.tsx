@@ -14,7 +14,7 @@ export const Layout: FC = () => {
 export const CartLayout: FC = () => {
   return (
     <div className='min-h-screen'>
-      <Header />
+      <Header isProfile />
       <Outlet />
     </div>
   );
