@@ -1,16 +1,23 @@
 import { FC } from 'react';
 
-import { PageContainer } from '@/shared/ui/layouts/page-container';
+import { useGetUser } from '@/entities/user';
 import { CartDrawer } from '@/widgets/cart-drawer';
 import { Header } from '@/widgets/header';
 
+import { Layout } from './layout';
+import { ProfileForm } from './profile-form';
+
 export const ProfilePage: FC = () => {
+  const user = useGetUser();
+
+  if (!user.data) {
+    return null;
+  }
+
   return (
     <>
       <Header showCartIcon />
-      <PageContainer className='container'>
-        <div>Profile</div>
-      </PageContainer>
+      <Layout form={<ProfileForm data={user.data} />} />
       <CartDrawer />
     </>
   );
