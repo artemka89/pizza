@@ -2,18 +2,19 @@ import { FC, useEffect, useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { SignOutButton } from '@/features/auth';
-import {
-  useUpdateEmail,
-  useUpdateName,
-  useUpdatePhone,
-} from '@/features/profile';
 import { Button } from '@/shared/ui/button';
 import { FormInput } from '@/shared/ui/form/form-input';
 import { FormPhoneInput } from '@/shared/ui/form/form-phone-input';
 import { Title } from '@/shared/ui/title';
 
-import { ProfileFormSchema, ProfileFormType } from './profile-form-schema';
+import {
+  ProfileFormSchema,
+  ProfileFormType,
+} from '../model/profile-form-schema';
+import { useUpdateEmail } from '../model/use-update-email';
+import { useUpdateName } from '../model/use-update-name';
+import { useUpdatePhone } from '../model/use-update-phone';
+
 import { ProfileModal } from './profile-modal';
 
 function getDefaultValues(data: {
@@ -84,6 +85,10 @@ export const ProfileForm: FC<ProfileFormProps> = ({ data }) => {
     }
   };
 
+  const onClickSave = () => {
+    setIsOpenConfirmModal(true);
+  };
+
   return (
     <>
       <FormProvider {...methods}>
@@ -92,13 +97,12 @@ export const ProfileForm: FC<ProfileFormProps> = ({ data }) => {
           <FormInput name='email' label='Email' required />
           <FormPhoneInput name='phone' label='Телефон' required />
           <Button
-            disabled={!methods.formState.isDirty}
             type='button'
-            onClick={() => setIsOpenConfirmModal(true)}
+            disabled={!methods.formState.isDirty}
+            onClick={onClickSave}
             className='mb-4 mt-2 w-full'>
             Сохранить
           </Button>
-          <SignOutButton />
           <ProfileModal
             isOpen={isOpenConfirmModal}
             onClose={() => setIsOpenConfirmModal(false)}>
@@ -107,7 +111,7 @@ export const ProfileForm: FC<ProfileFormProps> = ({ data }) => {
             </Title>
             <FormInput name='password' />
             <Button
-              type='submit'
+              type='button'
               onClick={methods.handleSubmit(onSubmitHandler)}
               disabled={updatePhone.isPending}
               className='w-full'>
