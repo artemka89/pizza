@@ -6,6 +6,7 @@ import { CartPage } from '@/pages/cart-page';
 import { HomePage } from '@/pages/home-page';
 import { OrderPage } from '@/pages/order-page';
 import { ProductDetailPage } from '@/pages/product-detail-page';
+import { ProfilePage } from '@/pages/profile-page';
 import { ROUTES } from '@/shared/lib/constants/routes';
 
 import { CartLayout, Layout } from '../layout';
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
         path: '/profile',
         element: (
           <GuestGuard>
-            <div>Профиль</div>
+            <ProfilePage />
           </GuestGuard>
         ),
       },

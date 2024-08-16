@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { SignOutButton } from '@/features/auth';
 import { CartIconButton } from '@/features/cart';
 import { SearchProductInput } from '@/features/search-product';
 
@@ -9,12 +10,14 @@ import { Profile } from './profile';
 
 interface HeaderProps {
   isProfile?: boolean;
+  showSignOut?: boolean;
   showCartIcon?: boolean;
   showSearch?: boolean;
 }
 
 export const Header: FC<HeaderProps> = ({
   isProfile,
+  showSignOut,
   showCartIcon,
   showSearch,
 }) => {
@@ -24,6 +27,7 @@ export const Header: FC<HeaderProps> = ({
       search={showSearch && <SearchProductInput />}
       actions={
         <>
+          {showSignOut && <SignOutButton />}
           {isProfile && <Profile />}
           {showCartIcon && <CartIconButton />}
         </>
