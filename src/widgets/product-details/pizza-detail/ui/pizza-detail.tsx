@@ -27,7 +27,7 @@ export const PizzaDetail: FC<PizzaDetailProps> = ({ id }) => {
   }
 
   const optionFieldValues = getProductOptionFieldValues(
-    pizza?.options,
+    pizza.options,
     'size',
     PIZZA_SIZES,
   );

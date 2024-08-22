@@ -5,6 +5,7 @@ import { useGetCategories } from '@/entities/category';
 import { CATEGORY_TYPE } from '@/shared/lib/constants/category-type';
 import {} from '@/widgets/product-details';
 
+import { CoffeeDetail } from './coffee-detail/ui/coffee-detail';
 import { PizzaDetail } from './pizza-detail/ui/pizza-detail';
 
 export const ProductDetailFabric: FC = () => {
@@ -23,6 +24,9 @@ export const ProductDetailFabric: FC = () => {
   switch (category?.type) {
     case CATEGORY_TYPE.PIZZA:
       return <PizzaDetail id={id} />;
+
+    case CATEGORY_TYPE.COFFEE:
+      return <CoffeeDetail id={id} />;
 
     default:
       return null;
