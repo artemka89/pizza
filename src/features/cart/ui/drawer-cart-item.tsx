@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { getIngredientsText, getTotalIngredientPrice } from '@/entities/cart';
-import { OptionText } from '@/entities/product';
+import { formatOptionFieldText } from '@/entities/product';
 import { Separator } from '@/shared/ui/separator';
 import { Title } from '@/shared/ui/title';
 
@@ -15,11 +15,13 @@ interface DrawerCartItemProps {
 }
 
 export const DrawerCartItem: FC<DrawerCartItemProps> = ({ item }) => {
-  const { id, product, category, option, amount, ingredients } = item;
+  const { id, product, option, amount, ingredients } = item;
 
   const price = (option.price + getTotalIngredientPrice(ingredients)) * amount;
 
   const ingredientsText = getIngredientsText(ingredients);
+
+  const optionFieldText = formatOptionFieldText(item.option);
 
   return (
     <div className='flex gap-4 bg-background p-4'>
@@ -36,7 +38,7 @@ export const DrawerCartItem: FC<DrawerCartItemProps> = ({ item }) => {
           <RemoveCartItemButton cartItemId={id} />
         </div>
         <div className='text-sm text-secondary-foreground'>
-          <OptionText category={category.name} option={option} />
+          {optionFieldText}
         </div>
         {ingredientsText && (
           <div className='text-xs leading-4 text-secondary-foreground'>

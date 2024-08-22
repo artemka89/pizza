@@ -1,13 +1,11 @@
 import { FC } from 'react';
 
-import { useSelectedItems } from '@/entities/product';
-
-import { formatFieldText } from '../lib/format-field-text';
+import { formatOptionFieldText, useSelectedItems } from '@/entities/product';
 
 export const SelectedOptionFieldText: FC = () => {
   const [selectedField] = useSelectedItems((state) => [state.option]);
 
-  const text = formatFieldText({
+  const text = formatOptionFieldText({
     size: selectedField?.size,
     weight: selectedField?.weight,
     volume: selectedField?.volume,

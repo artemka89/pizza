@@ -25,9 +25,10 @@ export function mapCart(data: CartDto): Cart {
       },
       option: {
         id: item.option.$id,
-        size: item.option.size,
+        size: item.option.size || undefined,
         price: item.option.price,
         weight: item.option.weight || undefined,
+        volume: item.option.volume || undefined,
       },
       ingredients,
       amount: item.amount,

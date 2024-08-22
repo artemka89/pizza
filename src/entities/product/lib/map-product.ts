@@ -1,4 +1,5 @@
 import { ProductsDto } from '@/shared/api/models/product/product-schemas';
+import { CATEGORY_TYPE } from '@/shared/lib/constants/category-type';
 
 import { Products } from '../model/types';
 
@@ -17,7 +18,7 @@ export const mapProduct = (data: ProductsDto): Products => {
   return {
     id: data.$id,
     name: data.name,
-    type: data.type,
+    type: data.type as CATEGORY_TYPE,
     products,
   };
 };

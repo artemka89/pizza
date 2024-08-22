@@ -4,7 +4,7 @@ interface Field {
   volume?: number;
 }
 
-export function formatFieldText(field: Field) {
+export function formatOptionFieldText(field: Field) {
   const { size, weight, volume } = field;
 
   const sizeString = size ? `${size} см` : '';

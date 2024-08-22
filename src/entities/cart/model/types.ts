@@ -20,8 +20,9 @@ interface Product {
 
 export interface Option {
   id: string;
-  size: number;
+  size?: number;
   price: number;
+  volume?: number;
   weight?: number;
 }
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { getIngredientsText, getTotalIngredientPrice } from '@/entities/cart';
-import { OptionText } from '@/entities/product';
+import { formatOptionFieldText } from '@/entities/product';
 import { Title } from '@/shared/ui/title';
 
 import { CartItemType } from '../model/types';
@@ -20,6 +20,8 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
 
   const ingredientsText = getIngredientsText(item.ingredients);
 
+  const optionFieldText = formatOptionFieldText(item.option);
+
   return (
     <div key={item.id} className='flex items-center'>
       <div className='mr-4 size-[64px]'>
@@ -32,7 +34,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
       <div className='flex-1'>
         <Title size='xs'>{item.product.name}</Title>
         <div className='text-sm text-secondary-foreground'>
-          <OptionText category={item.category.name} option={item.option} />
+          {optionFieldText}
         </div>
         {item.ingredients.length > 0 && (
           <div className='text-xs leading-4 text-secondary-foreground'>
