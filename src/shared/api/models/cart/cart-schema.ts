@@ -15,8 +15,9 @@ const Ingredient = z.object({
 
 const Option = z.object({
   $id: z.string(),
-  size: z.number(),
+  size: z.number().nullable(),
   price: z.number(),
+  volume: z.number().nullable(),
   weight: z.number().nullable(),
 });
 
