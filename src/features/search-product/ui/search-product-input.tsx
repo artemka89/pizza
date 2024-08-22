@@ -5,7 +5,7 @@ import { Search } from 'lucide-react';
 import {
   getProductImageUrl,
   useGetSearchingProductList,
-} from '@/entities/products';
+} from '@/entities/product';
 import { cn } from '@/shared/lib/cn';
 import { ROUTES } from '@/shared/lib/constants/routes';
 import { useDebouncedValue } from '@/shared/lib/use-debounced-value';

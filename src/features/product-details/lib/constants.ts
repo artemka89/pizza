@@ -1,7 +1,8 @@
-export const PIZZA_SIZES: Record<number, string> = {
-  25: 'Маленькая',
-  30: 'Средняя',
-  35: 'Большая',
+export const PIZZA_SIZES: Record<
+  number,
+  { name: string; isDefault?: boolean }
+> = {
+  25: { name: 'Маленькая' },
+  30: { name: 'Средняя', isDefault: true },
+  35: { name: 'Большая' },
 } as const;
-
-export const ACTIVE_PIZZA_SIZE = '30';

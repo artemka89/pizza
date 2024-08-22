@@ -28,7 +28,6 @@ export const IngredientItem: FC<IngredientItemProps> = ({
 
   return (
     <button
-      key={item.id}
       onClick={toggleSelected}
       className={cn(
         'relative flex h-[166px] cursor-pointer flex-col items-center rounded-md border border-transparent',

@@ -2,7 +2,7 @@ import { FC, useEffect, useRef } from 'react';
 import { useIntersection } from 'react-use';
 
 import { useCategoryStore } from '@/entities/category';
-import { getProductImageUrl, ProductCard } from '@/entities/products';
+import { getProductImageUrl, ProductCard } from '@/entities/product';
 import { Button } from '@/shared/ui/button';
 import { ProductListLayout } from '@/shared/ui/layouts/product-list-layout';
 

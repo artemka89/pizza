@@ -1,5 +1,5 @@
 import { useGetCart } from '@/entities/cart';
-import { useSelectedItems } from '@/entities/products';
+import { useSelectedItems } from '@/entities/product';
 import { useGetUser } from '@/entities/user';
 
 export function useGetCartItemToAdd(productId: string, categoryId: string) {
