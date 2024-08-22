@@ -10,7 +10,7 @@ import {
   getProductOptionFieldValues,
   ProductIngredientList,
   ProductOptionSwitcher,
-  SelectedOptionText,
+  SelectedOptionFieldText,
 } from '@/features/product-details';
 
 import { useGetCoffeeDetail } from '../model/use-get-coffee-detail';
@@ -50,7 +50,7 @@ export const CoffeeDetail: FC<CoffeeDetailProps> = ({ id }) => {
       title={coffee.name}
       contents={coffee.contents}
       image={<img src={imageUrl} alt={coffee.name} />}
-      params={<SelectedOptionText sizeName='л' weightName='г' />}
+      params={<SelectedOptionFieldText />}
       options={
         <ProductOptionSwitcher
           fields={optionFieldValues}

@@ -9,7 +9,7 @@ import { AddToCartButton } from '@/features/cart';
 import {
   getProductOptionFieldValues,
   ProductOptionSwitcher,
-  SelectedOptionText,
+  SelectedOptionFieldText,
 } from '@/features/product-details';
 
 import { useGetDrinkDetail } from '../model/use-get-drink-detail';
@@ -47,7 +47,7 @@ export const DrinkDetail: FC<DrinkDetailProps> = ({ id }) => {
   return (
     <ProductDetailLayout
       title={drink.name}
-      params={<SelectedOptionText sizeName=' л' />}
+      params={<SelectedOptionFieldText />}
       contents={drink.contents}
       image={<img src={imageUrl} alt={drink.name} />}
       options={

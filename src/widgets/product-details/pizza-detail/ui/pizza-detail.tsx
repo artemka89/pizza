@@ -5,7 +5,7 @@ import { AddToCartButton } from '@/features/cart';
 import {
   PizzaImage,
   ProductIngredientList,
-  SelectedOptionText,
+  SelectedOptionFieldText,
 } from '@/features/product-details';
 import { getProductOptionFieldValues } from '@/features/product-details';
 import { PIZZA_SIZES } from '@/features/product-details';
@@ -44,7 +44,7 @@ export const PizzaDetail: FC<PizzaDetailProps> = ({ id }) => {
       title={pizza.name}
       contents={pizza.contents}
       image={<PizzaImage imageId={pizza.imageId} />}
-      params={<SelectedOptionText sizeName='см' weightName='г' />}
+      params={<SelectedOptionFieldText />}
       options={
         <ProductOptionSwitcher
           fields={optionFieldValues}
