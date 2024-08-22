@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { getIngredientsText, getTotalIngredientPrice } from '@/entities/cart';
-import { OptionText } from '@/entities/products';
+import { OptionText } from '@/entities/product';
 import { Title } from '@/shared/ui/title';
 
 import { CartItemType } from '../model/types';

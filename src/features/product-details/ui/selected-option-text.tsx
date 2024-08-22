@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useSelectedItems } from '@/entities/products';
+import { useSelectedItems } from '@/entities/product';
 
 interface SelectedOptionTextProps {
   sizeName?: string;

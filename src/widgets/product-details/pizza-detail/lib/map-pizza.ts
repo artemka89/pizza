@@ -1,8 +1,6 @@
 import { ProductDetailDto } from '@/shared/api/models/product/product-schemas';
 
-import { ProductDetail } from '../model/types';
-
-export function mapProductDetail(data: ProductDetailDto): ProductDetail {
+export function mapPizzaDetail(data: ProductDetailDto) {
   const category = {
     id: data.categories.$id,
     type: data.categories.type,
@@ -11,8 +9,8 @@ export function mapProductDetail(data: ProductDetailDto): ProductDetail {
 
   const options = data.options.map((option) => ({
     id: option.$id,
-    size: option.size,
-    weight: option.weight ?? 0,
+    size: option.size || 0,
+    weight: option.weight || 0,
     price: option.price,
   }));
 

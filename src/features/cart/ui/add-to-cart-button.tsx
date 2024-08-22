@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useSelectedItems } from '@/entities/products';
+import { useSelectedItems } from '@/entities/product';
 import { Button } from '@/shared/ui/button';
 import { useToast } from '@/shared/ui/use-toast';
 

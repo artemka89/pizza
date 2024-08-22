@@ -2,23 +2,21 @@ import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
+  getProductImageUrl,
   ProductDetailLayout,
   useGetProductDetail,
   useSelectedItems,
-} from '@/entities/products';
+} from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
 import {
-  PizzaImage,
-  PizzaOptionSwitcher,
-  ProductIngredientList,
+  DrinkOptionSwitcher,
   SelectedOptionText,
 } from '@/features/product-details';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
-export const PizzaDetail: FC = () => {
+export const DrinkDetail: FC = () => {
   const { id } = useParams<{ id: string }>();
-
-  const { data: pizza } = useGetProductDetail(id || '');
+  const { data: drink } = useGetProductDetail(id || '');
 
   const navigate = useNavigate();
 
@@ -29,26 +27,27 @@ export const PizzaDetail: FC = () => {
     navigate('/');
   };
 
-  if (!pizza) {
-    return null;
-  }
+  if (!drink) return null;
+
+  const imageUrl = getProductImageUrl({
+    id: drink.imageId,
+    size: 'big',
+  }).toString();
 
   return (
-    <ProductModalLayout open={!!pizza} onCloseModal={onCloseModal}>
+    <ProductModalLayout open={!!drink} onCloseModal={onCloseModal}>
       <ProductDetailLayout
-        title={pizza.name}
-        contents={pizza.contents}
-        image={<PizzaImage imageId={pizza.imageId} />}
-        params={<SelectedOptionText sizeName='см' weightName='г' />}
-        options={<PizzaOptionSwitcher options={pizza.options} />}
-        ingredients={<ProductIngredientList items={pizza.ingredients} />}
+        title={drink.name}
+        params={<SelectedOptionText sizeName=' л' />}
+        contents={drink.contents}
+        image={<img src={imageUrl} alt={drink.name} />}
+        options={<DrinkOptionSwitcher options={drink.options} />}
         addToCartButton={
           <AddToCartButton
-            categoryId={pizza.category.id}
-            productId={pizza.id}
+            categoryId={drink.category.id}
+            productId={drink.id}
           />
-        }
-      />
+        }></ProductDetailLayout>
     </ProductModalLayout>
   );
 };

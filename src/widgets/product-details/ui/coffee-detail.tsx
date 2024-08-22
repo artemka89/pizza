@@ -6,17 +6,19 @@ import {
   ProductDetailLayout,
   useGetProductDetail,
   useSelectedItems,
-} from '@/entities/products';
+} from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
 import {
-  DrinkOptionSwitcher,
+  CoffeeOptionSwitcher,
+  ProductIngredientList,
   SelectedOptionText,
 } from '@/features/product-details';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
 
-export const DrinkDetail: FC = () => {
+export const CoffeeDetail: FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: drink } = useGetProductDetail(id || '');
+
+  const { data: coffee } = useGetProductDetail(id || '');
 
   const navigate = useNavigate();
 
@@ -27,27 +29,29 @@ export const DrinkDetail: FC = () => {
     navigate('/');
   };
 
-  if (!drink) return null;
+  if (!coffee) return null;
 
   const imageUrl = getProductImageUrl({
-    id: drink.imageId,
+    id: coffee.imageId,
     size: 'big',
   }).toString();
 
   return (
-    <ProductModalLayout open={!!drink} onCloseModal={onCloseModal}>
+    <ProductModalLayout open={!!coffee} onCloseModal={onCloseModal}>
       <ProductDetailLayout
-        title={drink.name}
-        params={<SelectedOptionText sizeName=' л' />}
-        contents={drink.contents}
-        image={<img src={imageUrl} alt={drink.name} />}
-        options={<DrinkOptionSwitcher options={drink.options} />}
+        title={coffee.name}
+        contents={coffee.contents}
+        image={<img src={imageUrl} alt={coffee.name} />}
+        params={<SelectedOptionText sizeName='л' weightName='г' />}
+        options={<CoffeeOptionSwitcher options={coffee.options} />}
+        ingredients={<ProductIngredientList items={coffee.ingredients} />}
         addToCartButton={
           <AddToCartButton
-            categoryId={drink.category.id}
-            productId={drink.id}
+            categoryId={coffee.category.id}
+            productId={coffee.id}
           />
-        }></ProductDetailLayout>
+        }
+      />
     </ProductModalLayout>
   );
 };

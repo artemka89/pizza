@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useGetProducts } from '@/entities/products';
+import { useGetProducts } from '@/entities/product';
 
 import { ProductGroup } from '../ui/product-group';
 

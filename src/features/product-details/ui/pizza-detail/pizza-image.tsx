@@ -1,4 +1,4 @@
-import { getProductImageUrl, useSelectedItems } from '@/entities/products';
+import { getProductImageUrl, useSelectedItems } from '@/entities/product';
 import { cn } from '@/shared/lib/cn';
 
 interface PizzaImageProps {

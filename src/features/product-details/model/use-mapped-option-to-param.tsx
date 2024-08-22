@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useSelectedItems } from '@/entities/products';
+import { useSelectedItems } from '@/entities/product';
 
 import { mapOptionsToParams } from '../lib/map-options-to-params';
 

@@ -39,8 +39,9 @@ export const ProductDetailSchemaDto = z.object({
   options: z
     .object({
       $id: z.string(),
-      size: z.number(),
+      size: z.number().nullable(),
       weight: z.number().nullable(),
+      volume: z.number().nullable(),
       price: z.number(),
     })
     .array(),
