@@ -44,7 +44,7 @@ export const PizzaDetail: FC<PizzaDetailProps> = ({ id }) => {
       title={pizza.name}
       contents={pizza.contents}
       image={<PizzaImage imageId={pizza.imageId} />}
-      params={<SelectedOptionFieldText />}
+      optionFieldToText={<SelectedOptionFieldText />}
       options={
         <ProductOptionSwitcher
           fields={optionFieldValues}

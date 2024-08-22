@@ -50,7 +50,7 @@ export const CoffeeDetail: FC<CoffeeDetailProps> = ({ id }) => {
       title={coffee.name}
       contents={coffee.contents}
       image={<img src={imageUrl} alt={coffee.name} />}
-      params={<SelectedOptionFieldText />}
+      optionFieldToText={<SelectedOptionFieldText />}
       options={
         <ProductOptionSwitcher
           fields={optionFieldValues}

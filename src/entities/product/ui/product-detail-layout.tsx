@@ -7,7 +7,7 @@ interface ProductDetailLayoutProps {
   title: string;
   contents?: string;
   image: JSX.Element;
-  params?: JSX.Element;
+  optionFieldToText?: JSX.Element;
   options: JSX.Element;
   ingredients?: JSX.Element;
   addToCartButton: JSX.Element;
@@ -16,7 +16,7 @@ interface ProductDetailLayoutProps {
 export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
   image,
   title,
-  params,
+  optionFieldToText,
   contents,
   options,
   ingredients,
@@ -34,7 +34,9 @@ export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
               <Title className='mb-1 text-[24px] font-medium leading-none'>
                 {title}
               </Title>
-              {params && <div className='mb-2'>{params}</div>}
+              {optionFieldToText && (
+                <div className='mb-2'>{optionFieldToText}</div>
+              )}
               {contents && (
                 <div className='mb-4 text-sm leading-none'>{contents}</div>
               )}

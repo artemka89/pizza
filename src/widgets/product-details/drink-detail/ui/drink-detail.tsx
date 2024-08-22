@@ -47,7 +47,7 @@ export const DrinkDetail: FC<DrinkDetailProps> = ({ id }) => {
   return (
     <ProductDetailLayout
       title={drink.name}
-      params={<SelectedOptionFieldText />}
+      optionFieldToText={<SelectedOptionFieldText />}
       contents={drink.contents}
       image={<img src={imageUrl} alt={drink.name} />}
       options={
