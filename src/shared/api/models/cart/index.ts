@@ -18,7 +18,6 @@ export const cartApi = {
     cartItemIds: string[];
     productId: string;
     optionId: string;
-
     ingredientsIds: string[];
     amount: number;
   }) => {
@@ -44,7 +43,6 @@ export const cartApi = {
     id: string;
     productId: string;
     optionId: string;
-    categoryId: string;
     ingredientsIds: string[];
     amount: number;
   }) => {
@@ -55,7 +53,6 @@ export const cartApi = {
       {
         amount: data.amount,
         product: { $id: data.productId },
-        category: { $id: data.categoryId },
         option: { $id: data.optionId },
         ingredients: data.ingredientsIds.map((id) => id),
       },

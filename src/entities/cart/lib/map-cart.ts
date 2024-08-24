@@ -32,10 +32,6 @@ export function mapCart(data: CartDto): Cart {
       },
       ingredients,
       amount: item.amount,
-      category: {
-        id: item.category.$id,
-        name: item.category.name,
-      },
     };
   });
 

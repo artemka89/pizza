@@ -24,7 +24,6 @@ const Option = z.object({
 const CartItem = z.object({
   $id: z.string(),
   product: Product,
-  category: z.object({ $id: z.string(), name: z.string() }),
   option: Option,
   ingredients: Ingredient.array(),
   amount: z.number(),
