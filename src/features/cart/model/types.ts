@@ -6,3 +6,12 @@ export interface CartItemType {
   amount: number;
   ingredients: { name: string; price: number }[];
 }
+
+export interface CreateCartItem {
+  cartId: string;
+  cartItemIds: string[];
+  productId: string;
+  optionId: string;
+  ingredientsIds: string[];
+  amount: number;
+}

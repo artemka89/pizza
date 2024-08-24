@@ -3,29 +3,19 @@ import { FC } from 'react';
 import { useSelectedItems } from '@/entities/product';
 import { Button } from '@/shared/ui/button';
 
-import { useCreateCartItem } from '../model/use-create-cart-item';
-import { useUpdateCartItemAmount } from '../model/use-update-cart-item-amount';
+import { useAddCartItem } from '../model/use-add-cart-item';
 
 interface AddToCartButtonProps {
   productId: string;
   categoryId: string;
 }
-export const AddToCartButton: FC<AddToCartButtonProps> = ({
-  productId,
-  categoryId,
-}) => {
+export const AddToCartButton: FC<AddToCartButtonProps> = ({ productId }) => {
   const [price] = useSelectedItems((state) => [state.price]);
 
-  const createCartItem = useCreateCartItem();
-  const updateCartItem = useUpdateCartItemAmount();
-
+  const { addCartItem, isLoading } = useAddCartItem();
   const addToCart = () => {
-    if (createCartItem.enabled) {
-      createCartItem.create({ categoryId, productId });
-    }
+    addCartItem(productId);
   };
-
-  const isLoading = createCartItem.isPending || updateCartItem.isPending;
 
   return (
     <Button
