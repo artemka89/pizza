@@ -22,6 +22,7 @@ export function mapCart(data: CartDto): Cart {
         id: item.product.$id,
         name: item.product.name,
         imageUrl,
+        imageId: item.product.imageId,
       },
       option: {
         id: item.option.$id,

@@ -32,7 +32,7 @@ export const cartApi = {
             amount: 1,
             product: { $id: data.productId },
             option: { $id: data.optionId },
-            ingredients: data.ingredientsIds.map((id) => id),
+            ingredients: data.ingredientsIds,
           },
         ],
       },

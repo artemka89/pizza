@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -7,12 +7,29 @@ import {
   CartInfoFormType,
 } from '../../model/cart-form-schema';
 
+function getDefaultValues(data: {
+  name: string;
+  email: string;
+  phone: string;
+}) {
+  return {
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+  };
+}
+
 interface CartFormProps {
+  user?: {
+    name: string;
+    email: string;
+    phone: string;
+  };
   children: React.ReactNode;
   onSubmit: (data: CartInfoFormType) => void;
 }
 
-export const CartFormProvider: FC<CartFormProps> = ({ children, onSubmit }) => {
+export const CartForm: FC<CartFormProps> = ({ user, children, onSubmit }) => {
   const methods = useForm<CartInfoFormType>({
     mode: 'onBlur',
     defaultValues: {
@@ -24,6 +41,17 @@ export const CartFormProvider: FC<CartFormProps> = ({ children, onSubmit }) => {
     },
     resolver: zodResolver(CartInfoFormSchema),
   });
+
+  useEffect(() => {
+    methods.reset(
+      getDefaultValues({
+        name: user?.name || '',
+        email: user?.email || '',
+        phone: user?.phone || '',
+      }),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <FormProvider {...methods}>

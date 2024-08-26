@@ -2,27 +2,22 @@ import { FC } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
-import {
-  getTotalIngredientPrice,
-  getTotalPrice,
-  useGetCart,
-} from '@/entities/cart';
+import { getTotalPrice, useGetCart } from '@/entities/cart';
 import { useGetUser } from '@/entities/user';
 import {
   CartDetails,
-  CartFormProvider,
+  CartForm,
   CartInfoFormType,
   CartInfoInputs,
   CartItem,
   ClearCartButton,
-  useRemoveAllCartItems,
 } from '@/features/cart';
 import { useCreateOrder } from '@/features/order';
 import { ROUTES } from '@/shared/lib/constants/routes';
 import { PageContainer } from '@/shared/ui/layouts/page-container';
 import { Title } from '@/shared/ui/title';
 
-import { GraySection } from './gray-section';
+import { CartSection } from './cart-section';
 
 const DELIVERY_PRICE = 250;
 
@@ -30,38 +25,19 @@ export const CartPage: FC = () => {
   const user = useGetUser();
   const cart = useGetCart(user.data?.id || '');
   const createOrder = useCreateOrder();
-  const clearCart = useRemoveAllCartItems();
+
   const cartIsEmpty = cart.data?.cartItem.length === 0;
   const totalPrice = getTotalPrice(cart.data?.cartItem);
 
   const onSubmitHandler: SubmitHandler<CartInfoFormType> = (data) => {
-    createOrder.mutate(
-      {
-        userId: user.data?.id || '',
-        userName: data.name,
-        userEmail: data.email,
-        userPhone: data.phone,
-        orderStatus: 'PENDING',
-        userAddress: data.address,
-        comment: data.comment,
-        paymentId: '1',
-        totalPrice: totalPrice + DELIVERY_PRICE,
-        orderItems:
-          cart.data?.cartItem.map((item) => ({
-            name: item.product.name,
-            imageId: item.product.imageUrl,
-            option: `${item.option.size}, ${item.option.weight || ''}`,
-            ingredients: item.ingredients
-              .map((ingredient) => ingredient.name)
-              .join(', '),
-            amount: item.amount,
-            price:
-              (item.option.price + getTotalIngredientPrice(item.ingredients)) *
-              item.amount,
-          })) || [],
-      },
-      { onSuccess: () => clearCart.mutate() },
-    );
+    if (cart.data && user.data) {
+      createOrder.mutate({
+        ...data,
+        totalPrice,
+        items: cart.data.cartItem,
+        userId: user.data.id,
+      });
+    }
   };
 
   if (cart.data?.cartItem.length === 0) {
@@ -73,9 +49,9 @@ export const CartPage: FC = () => {
       <Title size='lg' className='p-6'>
         Оформление заказа
       </Title>
-      <CartFormProvider onSubmit={onSubmitHandler}>
+      <CartForm user={user.data} onSubmit={onSubmitHandler}>
         <div className='flex flex-1 flex-col gap-8'>
-          <GraySection
+          <CartSection
             title='1. Корзина'
             actions={<>{!cartIsEmpty && <ClearCartButton />}</>}>
             <div className='space-y-10'>
@@ -83,20 +59,20 @@ export const CartPage: FC = () => {
                 <CartItem key={item.id} item={item} />
               ))}
             </div>
-          </GraySection>
-          <GraySection title='2. Персональная информация'>
+          </CartSection>
+          <CartSection title='2. Персональная информация'>
             <CartInfoInputs />
-          </GraySection>
+          </CartSection>
         </div>
         <div className='flex max-w-[450px] flex-1 flex-col gap-8'>
-          <GraySection title='Итого:'>
+          <CartSection title='Итого:'>
             <CartDetails
               totalPrice={totalPrice}
               deliveryPrice={DELIVERY_PRICE}
             />
-          </GraySection>
+          </CartSection>
         </div>
-      </CartFormProvider>
+      </CartForm>
     </PageContainer>
   );
 };

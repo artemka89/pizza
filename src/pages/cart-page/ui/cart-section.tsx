@@ -10,7 +10,7 @@ interface GraySectionProps {
   className?: string;
 }
 
-export const GraySection: FC<GraySectionProps> = ({
+export const CartSection: FC<GraySectionProps> = ({
   title,
   actions,
   children,

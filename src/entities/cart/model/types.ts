@@ -15,6 +15,7 @@ interface Product {
   id: string;
   name: string;
   imageUrl: string;
+  imageId: string;
 }
 
 export interface Option {

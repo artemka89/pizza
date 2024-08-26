@@ -1,6 +1,6 @@
 import { OrderDto } from '@/shared/api/models/order/order-schema';
 
-import { Order } from '../model/types';
+import { Order, ORDER_STATUS } from '../model/types';
 
 export const mapOrder = (data: OrderDto): Order => {
   const orderItems = data.orderItems.map((item) => ({
@@ -16,7 +16,7 @@ export const mapOrder = (data: OrderDto): Order => {
   return {
     id: data.$id,
     createdAt: new Date(data.$createdAt),
-    orderStatus: data.orderStatus,
+    orderStatus: ORDER_STATUS[data.orderStatus],
     paymentId: data.paymentId,
     userId: data.userId,
     userName: data.userName,
