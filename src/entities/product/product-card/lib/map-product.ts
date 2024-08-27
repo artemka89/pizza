@@ -1,13 +1,15 @@
 import { ProductsDto } from '@/shared/api/models/product/product-schemas';
 import { CATEGORY_TYPE } from '@/shared/lib/constants/category-type';
 
-import { Products } from '../model/types';
+import { getProductImageUrl } from '../../lib/get-product-image-url';
+import { ProductCategory } from '../model/types';
 
-export const mapProduct = (data: ProductsDto): Products => {
+export const mapProduct = (data: ProductsDto): ProductCategory => {
   const products = data.products.map((product) => ({
     id: product.$id,
     name: product.name,
     imageId: product.imageId,
+    imageUrl: getProductImageUrl({ id: product.imageId }),
     contents: product.contents || undefined,
     option: {
       id: product.options[0].$id,

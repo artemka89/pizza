@@ -27,5 +27,5 @@ export const getProductImageUrl = ({
     undefined,
     ImageFormat.Webp,
   );
-  return url;
+  return url.toString();
 };

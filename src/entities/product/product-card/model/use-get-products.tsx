@@ -9,3 +9,4 @@ export function useGetProducts() {
     select: (data) => data.map(mapProduct),
   });
 }
+getProductsQuery;

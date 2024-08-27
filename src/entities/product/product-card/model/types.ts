@@ -1,7 +1,9 @@
-export interface Products {
+import { CATEGORY_TYPE } from '@/shared/lib/constants/category-type';
+
+export interface ProductCategory {
   id: string;
   name: string;
-  type: string;
+  type: CATEGORY_TYPE;
   products: Product[];
 }
 

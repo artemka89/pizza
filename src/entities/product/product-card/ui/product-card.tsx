@@ -7,22 +7,15 @@ import { Product } from '../model/types';
 
 interface ProductCardProps {
   item: Product;
-  action?: React.ReactNode;
-  imageUrl: () => URL;
+  actionSlot?: React.ReactNode;
 }
 
-export const ProductCard: FC<ProductCardProps> = ({
-  item,
-  action,
-  imageUrl,
-}) => {
-  const image = imageUrl().toString();
-
+export const ProductCard: FC<ProductCardProps> = ({ item, actionSlot }) => {
   return (
     <Link to={ROUTES.PRODUCTS(item.id)}>
       <div className='flex h-[418px] cursor-pointer flex-col items-center p-4'>
         <div className='h-[220px] w-[220px] transition-transform hover:translate-y-1'>
-          <img src={image} alt={item.name} className='h-full w-full' />
+          <img src={item.imageUrl} alt={item.name} className='h-full w-full' />
         </div>
         <h4 className='pb-1 pt-2 text-center text-xl font-bold leading-tight'>
           {item.name}
@@ -33,7 +26,7 @@ export const ProductCard: FC<ProductCardProps> = ({
 
         <div className='flex w-full items-center justify-between'>
           <span className='text-lg font-bold'>от {item.option.price} ₽</span>
-          {action}
+          {actionSlot}
         </div>
       </div>
     </Link>
