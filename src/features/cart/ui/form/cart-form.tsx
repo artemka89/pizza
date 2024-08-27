@@ -25,11 +25,17 @@ interface CartFormProps {
     email: string;
     phone: string;
   };
-  children: React.ReactNode;
+  leftSections: React.ReactNode;
+  rightSections: React.ReactNode;
   onSubmit: (data: CartInfoFormType) => void;
 }
 
-export const CartForm: FC<CartFormProps> = ({ user, children, onSubmit }) => {
+export const CartForm: FC<CartFormProps> = ({
+  user,
+  leftSections,
+  rightSections,
+  onSubmit,
+}) => {
   const methods = useForm<CartInfoFormType>({
     mode: 'onBlur',
     defaultValues: {
@@ -56,7 +62,10 @@ export const CartForm: FC<CartFormProps> = ({ user, children, onSubmit }) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className='flex gap-8'>
-        {children}
+        <div className='flex flex-1 flex-col gap-8'>{leftSections}</div>
+        <div className='flex max-w-[450px] flex-1 flex-col gap-8'>
+          {rightSections}
+        </div>
       </form>
     </FormProvider>
   );

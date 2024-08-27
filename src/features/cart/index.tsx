@@ -2,7 +2,7 @@ export type { CartInfoFormType } from './model/cart-form-schema.ts';
 export { useRemoveAllCartItems } from './model/use-remove-all-cart-items.tsx';
 export { AddToCartButton } from './ui/add-to-cart-button.tsx';
 export { CartIconButton } from './ui/cart-icon-button.tsx';
-export { CartItem } from './ui/cart-item.tsx';
+export { CartItemList } from './ui/cart-item-list.tsx';
 export { ClearCartButton } from './ui/clear-cart-button.tsx';
 export { DrawerCartItem } from './ui/drawer-cart-item.tsx';
 export { CartAddressInputForm } from './ui/form/cart-address-input-form.tsx';

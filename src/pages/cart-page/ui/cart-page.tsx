@@ -9,7 +9,7 @@ import {
   CartForm,
   CartInfoFormType,
   CartInfoInputs,
-  CartItem,
+  CartItemList,
   ClearCartButton,
 } from '@/features/cart';
 import { useCreateOrder } from '@/features/order';
@@ -40,7 +40,7 @@ export const CartPage: FC = () => {
     }
   };
 
-  if (cart.data?.cartItem.length === 0) {
+  if (cartIsEmpty) {
     return <Navigate to={ROUTES.HOME} />;
   }
 
@@ -49,30 +49,27 @@ export const CartPage: FC = () => {
       <Title size='lg' className='p-6'>
         Оформление заказа
       </Title>
-      <CartForm user={user.data} onSubmit={onSubmitHandler}>
-        <div className='flex flex-1 flex-col gap-8'>
-          <CartSection
-            title='1. Корзина'
-            actions={<>{!cartIsEmpty && <ClearCartButton />}</>}>
-            <div className='space-y-10'>
-              {cart.data?.cartItem.map((item) => (
-                <CartItem key={item.id} item={item} />
-              ))}
-            </div>
-          </CartSection>
-          <CartSection title='2. Персональная информация'>
-            <CartInfoInputs />
-          </CartSection>
-        </div>
-        <div className='flex max-w-[450px] flex-1 flex-col gap-8'>
+      <CartForm
+        user={user.data}
+        onSubmit={onSubmitHandler}
+        leftSections={
+          <>
+            <CartSection title='1. Корзина' actions={<ClearCartButton />}>
+              <CartItemList />
+            </CartSection>
+            <CartSection title='2. Персональная информация'>
+              <CartInfoInputs />
+            </CartSection>
+          </>
+        }
+        rightSections={
           <CartSection title='Итого:'>
             <CartDetails
               totalPrice={totalPrice}
               deliveryPrice={DELIVERY_PRICE}
             />
           </CartSection>
-        </div>
-      </CartForm>
+        }></CartForm>
     </PageContainer>
   );
 };
