@@ -2,7 +2,7 @@ import { useGetCart } from '@/entities/cart';
 import { useSelectedItems } from '@/entities/product';
 import { useGetUser } from '@/entities/user';
 
-import { CreateCartItem } from './types';
+import { CreateCartItemDto } from './types';
 import { useCreateCartItem } from './use-create-cart-item';
 import { useUpdateCartItemAmount } from './use-update-item-amount';
 
@@ -42,7 +42,7 @@ export function useAddCartItem() {
       const cartItemIds = cart.data.cartItem.map((item) => item.id) || [];
       const ingredientsIds = selectedIngredients.map((item) => item.id) || [];
 
-      const data: CreateCartItem = {
+      const data: CreateCartItemDto = {
         cartId: user.data.id,
         cartItemIds: cartItemIds,
         productId,

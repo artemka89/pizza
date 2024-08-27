@@ -6,6 +6,15 @@ export interface CartItemType {
   ingredients: { name: string; price: number }[];
 }
 
+export interface CreateCartItemDto {
+  cartId: string;
+  cartItemIds: string[];
+  productId: string;
+  optionId: string;
+  ingredientsIds: string[];
+  amount: number;
+}
+
 export interface CreateOrderDto {
   userId: string;
   name: string;

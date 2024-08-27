@@ -4,7 +4,7 @@ import { useInvalidateCart } from '@/entities/cart';
 import { cartApi } from '@/shared/api/models/cart';
 import { useToast } from '@/shared/ui/use-toast';
 
-import { CreateCartItem } from './types';
+import { CreateCartItemDto } from './types';
 
 export function useCreateCartItem() {
   const { toast } = useToast();
@@ -12,7 +12,7 @@ export function useCreateCartItem() {
 
   return useMutation({
     mutationKey: ['create-cart-item'],
-    mutationFn: (data: CreateCartItem) => cartApi.addItem(data),
+    mutationFn: (data: CreateCartItemDto) => cartApi.addItem(data),
     onSettled: async () => {
       await invalidateCart();
     },
