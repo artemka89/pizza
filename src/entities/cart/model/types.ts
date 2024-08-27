@@ -6,7 +6,6 @@ export interface Cart {
 interface CartItem {
   id: string;
   product: Product;
-  category: { id: string; name: string };
   option: Option;
   ingredients: Ingredient[];
   amount: number;
@@ -16,6 +15,7 @@ interface Product {
   id: string;
   name: string;
   imageUrl: string;
+  imageId: string;
 }
 
 export interface Option {

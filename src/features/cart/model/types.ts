@@ -1,8 +1,27 @@
 export interface CartItemType {
   id: string;
-  product: { id: string; name: string; imageUrl: string };
-  category: { name: string };
+  product: { id: string; name: string; imageUrl: string; imageId: string };
   option: { size?: number; price: number; weight?: number; volume?: number };
   amount: number;
   ingredients: { name: string; price: number }[];
+}
+
+export interface CreateCartItemDto {
+  cartId: string;
+  cartItemIds: string[];
+  productId: string;
+  optionId: string;
+  ingredientsIds: string[];
+  amount: number;
+}
+
+export interface CreateOrderDto {
+  userId: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  comment?: string;
+  totalPrice: number;
+  items: CartItemType[];
 }

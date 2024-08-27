@@ -1,7 +1,7 @@
 export interface Order {
   id: string;
   createdAt: Date;
-  orderStatus: 'PENDING' | 'SUCCEEDED' | 'CANCELLED';
+  orderStatus: ORDER_STATUS;
   paymentId: string;
   userId: string;
   userName: string;

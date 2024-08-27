@@ -1,18 +1,17 @@
 import { FC } from 'react';
 
+import { ORDER_STATUS } from '@/entities/order';
 import { cn } from '@/shared/lib/cn';
 import { Badge } from '@/shared/ui/badge';
 
-import { OrderStatusType } from '../model/types';
-
-const textStatusMap: Record<OrderStatusType, string> = {
+const textStatusMap: Record<ORDER_STATUS, string> = {
   SUCCEEDED: 'Оплачен',
   CANCELLED: 'Отменен',
   PENDING: 'В обработке',
 };
 
 interface OrderStatusProps {
-  status: OrderStatusType;
+  status: ORDER_STATUS;
   className?: string;
 }
 
