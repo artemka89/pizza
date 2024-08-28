@@ -1,19 +1,20 @@
 import { FC } from 'react';
 
 import {
+  getProductOptionFieldValues,
+  PIZZA_SIZE_FIELD_VALUES,
   ProductDetailLayout,
   useGetPizzaDetail,
   useSelectedItems,
 } from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
 import {
-  PizzaImage,
   ProductIngredientList,
+  ProductOptionSwitcher,
   SelectedOptionFieldText,
-} from '@/features/product-details';
-import { getProductOptionFieldValues } from '@/features/product-details';
-import { PIZZA_SIZES } from '@/features/product-details';
-import { ProductOptionSwitcher } from '@/features/product-details';
+} from '@/features/product';
+
+import { PizzaImage } from './pizza-image';
 
 interface PizzaDetailProps {
   id: string;
@@ -31,7 +32,7 @@ export const PizzaDetail: FC<PizzaDetailProps> = ({ id }) => {
   const optionFieldValues = getProductOptionFieldValues(
     pizza.options,
     'size',
-    PIZZA_SIZES,
+    PIZZA_SIZE_FIELD_VALUES,
   );
 
   const setOptionField = (key: string) => {
@@ -45,8 +46,8 @@ export const PizzaDetail: FC<PizzaDetailProps> = ({ id }) => {
     <ProductDetailLayout
       title={pizza.name}
       contents={pizza.contents}
-      image={<PizzaImage imageId={pizza.imageId} />}
-      optionFieldToText={<SelectedOptionFieldText />}
+      image={<PizzaImage imageUrl={pizza.imageUrl} />}
+      optionFieldText={<SelectedOptionFieldText />}
       options={
         <ProductOptionSwitcher
           fields={optionFieldValues}

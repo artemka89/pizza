@@ -18,7 +18,7 @@ export const SearchProductInput: FC<SearchInputProps> = ({ className }) => {
   const [focused, setFocused, ref] = useFocusElement();
   const debouncedValue = useDebouncedValue(searchValue);
 
-  const { data } = useGetSearchingProducts(debouncedValue);
+  const { data = [] } = useGetSearchingProducts(debouncedValue);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -40,9 +40,9 @@ export const SearchProductInput: FC<SearchInputProps> = ({ className }) => {
           'relative z-30 flex max-w-[400px] flex-1 justify-between',
           className,
         )}>
-        <Search className='absolute left-3 top-1/2 h-5 translate-y-[-60%] text-gray-400' />
+        <Search className='absolute left-3 top-1/2 h-5 translate-y-[-50%] text-muted-foreground' />
         <Input
-          className='w-full bg-gray-50 pl-11 outline-none'
+          className='w-full bg-muted pl-11 outline-none'
           type='text'
           placeholder='Найти пиццу...'
           value={searchValue}
@@ -51,10 +51,10 @@ export const SearchProductInput: FC<SearchInputProps> = ({ className }) => {
         />
         <div
           className={cn(
-            'invisible absolute top-14 z-30 w-full rounded-xl bg-background py-2 opacity-0 shadow-md transition-all duration-200',
-            focused && data && 'visible top-12 opacity-100',
+            'invisible absolute top-14 z-30 w-full rounded-xl bg-background opacity-0 shadow-md transition-all duration-200',
+            data.length > 0 && focused && 'visible top-12 opacity-100',
           )}>
-          {data?.map((item) => (
+          {data.map((item) => (
             <Link
               to={ROUTES.PRODUCTS(item.id)}
               key={item.id}

@@ -1,6 +1,8 @@
+export { PIZZA_SIZE_FIELD_VALUES } from './lib/constants.ts';
 export { formatOptionFieldText } from './lib/format-option-field-text';
 export { formatPrice } from './lib/format-price';
 export { getProductImageUrl } from './lib/get-product-image-url';
+export { getProductOptionFieldValues } from './lib/get-product-option-field-values.ts';
 export { useSelectedItems } from './model/use-selected-items-store';
 export type { Product, ProductCategory } from './product-card/model/types.ts';
 export { useGetProducts } from './product-card/model/use-get-products.tsx';
@@ -9,6 +11,9 @@ export { useGetCoffeeDetail } from './product-detail/model/use-get-coffee-detail
 export { useGetDrinkDetail } from './product-detail/model/use-get-drink-detail.tsx';
 export { useGetPizzaDetail } from './product-detail/model/use-get-pizza-detail.tsx';
 export { ProductDetailLayout } from './product-detail/ui/product-detail-layout.tsx';
+export { getIngredientImageUrl } from './product-ingredient/lib/get-ingredient-image-url.ts';
+export type { ProductIngredient } from './product-ingredient/model/types.ts';
+export { IngredientItem } from './product-ingredient/ui/ingredient-item.tsx';
 export { getProductDetailQuery } from './queries.ts';
 export { useGetSearchingProducts } from './search-product/model/use-get-searching-products.tsx';
 export { SearchProductCard } from './search-product/ui/search-product-card.tsx';

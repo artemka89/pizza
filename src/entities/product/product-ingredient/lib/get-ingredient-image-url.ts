@@ -3,13 +3,7 @@ import { ImageFormat, ImageGravity } from 'appwrite';
 import { APPWRITE } from '@/shared/api/config/appwrite';
 import { storage } from '@/shared/api/config/appwrite-config';
 
-export const getIngredientImageUrl = ({
-  id,
-  size = 88,
-}: {
-  id: string;
-  size?: number;
-}) => {
+export const getIngredientImageUrl = (id: string, size = 88) => {
   const url = storage.getFilePreview(
     APPWRITE.INGREDIENT_BUCKET_ID,
     id,
@@ -25,5 +19,5 @@ export const getIngredientImageUrl = ({
     undefined,
     ImageFormat.Webp,
   );
-  return url;
+  return url.toString();
 };

@@ -3,8 +3,8 @@ import { CircleCheck } from 'lucide-react';
 
 import { cn } from '@/shared/lib/cn';
 
-import { getIngredientImageUrl } from '../../lib/get-ingredient-image-url';
-import { ProductIngredient } from '../../model/types/types';
+import { formatPrice } from '../../lib/format-price';
+import { ProductIngredient } from '../model/types';
 
 interface IngredientItemProps {
   item: ProductIngredient;
@@ -16,10 +16,6 @@ export const IngredientItem: FC<IngredientItemProps> = ({
   toggleItem,
 }) => {
   const [isSelected, setIsSelected] = useState(false);
-
-  const imageUrl = getIngredientImageUrl({
-    id: item.imageId,
-  }).toString();
 
   const toggleSelected = () => {
     setIsSelected((prev) => !prev);
@@ -40,9 +36,9 @@ export const IngredientItem: FC<IngredientItemProps> = ({
         <CircleCheck className='absolute right-2 top-2 text-primary' />
       )}
 
-      <img src={imageUrl} alt={item.name} className='size-[88px]' />
+      <img src={item.imageUrl} alt={item.name} className='size-[88px]' />
       <span className='mb-1 text-xs leading-none'>{item.name}</span>
-      <span className='mt-auto font-bold'>{item.price} ₽</span>
+      <span className='mt-auto font-bold'>{formatPrice(item.price)}</span>
     </button>
   );
 };

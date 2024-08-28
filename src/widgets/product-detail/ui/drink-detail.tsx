@@ -1,17 +1,16 @@
 import { FC } from 'react';
 
 import {
-  getProductImageUrl,
+  getProductOptionFieldValues,
   ProductDetailLayout,
   useGetDrinkDetail,
   useSelectedItems,
 } from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
 import {
-  getProductOptionFieldValues,
   ProductOptionSwitcher,
   SelectedOptionFieldText,
-} from '@/features/product-details';
+} from '@/features/product';
 
 interface DrinkDetailProps {
   id: string;
@@ -38,17 +37,12 @@ export const DrinkDetail: FC<DrinkDetailProps> = ({ id }) => {
     }
   };
 
-  const imageUrl = getProductImageUrl({
-    id: drink.imageId,
-    size: 'big',
-  }).toString();
-
   return (
     <ProductDetailLayout
       title={drink.name}
-      optionFieldToText={<SelectedOptionFieldText />}
+      optionFieldText={<SelectedOptionFieldText />}
       contents={drink.contents}
-      image={<img src={imageUrl} alt={drink.name} />}
+      imageUrl={drink.imageUrl}
       options={
         <ProductOptionSwitcher
           fields={optionFieldValues}

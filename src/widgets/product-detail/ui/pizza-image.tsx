@@ -1,17 +1,12 @@
-import { getProductImageUrl, useSelectedItems } from '@/entities/product';
+import { useSelectedItems } from '@/entities/product';
 import { cn } from '@/shared/lib/cn';
 
 interface PizzaImageProps {
-  imageId: string;
+  imageUrl: string;
 }
 
-export const PizzaImage: React.FC<PizzaImageProps> = ({ imageId }) => {
+export const PizzaImage: React.FC<PizzaImageProps> = ({ imageUrl }) => {
   const [selectedOption] = useSelectedItems((state) => [state.option]);
-
-  const imageUrl = getProductImageUrl({
-    id: imageId,
-    size: 'big',
-  }).toString();
 
   return (
     <div className='relative flex w-full flex-1 items-center justify-center'>
@@ -24,10 +19,9 @@ export const PizzaImage: React.FC<PizzaImageProps> = ({ imageId }) => {
             25: 'size-[300px]',
             30: 'size-[380px]',
             35: 'size-[460px]',
-          }[selectedOption?.size || 20],
+          }[selectedOption?.size as number],
         )}
       />
-
       <div className='absolute left-1/2 top-1/2 h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-border' />
       <div className='absolute left-1/2 top-1/2 h-[370px] w-[370px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dotted border-border' />
     </div>

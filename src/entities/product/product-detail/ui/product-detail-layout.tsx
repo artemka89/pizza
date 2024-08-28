@@ -6,8 +6,9 @@ import { Title } from '@/shared/ui/title';
 interface ProductDetailLayoutProps {
   title: string;
   contents?: string;
-  image: JSX.Element;
-  optionFieldToText?: JSX.Element;
+  image?: JSX.Element;
+  imageUrl?: string;
+  optionFieldText?: JSX.Element;
   options: JSX.Element;
   ingredients?: JSX.Element;
   addToCartButton: JSX.Element;
@@ -16,7 +17,8 @@ interface ProductDetailLayoutProps {
 export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
   image,
   title,
-  optionFieldToText,
+  imageUrl,
+  optionFieldText,
   contents,
   options,
   ingredients,
@@ -26,6 +28,13 @@ export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
     <div className='relative flex'>
       <div className='flex h-full w-[506px] items-center justify-center'>
         {image}
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            alt={title}
+            className='h-[350px] w-[350px] object-cover'
+          />
+        )}
       </div>
       <div className='flex-1'>
         <div className='absolute -mr-[22px] w-[388px]'>
@@ -34,9 +43,7 @@ export const ProductDetailLayout: FC<ProductDetailLayoutProps> = ({
               <Title className='mb-1 text-[24px] font-medium leading-none'>
                 {title}
               </Title>
-              {optionFieldToText && (
-                <div className='mb-2'>{optionFieldToText}</div>
-              )}
+              {optionFieldText && <div className='mb-2'>{optionFieldText}</div>}
               {contents && (
                 <div className='mb-4 text-sm leading-none'>{contents}</div>
               )}

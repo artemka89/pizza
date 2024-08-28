@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { SignOutButton } from '@/features/auth';
 import { CartIconButton } from '@/features/cart';
-import { SearchProductInput } from '@/features/search-product';
+import { SearchProductInput } from '@/features/product';
 
 import { Logo } from './logo/logo';
 import { Layout } from './layout';

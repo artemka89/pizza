@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-import { useSelectedItems } from '@/entities/product';
+import {
+  IngredientItem,
+  ProductIngredient,
+  useSelectedItems,
+} from '@/entities/product';
 import { Title } from '@/shared/ui/title';
-
-import { ProductIngredient } from '../../model/types/types';
-
-import { IngredientItem } from './ingredient-item';
 
 interface ProductIngredientListProps {
   items: ProductIngredient[];
@@ -16,7 +16,7 @@ export const ProductIngredientList: FC<ProductIngredientListProps> = ({
 }) => {
   const [toggleItem] = useSelectedItems((state) => [state.toggleIngredient]);
 
-  if (!items.length) {
+  if (items.length < 1) {
     return null;
   }
 

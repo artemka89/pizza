@@ -44,10 +44,10 @@ export function useAddCartItem() {
 
       const data: CreateCartItemDto = {
         cartId: user.data.id,
-        cartItemIds: cartItemIds,
+        cartItemIds,
         productId,
         optionId: selectedOptionId,
-        ingredientsIds: ingredientsIds,
+        ingredientsIds,
         amount: 1,
       };
       createCartItem.mutate(data);

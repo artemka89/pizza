@@ -1,4 +1,9 @@
-import { FieldValue } from '../model/types/types';
+export interface OptionFieldValue {
+  key: string;
+  name: string;
+  disabled: boolean;
+  isDefault?: boolean;
+}
 
 type OptionField<T extends string> = { [K in T]: string | number };
 
@@ -6,10 +11,10 @@ export function getProductOptionFieldValues<T extends string>(
   optionsFields: OptionField<T>[],
   fieldKey: T,
   fieldValues?: Record<number, { name: string; isDefault?: boolean }>,
-): FieldValue[] {
+): OptionFieldValue[] {
   if (fieldValues) {
     return Object.entries(fieldValues).map(
-      ([fieldValueKey, fieldValue]): FieldValue => {
+      ([fieldValueKey, fieldValue]): OptionFieldValue => {
         const matchingOption = optionsFields.find(
           (option) => option[fieldKey].toString() === fieldValueKey,
         );
@@ -23,7 +28,7 @@ export function getProductOptionFieldValues<T extends string>(
       },
     );
   } else {
-    return optionsFields.map((field, _, array): FieldValue => {
+    return optionsFields.map((field, _, array): OptionFieldValue => {
       const isDisabled = array.length < 2;
 
       return {

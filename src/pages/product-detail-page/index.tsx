@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSelectedItems } from '@/entities/product';
 import { ProductModalLayout } from '@/shared/ui/layouts/product-modal-layout';
-import { ProductDetailFabric } from '@/widgets/product-details';
+import { ProductDetailFabric } from '@/widgets/product-detail';
 
 export const ProductDetailPage: FC = () => {
   const navigate = useNavigate();

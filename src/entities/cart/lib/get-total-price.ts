@@ -13,7 +13,7 @@ export function getTotalPrice(items?: CartItem[]) {
 
   const totalPrice = items.reduce((acc, item) => {
     const totalIngredientPrice = getTotalIngredientPrice(item.ingredients);
-    return acc + item.amount * item.option.price + totalIngredientPrice;
+    return acc + item.amount * (item.option.price + totalIngredientPrice);
   }, 0);
 
   return totalPrice;

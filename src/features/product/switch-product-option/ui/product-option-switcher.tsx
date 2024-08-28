@@ -2,10 +2,13 @@ import { FC, useEffect, useState } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 
-import { FieldValue } from '../model/types/types';
-
 interface ProductOptionSwitcherProps {
-  fields: FieldValue[];
+  fields: {
+    key: string;
+    name: string;
+    disabled: boolean;
+    isDefault?: boolean;
+  }[];
   setField: (value: string) => void;
 }
 
