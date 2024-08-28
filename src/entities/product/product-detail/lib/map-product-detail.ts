@@ -1,6 +1,7 @@
 import { ProductDetailDto } from '@/shared/api/models/product/product-schemas';
 
-import { ProductDetail } from '../model/types';
+import { getProductImageUrl } from '../../lib/get-product-image-url';
+import { ProductDetail } from '../model/types.ts';
 
 export function mapProductDetail(data: ProductDetailDto): ProductDetail {
   const category = {
@@ -23,10 +24,13 @@ export function mapProductDetail(data: ProductDetailDto): ProductDetail {
     imageId: ingredient.imageId,
   }));
 
+  const imageUrl = getProductImageUrl({ id: data.imageId, size: 'big' });
+
   return {
     id: data.$id,
     name: data.name,
     imageId: data.imageId,
+    imageUrl,
     contents: data.contents || '',
     category,
     options,
