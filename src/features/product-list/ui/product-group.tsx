@@ -1,44 +1,37 @@
-import { FC, useEffect, useRef } from 'react';
-import { useIntersection } from 'react-use';
+import { FC } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import { useCategoryStore } from '@/entities/category';
-import { getProductImageUrl, ProductCard } from '@/entities/product';
-import { Button } from '@/shared/ui/button';
-import { ProductListLayout } from '@/shared/ui/layouts/product-list-layout';
+import { SectionTitle } from '@/shared/ui/section-title';
 
 import { Product } from '../model/types';
 
 interface ProductGroupProps {
   items: Product[];
-  category: { id: string; name: string };
+  category: { id: string; name: string; type: string };
+  setCategory: (categoryId: string) => void;
+  renderProduct: (product: Product) => JSX.Element;
 }
 
-export const ProductGroup: FC<ProductGroupProps> = ({ items, category }) => {
-  const [setActiveCategoryId] = useCategoryStore((state) => [
-    state.setActiveCategoryId,
-  ]);
-
-  const intersectionRef = useRef(null);
-  const intersection = useIntersection(intersectionRef, {
+export const ProductGroup: FC<ProductGroupProps> = ({
+  items,
+  category,
+  renderProduct,
+  setCategory,
+}) => {
+  const { ref } = useInView({
     threshold: 1,
+    onChange: (inView) => inView && setCategory(category.id),
   });
 
-  useEffect(() => {
-    if (intersection?.isIntersecting) {
-      setActiveCategoryId(category.id);
-    }
-  }, [category.id, intersection?.isIntersecting, setActiveCategoryId]);
-
   return (
-    <ProductListLayout title={category.name} ref={intersectionRef}>
-      {items.map((product) => (
-        <ProductCard
-          key={product.id}
-          item={product}
-          imageUrl={() => getProductImageUrl({ id: product.imageId })}
-          action={<Button onClick={() => {}}>Выбрать</Button>}
-        />
-      ))}
-    </ProductListLayout>
+    <div className='space-y-4'>
+      <SectionTitle text={category.name} />
+      <div
+        ref={ref}
+        id={category.type}
+        className='grid w-full grid-cols-[repeat(auto-fill,288px)] justify-center gap-4'>
+        {items.map((product) => renderProduct(product))}
+      </div>
+    </div>
   );
 };
