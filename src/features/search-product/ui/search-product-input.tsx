@@ -2,10 +2,7 @@ import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 
-import {
-  getProductImageUrl,
-  useGetSearchingProductList,
-} from '@/entities/product';
+import { SearchProductCard, useGetSearchingProducts } from '@/entities/product';
 import { cn } from '@/shared/lib/cn';
 import { ROUTES } from '@/shared/lib/constants/routes';
 import { useDebouncedValue } from '@/shared/lib/use-debounced-value';
@@ -21,7 +18,7 @@ export const SearchProductInput: FC<SearchInputProps> = ({ className }) => {
   const [focused, setFocused, ref] = useFocusElement();
   const debouncedValue = useDebouncedValue(searchValue);
 
-  const { data } = useGetSearchingProductList(debouncedValue);
+  const { data } = useGetSearchingProducts(debouncedValue);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -58,17 +55,11 @@ export const SearchProductInput: FC<SearchInputProps> = ({ className }) => {
             focused && data && 'visible top-12 opacity-100',
           )}>
           {data?.map((item) => (
-            <Link to={ROUTES.PRODUCTS(item.id)} key={item.id}>
-              <div
-                onClick={onClickItem}
-                className='flex w-full cursor-pointer items-center gap-3 px-3 py-2 hover:bg-primary/10'>
-                <img
-                  src={getProductImageUrl({ id: item.imageId }).toString()}
-                  alt={item.name}
-                  className='size-10'
-                />
-                <span>{item.name}</span>
-              </div>
+            <Link
+              to={ROUTES.PRODUCTS(item.id)}
+              key={item.id}
+              onClick={onClickItem}>
+              <SearchProductCard name={item.name} imageUrl={item.imageUrl} />
             </Link>
           ))}
         </div>

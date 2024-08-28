@@ -1,11 +1,14 @@
 export { formatOptionFieldText } from './lib/format-option-field-text';
 export { formatPrice } from './lib/format-price';
 export { getProductImageUrl } from './lib/get-product-image-url';
-export { useGetSearchingProductList } from './model/use-get-search-product-list';
 export { useSelectedItems } from './model/use-selected-items-store';
 export type { Product, ProductCategory } from './product-card/model/types.ts';
 export { useGetProducts } from './product-card/model/use-get-products.tsx';
 export { ProductCard } from './product-card/ui/product-card';
-export { useGetProductDetail } from './product-detail/model/use-get-product-detail.tsx';
-export { getProductDetailQuery } from './product-detail/queries.ts';
+export { useGetCoffeeDetail } from './product-detail/model/use-get-coffee-detail.tsx';
+export { useGetDrinkDetail } from './product-detail/model/use-get-drink-detail.tsx';
+export { useGetPizzaDetail } from './product-detail/model/use-get-pizza-detail.tsx';
 export { ProductDetailLayout } from './product-detail/ui/product-detail-layout.tsx';
+export { getProductDetailQuery } from './queries.ts';
+export { useGetSearchingProducts } from './search-product/model/use-get-searching-products.tsx';
+export { SearchProductCard } from './search-product/ui/search-product-card.tsx';

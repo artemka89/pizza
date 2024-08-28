@@ -1,6 +1,9 @@
 import { createStore } from '@/shared/lib/store/create-store';
 
-import { ProductIngredient, ProductOption } from './types';
+import {
+  ProductIngredient,
+  ProductOption,
+} from '../product-detail/model/types';
 
 interface SelectedItemsStore {
   ingredients: ProductIngredient[];

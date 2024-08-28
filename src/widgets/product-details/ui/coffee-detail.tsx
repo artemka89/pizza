@@ -3,6 +3,7 @@ import { FC } from 'react';
 import {
   getProductImageUrl,
   ProductDetailLayout,
+  useGetCoffeeDetail,
   useSelectedItems,
 } from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
@@ -12,8 +13,6 @@ import {
   ProductOptionSwitcher,
   SelectedOptionFieldText,
 } from '@/features/product-details';
-
-import { useGetCoffeeDetail } from '../model/use-get-coffee-detail';
 
 interface CoffeeDetailProps {
   id: string;

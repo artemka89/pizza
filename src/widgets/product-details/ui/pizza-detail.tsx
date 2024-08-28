@@ -1,6 +1,10 @@
 import { FC } from 'react';
 
-import { ProductDetailLayout, useSelectedItems } from '@/entities/product';
+import {
+  ProductDetailLayout,
+  useGetPizzaDetail,
+  useSelectedItems,
+} from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
 import {
   PizzaImage,
@@ -10,8 +14,6 @@ import {
 import { getProductOptionFieldValues } from '@/features/product-details';
 import { PIZZA_SIZES } from '@/features/product-details';
 import { ProductOptionSwitcher } from '@/features/product-details';
-
-import { useGetPizzaDetail } from '../model/use-get-pizza-detail';
 
 interface PizzaDetailProps {
   id: string;

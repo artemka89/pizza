@@ -3,6 +3,7 @@ import { FC } from 'react';
 import {
   getProductImageUrl,
   ProductDetailLayout,
+  useGetDrinkDetail,
   useSelectedItems,
 } from '@/entities/product';
 import { AddToCartButton } from '@/features/cart';
@@ -11,8 +12,6 @@ import {
   ProductOptionSwitcher,
   SelectedOptionFieldText,
 } from '@/features/product-details';
-
-import { useGetDrinkDetail } from '../model/use-get-drink-detail';
 
 interface DrinkDetailProps {
   id: string;

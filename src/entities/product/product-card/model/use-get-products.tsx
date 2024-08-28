@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { getProductsQuery } from '../../queries';
 import { mapProduct } from '../lib/map-product';
-import { getProductsQuery } from '../queries';
 
 export function useGetProducts() {
   return useQuery({
@@ -9,4 +9,3 @@ export function useGetProducts() {
     select: (data) => data.map(mapProduct),
   });
 }
-getProductsQuery;
