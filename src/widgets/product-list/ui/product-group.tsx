@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+import { Product } from '@/entities/product';
 import { SectionTitle } from '@/shared/ui/section-title';
-
-import { Product } from '../model/types';
 
 interface ProductGroupProps {
   items: Product[];

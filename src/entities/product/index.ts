@@ -4,6 +4,7 @@ export { getProductImageUrl } from './lib/get-product-image-url';
 export { useGetProductDetail } from './model/use-get-product-detail';
 export { useGetSearchingProductList } from './model/use-get-search-product-list';
 export { useSelectedItems } from './model/use-selected-items-store';
+export type { Product, ProductCategory } from './product-card/model/types.ts';
 export { useGetProducts } from './product-card/model/use-get-products.tsx';
 export { ProductCard } from './product-card/ui/product-card';
 export { getProductDetailQuery } from './queries';
