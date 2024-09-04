@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { useSelectedItems } from '@/entities/product';
+import { formatPrice } from '@/entities/product';
 import { Button } from '@/shared/ui/button';
 
 import { useAddCartItem } from '../model/use-add-cart-item';
@@ -22,7 +23,11 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({ productId }) => {
       disabled={isLoading}
       onClick={addToCart}
       className='h-12 w-full text-base'>
-      {isLoading ? <span>Добавляем...</span> : <span>В корзину {price} ₽</span>}
+      {isLoading ? (
+        <span>Добавляем...</span>
+      ) : (
+        <span>В корзину {formatPrice(price)}</span>
+      )}
     </Button>
   );
 };
